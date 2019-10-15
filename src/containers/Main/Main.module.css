@@ -2,3 +2,16 @@
     text-align: center;
     padding-top: 10%;
 }
+.FrontPage{
+    width: 70%;
+    margin: 10% auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.FrontPage h1 span{
+    clear: both;
+    display: block;
+    width: 100%;
+    font-size: 6.7rem;
+    margin-bottom: -5%;
+}

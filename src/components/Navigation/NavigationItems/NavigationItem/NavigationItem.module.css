@@ -11,5 +11,23 @@
     box-sizing: border-box;
     font-size: 3.5rem;
     text-align: center;
-    display: block;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
 }
+.NavigationItem a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  .NavigationItem a:hover:after{ 
+    width: 100%; 
+    left: 0; 
+  }

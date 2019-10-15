@@ -1,16 +1,20 @@
 import React from 'react';
 import Aux from '../Auxiliary/Auxiliary';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import {useSelector} from 'react-redux';
 
-const layout = props => {
+const Layout = props => {
+
+    const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+
     return (
         <Aux>
             <main >
                 {props.children}
             </main>
-            <Toolbar />
+            {isNavbarVisible && <Toolbar/>}
         </Aux>
     );
 }
 
-export default layout;
+export default Layout;

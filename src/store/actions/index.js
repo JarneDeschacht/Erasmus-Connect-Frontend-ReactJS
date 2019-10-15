@@ -8,3 +8,6 @@ export {
     authFail,
     checkAuthTimeout
 } from './auth';
+export {
+    navbarSwitchDisplay
+} from './navbar';

@@ -29,3 +29,13 @@ export const checkValidity = (value, rules) => {
 
     return isValid;
 }
+
+export const giveCustomErrorMessage = (error) => {
+    switch (error.message) {
+        case 'INVALID_EMAIL': return 'You have to enter an email address';
+        case 'EMAIL_NOT_FOUND': return 'Email address not found';
+        case 'MISSING_PASSWORD': return 'You have to enter a password';
+        case 'INVALID_PASSWORD': return 'Incorrect password';
+        default: return error.message;
+    }
+}
