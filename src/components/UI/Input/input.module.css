@@ -1,0 +1,15 @@
+.Input{
+    width: 100%;
+    border-radius: 11px;
+    color: rgb(0,174,239);
+    border: 1px solid rgb(0,174,239);
+    outline: none;
+    padding: 6.5px 10px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 5% 1%;
+}
+.Input::placeholder{
+    color: rgb(0,174,239);
+}

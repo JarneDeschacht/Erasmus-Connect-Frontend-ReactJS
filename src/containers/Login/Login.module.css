@@ -1,0 +1,18 @@
+.Login{
+    width: 70%;
+    margin: 8% auto;
+}
+.ForgotPassword{
+    cursor: pointer;
+    display: block;
+}
+.Login form{
+    width: 30%;
+    margin: 8% auto;
+}
+.Login form div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
