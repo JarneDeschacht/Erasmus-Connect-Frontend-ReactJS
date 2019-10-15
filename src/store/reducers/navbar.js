@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
-    showNavbar: true
+    showNavbar: true,
 }
 
 const setNavbarDisplay = (state, action) => {

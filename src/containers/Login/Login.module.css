@@ -24,9 +24,13 @@
     color: red;
     font-size: 2.5rem;
 }
-.Login h2{
+.Login a,.Login h2{
     cursor: pointer;
     display: block;
     text-align: center;
     margin-top: 7%;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }

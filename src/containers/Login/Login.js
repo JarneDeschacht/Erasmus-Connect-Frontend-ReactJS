@@ -5,7 +5,7 @@ import classes from './Login.module.css';
 import { checkValidity, updateObject } from '../../shared/utility';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { Redirect } from 'react-router-dom';
+import { Redirect,NavLink } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import { giveCustomErrorMessage } from '../../shared/utility';
 
@@ -41,7 +41,7 @@ const Login = props => {
         }
     });
 
-    const [shouldRedirect,setShouldRedirect] = useState(false);
+    const [shouldRedirect, setShouldRedirect] = useState(false);
 
     const dispatch = useDispatch();
     let isAuthenticated = useSelector(state => state.auth.idToken !== null);
@@ -128,7 +128,7 @@ const Login = props => {
             {redirect}
             {form}
             <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
-            <h2>Create a new account</h2>
+            <NavLink to="/register" exact>Create a new account</NavLink>
         </div>
     );
 }

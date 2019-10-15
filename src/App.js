@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as actions from './store/actions/index';
 import Logout from './containers/Logout/Logout';
 import './App.css';
+import Register from './containers/Register/Register';
+import Profile from './containers/Profile/Profile';
 
 const App = props => {
 
@@ -21,6 +23,7 @@ const App = props => {
   let routes = (
     <Switch>
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
       <Route path="/" exact component={Main} />
       <Redirect to="/" />
     </Switch>
@@ -30,7 +33,7 @@ const App = props => {
     routes = (
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={Main} />
+        <Route path="/profile" component={Profile} />
         <Route path="/logout" component={Logout} />
         <Route path="/" exact component={Main} />
         <Redirect to="/" />

@@ -15,3 +15,17 @@
     font-size: 6.7rem;
     margin-bottom: -5%;
 }
+.Links{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: 10% auto;
+}
+.Links a{
+    color:white;
+    text-decoration: none;
+    text-align: center;
+    margin: 5%;
+    font-size: 4rem;
+    font-weight: bold;
+}

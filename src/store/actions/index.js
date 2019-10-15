@@ -11,3 +11,9 @@ export {
 export {
     navbarSwitchDisplay
 } from './navbar';
+export {
+    fetchProfile,
+    fetchProfileStart,
+    fetchProfileSuccess,
+    fetchProfileFail
+} from './profile';

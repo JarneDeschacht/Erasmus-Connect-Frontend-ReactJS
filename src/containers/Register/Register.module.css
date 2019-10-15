@@ -1,0 +1,17 @@
+.Register{
+    width: 70%;
+    margin: 4% auto;
+}
+.Register h1{
+    margin-bottom: 10%;
+}
+.Register a,.Register h2{
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    margin-top: 7%;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
