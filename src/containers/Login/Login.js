@@ -42,7 +42,6 @@ const Login = props => {
 
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.auth.idToken !== null);
-    console.log(isAuthenticated);
     const loading = useSelector(state => state.auth.loading);
     const error = useSelector(state => state.auth.error);
     const onAuth = (email, password) => dispatch(actions.auth(email, password, false));
