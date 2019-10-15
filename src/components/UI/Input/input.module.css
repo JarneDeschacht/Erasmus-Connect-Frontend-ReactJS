@@ -13,3 +13,17 @@
 .Input::placeholder{
     color: rgb(0,174,239);
 }
+.Invalid{
+    border: 1px solid red;
+    color: red;
+}
+.ValidationError {
+    padding-left: 1%;
+    color: red;
+    margin: 5px 0;
+} 
+.Label{
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
