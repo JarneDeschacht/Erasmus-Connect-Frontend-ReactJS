@@ -1,6 +1,6 @@
 .Login{
     width: 70%;
-    margin: 8% auto;
+    margin: 4% auto;
 }
 .ForgotPassword{
     cursor: pointer;
@@ -8,7 +8,7 @@
 }
 .Login form{
     width: 30%;
-    margin: 8% auto;
+    margin: 10% auto;
 }
 .Login form div:last-of-type{
     width: 100%;

@@ -3,8 +3,12 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import classes from './Login.module.css';
 import { checkValidity, updateObject } from '../../shared/utility';
+import { useDispatch, useSelector } from 'react-redux';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
+import * as actions from '../../store/actions/index';
 
-const Login = () => {
+const Login = props => {
     const [loginForm, setLoginForm] = useState({
         email: {
             elementType: 'input',
@@ -36,6 +40,13 @@ const Login = () => {
         }
     });
 
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.idToken !== null);
+    console.log(isAuthenticated);
+    const loading = useSelector(state => state.auth.loading);
+    const error = useSelector(state => state.auth.error);
+    const onAuth = (email, password) => dispatch(actions.auth(email, password, false));
+
     const formElementsArray = [];
     for (let key in loginForm) {
         formElementsArray.push({
@@ -43,7 +54,6 @@ const Login = () => {
             config: loginForm[key]
         });
     }
-
     const inputChangedHandler = (event, controlName) => {
         const updatedControls = updateObject(loginForm, {
             [controlName]: updateObject(loginForm[controlName], {
@@ -56,6 +66,7 @@ const Login = () => {
     }
     const onSubmit = (event) => {
         event.preventDefault();
+        onAuth(loginForm.email.value, loginForm.password.value);
     }
 
     let formInputs = formElementsArray.map(el => (
@@ -71,9 +82,26 @@ const Login = () => {
             value={el.config.value}
         />
     ));
+
+    if (loading) {
+        formInputs = <Spinner />
+    }
+
+    let errorMessage = null;
+    if (error) {
+        errorMessage = (<p>{error.message}</p>);
+    }
+
+    let redirect = null;
+    if(isAuthenticated){
+        redirect = <Redirect to="/" />
+    }
+
     return (
         <div className={classes.Login}>
             <h1>WELCOME BACK, YOUR ERASMUS PARTNERS HAVE BEEN WAITING FOR YOU</h1>
+            {errorMessage}
+            {redirect}
             <form>
                 {formInputs}
                 <div>
