@@ -1,0 +1,16 @@
+.Students{
+    width: 75%;
+    margin: 4% auto;
+}
+.GoBack{
+    color:white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+.SearchResults{
+    margin: 5% 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5%;
+    row-gap: 50px;
+}

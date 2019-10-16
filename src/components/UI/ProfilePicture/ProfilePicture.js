@@ -1,9 +1,14 @@
 import React from 'react';
-import ProfileImg from '../../../assets/images/empty-profile.png';
+import ProfileImg from '../../../assets/images/dummyProfile.jpg';
 import classes from './ProfilePicture.module.css';
 
 const profilePicture = () => {
-    return <img className={classes.ProfilePicture} src={ProfileImg} alt={localStorage.getItem('userId')} />
+    let imgClass = classes.ProfilePicture;
+    if (window.location.pathname !== '/profile') {
+        imgClass = classes.ProfilePictureSearch;
+    }
+
+    return <img className={imgClass} src={ProfileImg} alt={localStorage.getItem('userId')} />
 }
 
 export default profilePicture;

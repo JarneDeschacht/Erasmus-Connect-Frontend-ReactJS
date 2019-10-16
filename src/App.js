@@ -8,7 +8,8 @@ import * as actions from './store/actions/index';
 import Logout from './containers/Logout/Logout';
 import './App.css';
 import Register from './containers/Register/Register';
-import Profile from './containers/Profile/Profile';
+import Students from './containers/Students/Students';
+import MyProfile from './containers/My-Profile/My-Profile';
 
 const App = props => {
 
@@ -33,8 +34,9 @@ const App = props => {
     routes = (
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" component={MyProfile} />
         <Route path="/logout" component={Logout} />
+        <Route path="/students" component={Students} />
         <Route path="/" exact component={Main} />
         <Redirect to="/" />
       </Switch>

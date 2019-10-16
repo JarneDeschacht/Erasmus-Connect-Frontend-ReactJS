@@ -1,6 +1,6 @@
 import { takeEvery, all } from 'redux-saga/effects';
 import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga } from './auth';
-import { fetchProfileSaga } from './profile';
+import { fetchProfileSaga, fetchStudentsSaga } from './student';
 import * as actionTypes from '../actions/actionTypes';
 
 export function* watchAuth() {
@@ -11,6 +11,10 @@ export function* watchAuth() {
         takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga),
     ]);
 }
-export function* watchProfile() {
-    yield takeEvery(actionTypes.FETCH_PROFILE, fetchProfileSaga);
+export function* watchStudent() {
+    yield all([
+        takeEvery(actionTypes.FETCH_STUDENT_PROFILE, fetchProfileSaga),
+        takeEvery(actionTypes.FETCH_STUDENTS, fetchStudentsSaga),
+    ]);
+
 }

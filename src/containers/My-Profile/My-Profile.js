@@ -2,7 +2,8 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import classes from './Profile.module.css';
+import classes from './My-Profile.module.css';
+import { NavLink } from 'react-router-dom';
 import ProfilePicture from '../../components/UI/ProfilePicture/ProfilePicture';
 import Map from '../../components/UI/Map/Map';
 import Button from '../../components/UI/Button/Button';
@@ -13,8 +14,8 @@ const Profile = props => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const onFetchProfile = useCallback(() => dispatch(actions.fetchProfile(token, userId)), [token, userId, dispatch]);
-    const profile = useSelector(state => state.profile.profile);
-    const loading = useSelector(state => state.profile.loading);
+    const profile = useSelector(state => state.student.profile);
+    const loading = useSelector(state => state.student.loading);
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
 
@@ -33,7 +34,10 @@ const Profile = props => {
     if (!loading && profile) {
         content = (
             <div className={classes.Profile}>
-                <h2 className={classes.Title}>Welcome back {profile.firstname}</h2>
+                <div className={classes.Header}>
+                    <NavLink className={classes.GoBack} to="/">Go back</NavLink>
+                    <h2 className={classes.Title}>Welcome back {profile.firstname}</h2>
+                </div>
                 <div className={classes.ProfileColumns}>
                     <div>
                         <ProfilePicture />

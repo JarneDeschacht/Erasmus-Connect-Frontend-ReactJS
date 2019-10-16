@@ -15,5 +15,9 @@ export {
     fetchProfile,
     fetchProfileStart,
     fetchProfileSuccess,
-    fetchProfileFail
-} from './profile';
+    fetchProfileFail,
+    fetchStudents,
+    fetchStudentsStart,
+    fetchStudentsSuccess,
+    fetchStudentsFail
+} from './student';

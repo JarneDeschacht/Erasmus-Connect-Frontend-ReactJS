@@ -5,7 +5,7 @@ import classes from './Login.module.css';
 import { checkValidity, updateObject } from '../../shared/utility';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { Redirect,NavLink } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
 import { giveCustomErrorMessage } from '../../shared/utility';
 
@@ -20,7 +20,6 @@ const Login = props => {
             value: '',
             validation: {
                 required: true,
-                isEmail: true,
             },
             valid: false,
             touched: false
@@ -33,8 +32,7 @@ const Login = props => {
             },
             value: '',
             validation: {
-                required: true,
-                minLength: 6,
+                required: true
             },
             valid: false,
             touched: false
