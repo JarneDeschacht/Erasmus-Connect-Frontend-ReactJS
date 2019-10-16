@@ -1,4 +1,18 @@
 .Profile{
-    width: 60%;
-    margin: 5% auto;
+    width: 80%;
+    margin: 3% auto;
+}
+.Profile h2{
+    text-align: center;
+}
+.ProfileColumns{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5%;
+}
+.ProfileColumns:first-child{
+    text-align: center;
+}
+.Title{
+    font-size: 3rem;
 }
