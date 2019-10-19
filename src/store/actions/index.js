@@ -6,7 +6,11 @@ export {
     authStart,
     authSuccess,
     authFail,
-    checkAuthTimeout
+    checkAuthTimeout,
+    register,
+    registerStart,
+    registerFail,
+    registerSuccess
 } from './auth';
 export {
     navbarSwitchDisplay

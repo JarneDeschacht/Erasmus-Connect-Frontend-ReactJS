@@ -12,3 +12,8 @@
     margin-right: 0;
     cursor: pointer;
 }
+
+.Button:disabled{
+    background-color: grey;
+    color: rgb(190, 190, 190);
+}

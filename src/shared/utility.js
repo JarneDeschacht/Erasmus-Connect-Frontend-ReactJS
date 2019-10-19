@@ -30,6 +30,19 @@ export const checkValidity = (value, rules) => {
     return isValid;
 }
 
+export const checkPasswords = (password, passwordConfirmation) => {
+    console.log('UTILITY - checkpasswords')
+
+    let isValid = false;
+
+    if(password === passwordConfirmation){
+        isValid = true
+    }
+    
+    // console.log(isValid)
+    return isValid;
+}
+
 export const giveCustomErrorMessage = (error) => {
     switch (error.message) {
         case 'INVALID_EMAIL': return 'You have to enter an email address';

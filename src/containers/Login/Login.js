@@ -39,17 +39,30 @@ const Login = props => {
         }
     });
 
+    // use state returns an array with 2 elements
+    // the first one is the current state 
+    // the second one is to update this state
     const [shouldRedirect, setShouldRedirect] = useState(false);
 
+
+    //whatever action that we dispatch, gets cought in the reducer (switch-case)
     const dispatch = useDispatch();
+
+
+    //useSelector = getting data out of the redux store
     let isAuthenticated = useSelector(state => state.auth.idToken !== null);
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const loading = useSelector(state => state.auth.loading);
     const error = useSelector(state => state.auth.error);
-    const onAuth = (email, password) => dispatch(actions.auth(email, password, false));
+
+    //actions.auth is a method that manages the state
+    const onAuth = (email, password) => dispatch(actions.auth(email, password));
+
+    //useCallback only when it's dependency changes this will be executed 
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
 
 
+    //= componentDidMount
     useEffect(() => {
         if (isNavbarVisible) {
             onNavbarDisplaySwitch();
@@ -58,6 +71,7 @@ const Login = props => {
 
     const formElementsArray = [];
     for (let key in loginForm) {
+        // console.log(key)
         formElementsArray.push({
             id: key,
             config: loginForm[key]
@@ -100,7 +114,11 @@ const Login = props => {
             {formInputs}
             <div>
                 <p className={classes.ForgotPassword}>forgot password?</p>
-                <Button clicked={(event) => onSubmit(event)}>Sign in</Button>
+                <Button
+                    clicked={(event) => onSubmit(event)}
+                    // disabled={false}
+                >Sign in
+                </Button>
             </div>
         </form>
     )

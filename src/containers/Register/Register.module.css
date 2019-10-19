@@ -15,3 +15,10 @@
     color: white;
     font-weight: bold;
 }
+
+.RegisterContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 25px;
+}
+

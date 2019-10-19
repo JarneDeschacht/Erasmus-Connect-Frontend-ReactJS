@@ -34,16 +34,42 @@ export const logoutSucceed = () => {
         type: actionTypes.AUTH_LOGOUT,
     }
 }
-export const auth = (email, password, isSignup) => {
+export const auth = (email, password) => {
     return {
         type: actionTypes.AUTH_USER,
         email: email,
         password: password,
-        isSignup: isSignup
     }
 }
 export const authCheckState = () => {
     return {
         type: actionTypes.AUTH_CHECK_STATE
+    }
+}
+
+export const register = (credentials) => {
+    console.log("AUTH JS(actioncreators)- register")
+    return {
+        type: actionTypes.REGISTER_USER,
+        credentials: credentials
+    }
+}
+
+export const registerStart = () =>{
+    return{
+        type: actionTypes.REGISTER_START
+    }
+}
+
+export const registerFail = (error) => {
+    return{
+        type: actionTypes.REGISTER_FAIL,
+        error: error
+    }
+}
+
+export const registerSuccess = () => {
+    return{
+        type: actionTypes.REGISTER_SUCCESS
     }
 }
