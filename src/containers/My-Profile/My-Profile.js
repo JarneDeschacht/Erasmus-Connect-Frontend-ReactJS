@@ -58,11 +58,11 @@ const Profile = props => {
                         </div>
                         <div>
                             <h4>Country</h4>
-                            <h3>{profile.current.country}</h3>
+                            <h2>{profile.current.country}</h2>
                         </div>
                         <div>
                             <h4>Course</h4>
-                            <h3>{profile.current.school}</h3>
+                            <h2>{profile.current.school}</h2>
                         </div>
                         <div>
                             <Button>View connection</Button>
@@ -76,11 +76,11 @@ const Profile = props => {
                         </div>
                         <div>
                             <h4>Country</h4>
-                            <h3>{profile.upcoming.country}</h3>
+                            <h2>{profile.upcoming.country}</h2>
                         </div>
                         <div>
                             <h4>Course</h4>
-                            <h3>{profile.upcoming.school}</h3>
+                            <h2>{profile.upcoming.school}</h2>
                         </div>
                         <div>
                             <Button>Manage photos</Button>

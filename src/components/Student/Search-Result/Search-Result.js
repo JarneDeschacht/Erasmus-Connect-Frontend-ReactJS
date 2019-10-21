@@ -4,7 +4,7 @@ import ProfilePicture from '../../UI/ProfilePicture/ProfilePicture';
 
 const SearchResult = props => {
     return (
-        <div className={classes.SearchResult}>
+        <div className={classes.SearchResult} onClick={props.clicked}>
             <ProfilePicture />
             <div>
                 <h2 className={classes.Title}>{props.student.name}</h2>

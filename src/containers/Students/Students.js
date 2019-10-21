@@ -6,7 +6,7 @@ import classes from './Students.module.css';
 import SearchResult from '../../components/Student/Search-Result/Search-Result';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-const Students = () => {
+const Students = props => {
 
     const dispatch = useDispatch();
     const token = localStorage.getItem('token');
@@ -16,6 +16,7 @@ const Students = () => {
     const students = useSelector(state => state.student.students);
     const isLoading = useSelector(state => state.student.loading);
     const onFetchStudents = useCallback((token, userId) => dispatch(actions.fetchStudents(token, userId)), [dispatch]);
+
 
     useEffect(() => {
         if (isNavbarVisible) {
@@ -27,12 +28,17 @@ const Students = () => {
         onFetchStudents(token, userId);
     }, [onFetchStudents, token, userId]);
 
+    const studentSelectHandler = (id) => {
+        props.history.push({ pathname: '/students/' + id });
+    }
+
     let results = <Spinner />
 
     if (!isLoading) {
         const searchResults = students.map(student => (
             <SearchResult
                 key={student.id}
+                clicked={() => studentSelectHandler(student.id)}
                 student={{
                     name: `${student.firstname} ${student.lastname}`,
                     school: student.current.school,
@@ -49,9 +55,11 @@ const Students = () => {
         <div className={classes.Students}>
             <NavLink className={classes.GoBack} to="/">Go back</NavLink>
             <h1>Search results</h1>
-            {results}
+            {
+                results
+            }
         </div>
-    );
+    )
 }
 
 export default Students;

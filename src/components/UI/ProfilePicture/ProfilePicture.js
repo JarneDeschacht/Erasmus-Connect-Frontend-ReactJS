@@ -4,7 +4,7 @@ import classes from './ProfilePicture.module.css';
 
 const profilePicture = () => {
     let imgClass = classes.ProfilePicture;
-    if (window.location.pathname !== '/profile') {
+    if (window.location.pathname === '/students') {
         imgClass = classes.ProfilePictureSearch;
     }
 

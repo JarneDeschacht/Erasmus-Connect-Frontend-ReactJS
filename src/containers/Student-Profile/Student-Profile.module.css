@@ -1,23 +1,25 @@
-.Profile{
+.StudentProfile{
     width: 80%;
-    margin: 0 auto;
+    margin: 4% auto;
 }
 .ProfileColumns{
+    margin-top: 5%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    
     column-gap: 5%;
 }
 .Title{
     font-size: 3rem;
     text-align: center;
 }
-.GoBack{
-    color:white;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
 .Header{
     display: grid;
     grid-template-columns: 1fr 10fr;
     align-items: center;
+}
+.GoBack{
+    color:white;
+    text-decoration: none;
+    font-size: 1.5rem;
 }

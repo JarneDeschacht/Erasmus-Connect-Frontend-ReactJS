@@ -1,6 +1,7 @@
 body{
     background: linear-gradient(rgb(0,174,239),rgb(67,64,243)) no-repeat center center fixed;
     color:white;
+    height: 100%;
 }
 h1{
     text-transform: uppercase;
