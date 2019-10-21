@@ -1,5 +1,8 @@
 import React from 'react';
 import classes from './input.module.css';
+import DatePicker from 'react-datepicker'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 const input = props => {
     let inputElement = null;
@@ -21,9 +24,20 @@ const input = props => {
                 {...props.elementConfig}
                 onChange={props.changed}
                 value={props.value}
-                 />;
+            />;
             break;
+        case ('date'):
 
+            
+            inputElement = <DatePicker
+                className={inputClasses.join(' ')}
+                {...props.elementConfig}
+                showPopperArrow={false}
+                selected={new Date()}
+                onChange={props.changed}
+                value={props.value}
+            />
+            break
         default:
             inputElement = <input
                 className={inputClasses.join(' ')}

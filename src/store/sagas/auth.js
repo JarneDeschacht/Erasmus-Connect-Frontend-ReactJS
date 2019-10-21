@@ -25,7 +25,7 @@ export function* authUserSaga(action) {
     let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBe9ns8BH9Pj_OnjudjFiE7Nb96jNMgN9E';
 
     try {
-        const response = yield axios.post(url, authData);
+        const response = yield axios.post(url, authData)
         const expirationTime = yield new Date(new Date().getTime() + response.data.expiresIn * 1000);
         yield localStorage.setItem('token', response.data.idToken);
         yield localStorage.setItem('expirationTime', expirationTime);
@@ -61,19 +61,34 @@ export function* registerUserSaga(action) {
     
     const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBe9ns8BH9Pj_OnjudjFiE7Nb96jNMgN9E';
     
-    const registerData = {
-        firstName: action.credentials.firstName,
-        lastName: action.credentials.lastName,
+    const userData = {
+        bio: 'unknown',
+        birthday: action.credentials.dateOfBirth,
+        course: 'unknown',
+        current:{
+            city: action.credentials.currentCity,
+            country: action.credentials.currentCountry,
+            school: 'unknown',
+        },
         email: action.credentials.email,
-        currentCountry: action.credentials.currentCountry,
-        password: action.credentials.password,
-        currentCity: action.credentials.currentCity,
-        dateOfBirth: action.credentials.dateOfBirth
+        firstname: action.credentials.firstName,
+        lastname: action.credentials.lastName,
+        upcoming: {
+            city: 'unknown',
+            country: 'unknown',
+            school: 'unknown',
+        }
+    }
+
+    const registerData = {
+        email: action.credentials.email,
+        password: action.credentials.password
     }
     try {
         const response = yield axios.post(url, registerData)
+        console.log(response)
         yield put(actions.registerSuccess(response.data.idToken, response.data.localId));
-        yield saveUserInDataBase(registerData)
+        yield saveUserInDataBase(response.data.localId, userData)
         const expirationTime = yield new Date(new Date().getTime() + response.data.expiresIn * 1000);
         yield localStorage.setItem('token', response.data.idToken)
         yield localStorage.setItem('expirationTime', expirationTime)
@@ -87,6 +102,8 @@ export function* registerUserSaga(action) {
     }
 }
 
-const saveUserInDataBase = (userData) => {
-    axiosCustom.post('/users.json', userData)
+const saveUserInDataBase = (userKey, userData) => {
+    axiosCustom.put(`/users/${userKey}.json`,{...userData}
+    )
+    // axiosCustom.post('/users.json', userData)
 }

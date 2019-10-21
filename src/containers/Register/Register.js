@@ -112,10 +112,9 @@ const Register = props => {
             touched: false
         },
         dateOfBirth: {
-            elementType: 'input',
+            elementType: 'date',
             elementConfig: {
-                type: 'text',
-                placeholder: 'date of birth',
+               placeholder: 'date of birth'
             },
             value: '',
             validation: {
@@ -148,12 +147,18 @@ const Register = props => {
     }
 
     const inputChangedHandler = (event, controlName) => {
+        console.log(event)
+        console.log(controlName)
         const updatedControls = updateObject(registerForm, {
             [controlName]: updateObject(registerForm[controlName], {
-                value: event.target.value,
-                valid: checkValidity(event.target.value, registerForm[controlName].validation),
+                  value: controlName === 'dateOfBirth'?event: event.target.value,
+
+                valid: checkValidity(controlName === 'dateOfBirth'?event: event.target.value, registerForm[controlName].validation),
                 touched: true
             })
+
+        //  value: controlName === 'dateOfBirth'?event: event.target.value,
+
         })
 
         let allControlsAreValid = true;
@@ -175,6 +180,8 @@ const Register = props => {
         event.preventDefault();
 
         console.log('REGISTER JS - onSubmit')
+
+        console.log(registerForm)
 
         const newUserCredentials = {
             firstName: registerForm.firstName.value,
@@ -203,6 +210,7 @@ const Register = props => {
                 errorMessage={"Please enter a valid " + el.id}
                 touched={el.config.touched}
                 value={el.config.value}
+                
             />
         )
     })

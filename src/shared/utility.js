@@ -7,8 +7,10 @@ export const updateObject = (oldObject, updatedProperties) => {
 
 export const checkValidity = (value, rules) => {
     let isValid = true;
+   
 
     if (rules.required) {
+        value = value.toString()
         isValid = value.trim() !== '' && isValid;
     }
     if (rules.minLength) {
