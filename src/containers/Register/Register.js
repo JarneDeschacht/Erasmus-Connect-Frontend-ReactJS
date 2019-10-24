@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import { checkValidity, updateObject, checkPasswords } from '../../shared/utility';
+import { giveCustomErrorMessage } from '../../shared/utility';
 
 const Register = props => {
 
@@ -18,6 +19,7 @@ const Register = props => {
     const onRegister = (credentials) => dispatch(actions.register(credentials))
 
     const [disableConfirmButton, setDisableConfirmButton] = useState(true)
+    const error = useSelector(state => state.auth.error);
 
     const [registerForm, setRegisterForm] = useState({
         firstName: {
@@ -114,7 +116,7 @@ const Register = props => {
         dateOfBirth: {
             elementType: 'date',
             elementConfig: {
-               placeholder: 'date of birth'
+                placeholder: 'date of birth'
             },
             value: '',
             validation: {
@@ -125,6 +127,8 @@ const Register = props => {
         }
 
     })
+
+    let [allControlsAreValid, setAllControlsAreValid] = useState(true)
 
     useEffect(() => {
         if (isNavbarVisible) {
@@ -146,42 +150,46 @@ const Register = props => {
         })
     }
 
+
+    let errorPasswords = ''
     const inputChangedHandler = (event, controlName) => {
-        console.log(event)
-        console.log(controlName)
+        console.log('in change handler')
         const updatedControls = updateObject(registerForm, {
             [controlName]: updateObject(registerForm[controlName], {
-                  value: controlName === 'dateOfBirth'?event: event.target.value,
+                value: controlName === 'dateOfBirth' ? event : event.target.value,
 
-                valid: checkValidity(controlName === 'dateOfBirth'?event: event.target.value, registerForm[controlName].validation),
+                valid: checkValidity(controlName === 'dateOfBirth' ? event : event.target.value, registerForm[controlName].validation),
                 touched: true
             })
 
-        //  value: controlName === 'dateOfBirth'?event: event.target.value,
+            //  value: controlName === 'dateOfBirth'?event: event.target.value,
 
         })
 
-        let allControlsAreValid = true;
         formElementsArray.forEach((el) => {
             if (el.config.valid === false) {
-                allControlsAreValid = false
+                setAllControlsAreValid(false)
             }
         })
 
-        let passwordConfirmed = checkPasswords(registerForm.password.value, registerForm.confirmPassword.value);
 
-            if (allControlsAreValid && passwordConfirmed) {
-                setDisableConfirmButton(false)
-            }
+        let passwordConfirmed = checkPasswords(registerForm.password.value, registerForm.confirmPassword.value);
+        console.log(allControlsAreValid)
+        console.log(passwordConfirmed)
+        if (allControlsAreValid && passwordConfirmed) {
+            console.log(allControlsAreValid)
+            console.log(passwordConfirmed)
+            setDisableConfirmButton(false)
+        }
+        else {
+            errorPasswords = 'passwords not equal'
+        }
+
         setRegisterForm(updatedControls)
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
-
-        console.log('REGISTER JS - onSubmit')
-
-        console.log(registerForm)
 
         const newUserCredentials = {
             firstName: registerForm.firstName.value,
@@ -210,17 +218,14 @@ const Register = props => {
                 errorMessage={"Please enter a valid " + el.id}
                 touched={el.config.touched}
                 value={el.config.value}
-                
             />
         )
     })
 
-
-
-
-
-    // console.log(allControlsAreValid)
-
+    let errorMessage = null;
+    if (error) {
+        errorMessage = <p className={classes.ErrorMessage}>{giveCustomErrorMessage(error)}</p>;
+    }
     let regForm = (
         <form>
             <div className={classes.RegisterContainer}>
@@ -241,9 +246,12 @@ const Register = props => {
 
     return (
         <div className={classes.Register}>
+
             {redirect}
             <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
+            {errorMessage}
             {regForm}
+            {errorPasswords}
             <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
         </div>
     );

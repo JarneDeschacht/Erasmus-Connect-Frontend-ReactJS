@@ -48,7 +48,6 @@ export const authCheckState = () => {
 }
 
 export const register = (credentials) => {
-    console.log("AUTH JS(actioncreators)- register")
     return {
         type: actionTypes.REGISTER_USER,
         credentials: credentials

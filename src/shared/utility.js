@@ -7,7 +7,7 @@ export const updateObject = (oldObject, updatedProperties) => {
 
 export const checkValidity = (value, rules) => {
     let isValid = true;
-   
+  
 
     if (rules.required) {
         value = value.toString()
@@ -23,7 +23,6 @@ export const checkValidity = (value, rules) => {
         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         isValid = pattern.test(value) && isValid
     }
-
     if (rules.isNumeric) {
         const pattern = /^\d+$/;
         isValid = pattern.test(value) && isValid
@@ -33,15 +32,11 @@ export const checkValidity = (value, rules) => {
 }
 
 export const checkPasswords = (password, passwordConfirmation) => {
-    console.log('UTILITY - checkpasswords')
-
     let isValid = false;
 
     if(password === passwordConfirmation){
         isValid = true
     }
-    
-    // console.log(isValid)
     return isValid;
 }
 
@@ -51,6 +46,7 @@ export const giveCustomErrorMessage = (error) => {
         case 'EMAIL_NOT_FOUND': return 'Email address not found';
         case 'MISSING_PASSWORD': return 'You have to enter a password';
         case 'INVALID_PASSWORD': return 'Incorrect password';
+        case 'EMAIL_EXISTS': return 'The email address already exists, try logging in '
         default: return error.message;
     }
 }

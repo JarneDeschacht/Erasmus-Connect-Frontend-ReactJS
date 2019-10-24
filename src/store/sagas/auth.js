@@ -86,7 +86,6 @@ export function* registerUserSaga(action) {
     }
     try {
         const response = yield axios.post(url, registerData)
-        console.log(response)
         yield put(actions.registerSuccess(response.data.idToken, response.data.localId));
         yield saveUserInDataBase(response.data.localId, userData)
         const expirationTime = yield new Date(new Date().getTime() + response.data.expiresIn * 1000);
@@ -96,9 +95,9 @@ export function* registerUserSaga(action) {
         yield put(actions.checkAuthTimeout(response.data.expiresIn))
     }
     catch (error) {
-        yield console.log('something went wrong in auth.js saga')
-        yield console.log(error)
         yield put(actions.registerFail(error.response.data.error))
+        
+
     }
 }
 

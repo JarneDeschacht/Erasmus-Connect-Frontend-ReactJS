@@ -27,8 +27,6 @@ const input = props => {
             />;
             break;
         case ('date'):
-
-            
             inputElement = <DatePicker
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
@@ -36,6 +34,7 @@ const input = props => {
                 selected={new Date()}
                 onChange={props.changed}
                 value={props.value}
+                placeholderText="date of birth"
             />
             break
         default:

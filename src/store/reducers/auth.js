@@ -29,7 +29,6 @@ const authLogout = (state, action) => {
 }
 
 const registerStart = (state, action) =>{
-    console.log('AUTH JS(reducer) - registerStart')
     return updateObject(state, {
         idToken: null, 
         loading: true, 
@@ -39,23 +38,20 @@ const registerStart = (state, action) =>{
 }
 
 const registerFail = (state, action) => {
-    console.log('AUTH JS(recucer) - registerFail')
-
     return updateObject(state,{
         loading: false,
         error: action.error
     })
 }
 
-const registerSuccess = (state, action) => {
-    console.log('AUTH JS(reducer) - registerSuccess')
 
+
+const registerSuccess = (state, action) => {
     return updateObject(state,{
         idToken: action.idToken,
         userId: action.userId,
         error: null,
         loading: false
-        
     })
 } 
 

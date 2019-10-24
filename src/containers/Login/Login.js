@@ -71,7 +71,6 @@ const Login = props => {
 
     const formElementsArray = [];
     for (let key in loginForm) {
-        // console.log(key)
         formElementsArray.push({
             id: key,
             config: loginForm[key]

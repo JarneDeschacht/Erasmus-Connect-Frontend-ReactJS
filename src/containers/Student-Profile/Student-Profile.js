@@ -15,7 +15,6 @@ const StudentProfile = props => {
         for (let key in students) {
             if (students[key].id === props.match.params.id) {
                 student = students[key];
-                console.log(student);
             }
         }
     }
@@ -50,7 +49,7 @@ const StudentProfile = props => {
                         <h2>{student.current.school}</h2>
                     </div>
                     <div>
-                        <Button>View connection</Button>
+                        <Button>request connection</Button>
                         <Button>Edit profile</Button>
                     </div>
                 </div>

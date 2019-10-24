@@ -22,3 +22,8 @@
     grid-column-gap: 25px;
 }
 
+.ErrorMessage{
+    text-align: center;
+    color: red;
+    font-size: 2.5rem;
+}
