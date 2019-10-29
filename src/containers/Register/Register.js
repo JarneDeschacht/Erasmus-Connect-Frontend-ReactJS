@@ -128,13 +128,24 @@ const Register = props => {
 
     })
 
-    let [allControlsAreValid, setAllControlsAreValid] = useState(true)
+    let [allControlsAreValid, setAllControlsAreValid] = useState(false);
 
     useEffect(() => {
         if (isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
+    useEffect(() => {
+        let passwordConfirmed = checkPasswords(registerForm.password.value, registerForm.confirmPassword.value);
+        if (allControlsAreValid && passwordConfirmed) {
+            setDisableConfirmButton(false)
+        }
+        else {
+            // errorPasswords = 'passwords not equal';
+            setDisableConfirmButton(true);
+        }
+    }, [allControlsAreValid,registerForm]);
 
     let redirect = null;
     if (shouldRedirect) {
@@ -161,30 +172,15 @@ const Register = props => {
                 valid: checkValidity(controlName === 'dateOfBirth' ? event : event.target.value, registerForm[controlName].validation),
                 touched: true
             })
-
-            //  value: controlName === 'dateOfBirth'?event: event.target.value,
-
         })
 
-        formElementsArray.forEach((el) => {
-            if (el.config.valid === false) {
-                setAllControlsAreValid(false)
-            }
-        })
+        let valid = true;
 
-
-        let passwordConfirmed = checkPasswords(registerForm.password.value, registerForm.confirmPassword.value);
-        console.log(allControlsAreValid)
-        console.log(passwordConfirmed)
-        if (allControlsAreValid && passwordConfirmed) {
-            console.log(allControlsAreValid)
-            console.log(passwordConfirmed)
-            setDisableConfirmButton(false)
-        }
-        else {
-            errorPasswords = 'passwords not equal'
+        for (let inputIdentifier in updatedControls) {
+            valid = updatedControls[inputIdentifier].valid && valid;
         }
 
+        setAllControlsAreValid(valid);
         setRegisterForm(updatedControls)
     }
 
