@@ -11,6 +11,7 @@ import { giveCustomErrorMessage } from '../../shared/utility';
 const Register = props => {
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    let [allControlsAreValid, setAllControlsAreValid] = useState(false);
 
     const dispatch = useDispatch();
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
@@ -57,6 +58,7 @@ const Register = props => {
             value: '',
             validation: {
                 required: true,
+                isEmail: true
             },
             valid: false,
             touched: false
@@ -83,6 +85,7 @@ const Register = props => {
             value: '',
             validation: {
                 required: true,
+                minLength: 6
             },
             valid: false,
             touched: false
@@ -128,7 +131,6 @@ const Register = props => {
 
     })
 
-    let [allControlsAreValid, setAllControlsAreValid] = useState(false);
 
     useEffect(() => {
         if (isNavbarVisible) {
@@ -142,10 +144,10 @@ const Register = props => {
             setDisableConfirmButton(false)
         }
         else {
-            // errorPasswords = 'passwords not equal';
             setDisableConfirmButton(true);
+
         }
-    }, [allControlsAreValid,registerForm]);
+    }, [allControlsAreValid, registerForm]);
 
     let redirect = null;
     if (shouldRedirect) {
@@ -162,7 +164,6 @@ const Register = props => {
     }
 
 
-    let errorPasswords = ''
     const inputChangedHandler = (event, controlName) => {
         console.log('in change handler')
         const updatedControls = updateObject(registerForm, {
@@ -200,8 +201,11 @@ const Register = props => {
 
         onRegister(newUserCredentials)
     }
+    
     //mapping the array with the elements to actual formcontrols
     let formInputs = formElementsArray.map(el => {
+        let extraErr = el.id === 'password' ? ' (min 6 chars)' : '';
+
         return (
             <Input
                 className={classes.RegisterElement}
@@ -211,7 +215,7 @@ const Register = props => {
                 elementConfig={el.config.elementConfig}
                 changed={(event) => inputChangedHandler(event, el.id)}
                 shouldValidate={el.config.validation}
-                errorMessage={"Please enter a valid " + el.id}
+                errorMessage={"Please enter a valid " + el.id + extraErr}
                 touched={el.config.touched}
                 value={el.config.value}
             />
@@ -243,11 +247,12 @@ const Register = props => {
     return (
         <div className={classes.Register}>
 
+           
             {redirect}
+            
             <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
             {errorMessage}
             {regForm}
-            {errorPasswords}
             <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
         </div>
     );
