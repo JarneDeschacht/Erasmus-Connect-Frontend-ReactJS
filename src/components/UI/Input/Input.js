@@ -35,6 +35,8 @@ const input = props => {
                 onChange={props.changed}
                 value={props.value}
                 placeholderText="date of birth"
+                showMonthDropdown
+                showYearDropdown
             />
             break
         default:
