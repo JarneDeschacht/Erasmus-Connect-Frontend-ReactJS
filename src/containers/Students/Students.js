@@ -41,8 +41,8 @@ const Students = props => {
                 clicked={() => studentSelectHandler(student.id)}
                 student={{
                     name: `${student.firstName} ${student.lastName}`,
-                    school: '-----',
-                    location: `-----, -----`
+                    school: student.erasmusUniversity.name || '-----',
+                    location: `${student.erasmusUniversity.city.name || '-----'}, ${student.erasmusUniversity.city.country.name || '-----'} (${student.erasmusUniversity.city.country.code || '-----'})`
                 }}
             />
         ))

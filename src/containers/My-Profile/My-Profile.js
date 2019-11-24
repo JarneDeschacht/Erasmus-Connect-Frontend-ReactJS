@@ -48,21 +48,21 @@ const Profile = props => {
                         </div>
                         <div>
                             <h4>Course</h4>
-                            <p>-----</p>
+                            <p>{profile.erasmusCourse || '-----'}</p>
                         </div>
                     </div>
                     <div>
                         <div>
-                            <h4>Home City</h4>
+                            <h4>Home City: {profile.homeUniversity.city.name || ''}</h4>
                             <Map />
                         </div>
                         <div>
                             <h4>Home Country</h4>
-                            <h2>-----</h2>
+                            <h2>{profile.homeUniversity.city.country.name || '-----'}</h2>
                         </div>
                         <div>
                             <h4>Home University</h4>
-                            <h2>-----</h2>
+                            <h2>{profile.homeUniversity.name || '-----'}</h2>
                         </div>
                         <div>
                             <Button>View connection</Button>
@@ -71,16 +71,16 @@ const Profile = props => {
                     </div>
                     <div>
                         <div>
-                            <h4>Erasmus City</h4>
+                            <h4>Erasmus City: {profile.erasmusUniversity.city.name || ''}</h4>
                             <Map />
                         </div>
                         <div>
                             <h4>Erasmus Country</h4>
-                            <h2>-----</h2>
+                            <h2>{profile.erasmusUniversity.city.country.name || '-----'}</h2>
                         </div>
                         <div>
-                            <h4>Erasmus Course</h4>
-                            <h2>-----</h2>
+                            <h4>Erasmus University</h4>
+                            <h2>{profile.erasmusUniversity.name || '-----'}</h2>
                         </div>
                         <div>
                             <Button>Manage photos</Button>
