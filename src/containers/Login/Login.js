@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect, NavLink } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
-import { giveCustomErrorMessage } from '../../shared/utility';
 
 const Login = props => {
     const [loginForm, setLoginForm] = useState({
@@ -115,7 +114,7 @@ const Login = props => {
                 <p className={classes.ForgotPassword}>forgot password?</p>
                 <Button
                     clicked={(event) => onSubmit(event)}
-                    // disabled={false}
+                // disabled={false}
                 >Sign in
                 </Button>
             </div>
@@ -128,7 +127,7 @@ const Login = props => {
 
     let errorMessage = null;
     if (error) {
-        errorMessage = <p className={classes.ErrorMessage}>{giveCustomErrorMessage(error)}</p>;
+        errorMessage = <p className={classes.ErrorMessage}>{error}</p>;
     }
 
     let redirect = null;

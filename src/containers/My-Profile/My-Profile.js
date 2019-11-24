@@ -36,33 +36,33 @@ const Profile = props => {
             <div className={classes.Profile}>
                 <div className={classes.Header}>
                     <NavLink className={classes.GoBack} to="/">Go back</NavLink>
-                    <h2 className={classes.Title}>Welcome back {profile.firstname}</h2>
+                    <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
                 </div>
                 <div className={classes.ProfileColumns}>
                     <div>
                         <ProfilePicture />
-                        <h2>{profile.firstname} {profile.lastname}</h2>
+                        <h2>{profile.firstName} {profile.lastName}</h2>
                         <div>
                             <h4>Bio</h4>
                             <p>{profile.bio}</p>
                         </div>
                         <div>
                             <h4>Course</h4>
-                            <p>{profile.course}</p>
+                            <p>-----</p>
                         </div>
                     </div>
                     <div>
                         <div>
-                            <h4>City</h4>
+                            <h4>Home City</h4>
                             <Map />
                         </div>
                         <div>
-                            <h4>Country</h4>
-                            <h2>{profile.current.country}</h2>
+                            <h4>Home Country</h4>
+                            <h2>-----</h2>
                         </div>
                         <div>
-                            <h4>Course</h4>
-                            <h2>{profile.current.school}</h2>
+                            <h4>Home University</h4>
+                            <h2>-----</h2>
                         </div>
                         <div>
                             <Button>View connection</Button>
@@ -71,16 +71,16 @@ const Profile = props => {
                     </div>
                     <div>
                         <div>
-                            <h4>City</h4>
+                            <h4>Erasmus City</h4>
                             <Map />
                         </div>
                         <div>
-                            <h4>Country</h4>
-                            <h2>{profile.upcoming.country}</h2>
+                            <h4>Erasmus Country</h4>
+                            <h2>-----</h2>
                         </div>
                         <div>
-                            <h4>Course</h4>
-                            <h2>{profile.upcoming.school}</h2>
+                            <h4>Erasmus Course</h4>
+                            <h2>-----</h2>
                         </div>
                         <div>
                             <Button>Manage photos</Button>

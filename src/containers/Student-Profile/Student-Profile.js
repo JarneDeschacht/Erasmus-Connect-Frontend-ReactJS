@@ -13,8 +13,9 @@ const StudentProfile = props => {
     let student = null;
     if (props.match.params.id) {
         for (let key in students) {
-            if (students[key].id === props.match.params.id) {
+            if (students[key].id.toString() === props.match.params.id.toString()) {
                 student = students[key];
+                console.log(students[key])
             }
         }
     }
@@ -25,14 +26,14 @@ const StudentProfile = props => {
             <div className={classes.ProfileColumns}>
                 <div>
                     <ProfilePicture />
-                    <h2>{student.firstname} {student.lastname}</h2>
+                    <h2>{student.firstName} {student.lastName}</h2>
                     <div>
                         <h4>Bio</h4>
                         <p>{student.bio}</p>
                     </div>
                     <div>
                         <h4>Course</h4>
-                        <p>{student.course}</p>
+                        <p>-----</p>
                     </div>
                 </div>
                 <div>
@@ -42,11 +43,11 @@ const StudentProfile = props => {
                     </div>
                     <div>
                         <h4>Country</h4>
-                        <h2>{student.current.country}</h2>
+                        <h2>-----</h2>
                     </div>
                     <div>
                         <h4>Course</h4>
-                        <h2>{student.current.school}</h2>
+                        <h2>-----</h2>
                     </div>
                     <div>
                         <Button>request connection</Button>
@@ -60,11 +61,11 @@ const StudentProfile = props => {
                     </div>
                     <div>
                         <h4>Country</h4>
-                        <h2>{student.upcoming.country}</h2>
+                        <h2>-----</h2>
                     </div>
                     <div>
                         <h4>Course</h4>
-                        <h2>{student.upcoming.school}</h2>
+                        <h2>-----</h2>
                     </div>
                     <div>
                         <Button>Manage photos</Button>

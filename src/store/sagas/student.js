@@ -4,10 +4,14 @@ import * as actions from '../actions/index';
 
 export function* fetchProfileSaga(action) {
     yield put(actions.fetchProfileStart());
-    const queryParams = '?auth=' + action.token;
     try {
-        const response = yield axios.get(`/users/${action.userId}.json` + queryParams);
-        yield put(actions.fetchProfileSuccess(response.data));
+        const response = yield axios.get('/my-profile', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.fetchProfileSuccess(response.data.user));
     }
     catch (error) {
         yield put(actions.fetchProfileFail(error));
@@ -15,22 +19,15 @@ export function* fetchProfileSaga(action) {
 }
 export function* fetchStudentsSaga(action) {
     yield put(actions.fetchStudentsStart());
-    const queryParams = '?auth=' + action.token;
     try {
-        const response = yield axios.get('/users.json' + queryParams);
-
-        const fetchedStudents = [];
-        for (let key in response.data) {
-            if (key !== action.userId) {
-                fetchedStudents.push(
-                    {
-                        id: key,
-                        ...response.data[key]
-                    }
-                );
+        const response = yield axios.get('/students', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + action.token
             }
-        }
-        yield put(actions.fetchStudentsSuccess(fetchedStudents));
+        });
+        console.log(response.data.users);
+        yield put(actions.fetchStudentsSuccess(response.data.users));
     }
     catch (error) {
         yield put(actions.fetchStudentsFail(error));

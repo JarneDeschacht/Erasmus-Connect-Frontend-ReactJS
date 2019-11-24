@@ -40,9 +40,9 @@ const Students = props => {
                 key={student.id}
                 clicked={() => studentSelectHandler(student.id)}
                 student={{
-                    name: `${student.firstname} ${student.lastname}`,
-                    school: student.current.school,
-                    location: `${student.current.city}, ${student.current.country}`
+                    name: `${student.firstName} ${student.lastName}`,
+                    school: '-----',
+                    location: `-----, -----`
                 }}
             />
         ))
