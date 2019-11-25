@@ -25,3 +25,9 @@ export {
     fetchStudentsSuccess,
     fetchStudentsFail
 } from './student';
+export {
+    fetchCountries,
+    fetchCountriesStart,
+    fetchCountriesFail,
+    fetchCountriesSuccess
+} from './countries';

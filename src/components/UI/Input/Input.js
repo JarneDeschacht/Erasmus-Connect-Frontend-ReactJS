@@ -26,6 +26,24 @@ const input = props => {
                 value={props.value}
             />;
             break;
+        case ('select'):
+            inputElement = (
+                <select
+                    className={inputClasses.join(' ')}
+                    value={props.value}
+                    onChange={props.changed}>
+                    {
+                        props.elementConfig.options.map(country => (
+                            <option
+                                key={country.id}
+                                value={country.id}
+                            >{country.name}</option>
+                        ))
+                    }
+                </select>
+            );
+            break;
+
         case ('date'):
             inputElement = <DatePicker
                 className={inputClasses.join(' ')}

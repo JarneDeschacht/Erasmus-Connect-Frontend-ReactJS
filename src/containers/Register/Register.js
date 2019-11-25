@@ -7,6 +7,7 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import { checkValidity, updateObject, checkPasswords } from '../../shared/utility';
 import { giveCustomErrorMessage } from '../../shared/utility';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const Register = props => {
 
@@ -19,8 +20,18 @@ const Register = props => {
 
     const onRegister = (credentials) => dispatch(actions.register(credentials))
 
+    const countries = useSelector(state => state.country.country);
+    const isLoading = useSelector(state => state.country.loading);
+    const onFetchCountries = useCallback(() => dispatch(actions.fetchCountries()), [dispatch]);
+
     const [disableConfirmButton, setDisableConfirmButton] = useState(true)
     const error = useSelector(state => state.auth.error);
+
+    const [countriesState,setCountriesState] = useState(null);
+
+    useEffect(() => {
+        onFetchCountries();
+    }, [onFetchCountries]);
 
     const [registerForm, setRegisterForm] = useState({
         firstName: {
@@ -40,7 +51,7 @@ const Register = props => {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
-                placeholder: 'lastName'
+                placeholder: 'last name'
             },
             value: '',
             validation: {
@@ -63,19 +74,6 @@ const Register = props => {
             valid: false,
             touched: false
         },
-        currentCountry: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                placeholder: 'current country',
-            },
-            value: '',
-            validation: {
-                required: true,
-            },
-            valid: false,
-            touched: false
-        },
         password: {
             elementType: 'input',
             elementConfig: {
@@ -89,6 +87,15 @@ const Register = props => {
             },
             valid: false,
             touched: false
+        },
+        currentCountry: {
+            elementType: 'select',
+            elementConfig: {
+                options: countriesState
+            },
+            value: '21',
+            validation: {},
+            valid: true
         },
         currentCity: {
             elementType: 'input',
@@ -153,7 +160,6 @@ const Register = props => {
     if (shouldRedirect) {
         redirect = <Redirect to="/" />
     }
-
     let formElementsArray = []
     //creating an array with an object for each form control
     for (let key in registerForm) {
@@ -165,7 +171,6 @@ const Register = props => {
 
 
     const inputChangedHandler = (event, controlName) => {
-        console.log('in change handler')
         const updatedControls = updateObject(registerForm, {
             [controlName]: updateObject(registerForm[controlName], {
                 value: controlName === 'dateOfBirth' ? event : event.target.value,
@@ -201,55 +206,62 @@ const Register = props => {
 
         onRegister(newUserCredentials)
     }
-    
-    //mapping the array with the elements to actual formcontrols
-    let formInputs = formElementsArray.map(el => {
-        let extraErr = el.id === 'password' ? ' (min 6 chars)' : '';
-
-        return (
-            <Input
-                className={classes.RegisterElement}
-                key={el.id}
-                invalid={!el.config.valid}
-                elementType={el.config.elementType}
-                elementConfig={el.config.elementConfig}
-                changed={(event) => inputChangedHandler(event, el.id)}
-                shouldValidate={el.config.validation}
-                errorMessage={"Please enter a valid " + el.id + extraErr}
-                touched={el.config.touched}
-                value={el.config.value}
-            />
-        )
-    })
 
     let errorMessage = null;
     if (error) {
         errorMessage = <p className={classes.ErrorMessage}>{giveCustomErrorMessage(error)}</p>;
     }
-    let regForm = (
-        <form>
-            <div className={classes.RegisterContainer}>
-                {formInputs}
-            </div>
 
-            <div>
-                {/* <p className={classes.ForgotPassword}>forgot password?</p> */}
-                <Button
-                    clicked={(event) => onSubmit(event)}
-                    disabled={disableConfirmButton}
-                >
-                    Sign in
-                </Button>
-            </div>
-        </form>
-    )
+    let regForm = null;
+
+    if (!isLoading) {
+        regForm = <Spinner />;
+        console.log(countries);
+        setCountriesState(countries);
+    } else {
+        let formInputs = formElementsArray.map(el => {
+            let extraErr = el.id === 'password' ? ' (min 6 chars)' : '';
+
+            return (
+                <Input
+                    className={classes.RegisterElement}
+                    key={el.id}
+                    invalid={!el.config.valid}
+                    elementType={el.config.elementType}
+                    elementConfig={el.config.elementConfig}
+                    changed={(event) => inputChangedHandler(event, el.id)}
+                    shouldValidate={el.config.validation}
+                    errorMessage={"Please enter a valid " + el.id + extraErr}
+                    touched={el.config.touched}
+                    value={el.config.value}
+                />
+            )
+        });
+
+        regForm = (
+            <form>
+                <div className={classes.RegisterContainer}>
+                    {formInputs}
+                </div>
+
+                <div>
+                    {/* <p className={classes.ForgotPassword}>forgot password?</p> */}
+                    <Button
+                        clicked={(event) => onSubmit(event)}
+                        disabled={disableConfirmButton}
+                    >
+                        Sign in
+                        </Button>
+                </div>
+            </form>
+        )
+    }
 
     return (
         <div className={classes.Register}>
 
-           
             {redirect}
-            
+
             <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
             {errorMessage}
             {regForm}
