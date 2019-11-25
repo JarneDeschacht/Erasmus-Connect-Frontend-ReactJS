@@ -20,7 +20,7 @@ const fetchCountriesFail = (state, action) => {
 
 const initialState = {
     countries: [],
-    loading: false
+    loading: true
 };
 
 const reducer = (state = initialState, action) => {
