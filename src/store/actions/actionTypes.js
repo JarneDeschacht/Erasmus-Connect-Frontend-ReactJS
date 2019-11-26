@@ -1,17 +1,18 @@
 export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE';
-export const AUTH_START = 'AUTH_START';
-export const AUTH_SUCCESS = 'AUTH_SUCCESS';
-export const AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_CHECK_TIMEOUT = 'AUTH_CHECK_TIMEOUT';
+
 export const AUTH_LOGOUT = 'AUTH_LOGOUT';
 export const AUTH_INITIATE_LOGOUT = 'AUTH_INITIATE_LOGOUT';
-export const AUTH_CHECK_TIMEOUT = 'AUTH_CHECK_TIMEOUT';
-export const AUTH_USER = 'AUTH_USER';
 
-export const REGISTER_USER = 'REGISTER_USER'
+export const LOGIN = 'LOGIN';
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+
+export const REGISTER = 'REGISTER'
 export const REGISTER_START = 'REGISTER_START'
 export const REGISTER_FAIL = 'REGISTER_FAIL'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-
 
 export const NAVBAR_SET_DISPLAY = 'NAVBAR_SET_DISPLAY';
 

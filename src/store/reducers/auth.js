@@ -7,10 +7,10 @@ const initialState = {
     error: null,
     loading: false,
 }
-const authStart = (state, action) => {
+const loginStart = (state, action) => {
     return updateObject(state, { error: null, loading: true });
 }
-const authSuccess = (state, action) => {
+const loginSuccess = (state, action) => {
     return updateObject(state, {
         idToken: action.idToken,
         userId: action.userId,
@@ -18,7 +18,7 @@ const authSuccess = (state, action) => {
         loading: false
     })
 }
-const authFail = (state, action) => {
+const loginFail = (state, action) => {
     return updateObject(state, {
         error: action.error,
         loading: false
@@ -28,45 +28,36 @@ const authLogout = (state, action) => {
     return updateObject(state, { idToken: null, userId: null });
 }
 
-const registerStart = (state, action) =>{
-    return updateObject(state, {
-        idToken: null, 
-        loading: true, 
-        userId: null, 
-        error: null
-    })
+const registerStart = (state, action) => {
+    return updateObject(state, { error: null, loading: true });
 }
 
 const registerFail = (state, action) => {
-    return updateObject(state,{
+    return updateObject(state, {
         loading: false,
         error: action.error
     })
 }
-
-
-
 const registerSuccess = (state, action) => {
-    return updateObject(state,{
+    return updateObject(state, {
         idToken: action.idToken,
         userId: action.userId,
         error: null,
         loading: false
     })
-} 
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.AUTH_START: return authStart(state, action);
-        case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
-        case actionTypes.AUTH_FAIL: return authFail(state, action);
+        case actionTypes.LOGIN_START: return loginStart(state, action);
+        case actionTypes.LOGIN_SUCCESS: return loginSuccess(state, action);
+        case actionTypes.LOGIN_FAIL: return loginFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
-        case actionTypes.REGISTER_START : return registerStart(state, action);
-        case actionTypes.REGISTER_FAIL : return registerFail(state, action);
+        case actionTypes.REGISTER_START: return registerStart(state, action);
+        case actionTypes.REGISTER_FAIL: return registerFail(state, action);
         case actionTypes.REGISTER_SUCCESS: return registerSuccess(state, action)
         default: return state;
     }
 }
-
 
 export default reducer

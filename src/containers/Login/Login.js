@@ -55,7 +55,7 @@ const Login = props => {
     const error = useSelector(state => state.auth.error);
 
     //actions.auth is a method that manages the state
-    const onAuth = (email, password) => dispatch(actions.auth(email, password));
+    const onAuth = (email, password) => dispatch(actions.login(email, password));
 
     //useCallback only when it's dependency changes this will be executed 
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);

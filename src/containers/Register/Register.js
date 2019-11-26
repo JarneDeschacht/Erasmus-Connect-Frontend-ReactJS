@@ -8,7 +8,6 @@ import Button from "../../components/UI/Button/Button";
 import {
   checkValidity,
   updateObject,
-  checkPasswords
 } from "../../shared/utility";
 import { giveCustomErrorMessage } from "../../shared/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -26,15 +25,16 @@ const Register = props => {
 
   const onRegister = credentials => dispatch(actions.register(credentials));
 
+  const loadingAuth = useSelector(state => state.auth.loading);
+  const error = useSelector(state => state.auth.error);
+  let isAuthenticated = useSelector(state => state.auth.idToken !== null);
+
   const countries = useSelector(state => state.country.countries);
-  const isLoading = useSelector(state => state.country.loading);
+  const isLoadingCountries = useSelector(state => state.country.loading);
   const onFetchCountries = useCallback(
     () => dispatch(actions.fetchCountries()),
     [dispatch]
   );
-
-  const [disableConfirmButton, setDisableConfirmButton] = useState(true);
-  const error = useSelector(state => state.auth.error);
 
   useEffect(() => {
     onFetchCountries();
@@ -45,7 +45,7 @@ const Register = props => {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "first name"
+        placeholder: "First Name"
       },
       value: "",
       validation: {
@@ -58,7 +58,7 @@ const Register = props => {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "last name"
+        placeholder: "Last Name"
       },
       value: "",
       validation: {
@@ -81,44 +81,21 @@ const Register = props => {
       valid: false,
       touched: false
     },
-    currentCountry: {
+    country: {
       elementType: "select",
-      value: "21",
-      validation: {},
-      valid: true
-    },
-    password: {
-      elementType: "input",
-      elementConfig: {
-        type: "password",
-        placeholder: "password"
-      },
       value: "",
-      validation: {
-        required: true,
-        minLength: 6
+      elementConfig: {
+        placeholder: "Country"
       },
-      valid: false,
+      validation: {},
+      valid: true,
       touched: false
     },
-    currentCity: {
+    phoneNumber: {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "current City"
-      },
-      value: "",
-      validation: {
-        required: true
-      },
-      valid: false,
-      touched: false
-    },
-    confirmPassword: {
-      elementType: "input",
-      elementConfig: {
-        type: "password",
-        placeholder: "confirm password"
+        placeholder: "Phone Number"
       },
       value: "",
       validation: {
@@ -130,11 +107,41 @@ const Register = props => {
     dateOfBirth: {
       elementType: "date",
       elementConfig: {
-        placeholder: "date of birth"
+        type: "text",
+        placeholder: "Date Of Birth"
+      },
+      value: "//",
+      validation: {
+        required: true,
+        date: true
+      },
+      valid: false,
+      touched: false
+    },
+    password: {
+      elementType: "input",
+      elementConfig: {
+        type: "password",
+        placeholder: "Password"
       },
       value: "",
       validation: {
-        required: true
+        required: true,
+        minLength: 6
+      },
+      valid: false,
+      touched: false
+    },
+    confirmPassword: {
+      elementType: "input",
+      elementConfig: {
+        type: "password",
+        placeholder: "Confirm Password"
+      },
+      value: "",
+      validation: {
+        required: true,
+        compare: true
       },
       valid: false,
       touched: false
@@ -146,18 +153,6 @@ const Register = props => {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
-
-  useEffect(() => {
-    let passwordConfirmed = checkPasswords(
-      registerForm.password.value,
-      registerForm.confirmPassword.value
-    );
-    if (allControlsAreValid && passwordConfirmed) {
-      setDisableConfirmButton(false);
-    } else {
-      setDisableConfirmButton(true);
-    }
-  }, [allControlsAreValid, registerForm]);
 
   let redirect = null;
   if (shouldRedirect) {
@@ -173,11 +168,35 @@ const Register = props => {
   }
 
   const inputChangedHandler = (event, controlName) => {
+    let enteredValue = event.target.value;
+    let valueToBeValidated = event.target.value;
+
+    if (controlName === 'dateOfBirth') {
+      const date = registerForm.dateOfBirth.value.split('/');
+      switch (event.target.name) {
+        case 'DD':
+          date[2] = enteredValue
+          break;
+        case 'MM':
+          date[1] = enteredValue
+          break;
+        case 'YYYY':
+          date[0] = enteredValue
+          break;
+        default: break;
+      }
+      valueToBeValidated = date.join('/');
+      enteredValue = date.join('/');
+    }
+    if (controlName === 'confirmPassword') {
+      valueToBeValidated = [registerForm.password.value, event.target.value];
+    }
+
     const updatedControls = updateObject(registerForm, {
       [controlName]: updateObject(registerForm[controlName], {
-        value: controlName === "dateOfBirth" ? event : event.target.value,
+        value: enteredValue,
         valid: checkValidity(
-          controlName === "dateOfBirth" ? event : event.target.value,
+          valueToBeValidated,
           registerForm[controlName].validation
         ),
         touched: true
@@ -190,6 +209,8 @@ const Register = props => {
       valid = updatedControls[inputIdentifier].valid && valid;
     }
 
+    valid = updatedControls.country.value !== "" && valid;
+
     setAllControlsAreValid(valid);
     setRegisterForm(updatedControls);
   };
@@ -197,18 +218,17 @@ const Register = props => {
   const onSubmit = event => {
     event.preventDefault();
 
-    const newUserCredentials = {
+    const data = {
       firstName: registerForm.firstName.value,
       lastName: registerForm.lastName.value,
       email: registerForm.email.value,
-      currentCountry: registerForm.currentCountry.value,
-      password: registerForm.password.value,
-      currentCity: registerForm.currentCity.value,
-      passwordConfirmation: registerForm.confirmPassword.value,
-      dateOfBirth: registerForm.dateOfBirth.value
-    };
+      countryId: registerForm.country.value,
+      phoneNumber: registerForm.phoneNumber.value,
+      dateOfBirth: registerForm.dateOfBirth.value.replace('/', '-'),
+      password: registerForm.password.value
+    }
 
-    onRegister(newUserCredentials);
+    onRegister(data);
   };
 
   let errorMessage = null;
@@ -220,21 +240,31 @@ const Register = props => {
 
   let regForm = null;
 
-  if (isLoading) {
-    regForm = <Spinner />;    
+  if (isAuthenticated || shouldRedirect) {
+    redirect = <Redirect to="/" />
+  }
+
+  if (isLoadingCountries || loadingAuth) {
+    regForm = <Spinner />;
   } else {
-    let formInputs = formElementsArray.map((el, index, initialArray) => {
+    let formInputs = formElementsArray.map((el, index) => {
       let extraErr = el.id === "password" ? " (min 6 chars)" : "";
+      let errorMessage = "Please enter a valid " + el.id + extraErr;
+      if (el.id === 'confirmPassword') {
+        errorMessage = "Passwords are not the same!";
+      }
       return (
         <Input
+          label={el.config.elementConfig.placeholder}
           className={classes.RegisterElement}
           key={el.id}
+          id={el.id}
           invalid={!el.config.valid}
           elementType={el.config.elementType}
-          elementConfig={initialArray[index].id === 'currentCountry' ? {'options': countries} : el.config.elementConfig}
+          elementConfig={el.id === 'country' ? { 'options': countries } : el.config.elementConfig}
           changed={event => inputChangedHandler(event, el.id)}
           shouldValidate={el.config.validation}
-          errorMessage={"Please enter a valid " + el.id + extraErr}
+          errorMessage={errorMessage}
           touched={el.config.touched}
           value={el.config.value}
         />
@@ -243,15 +273,12 @@ const Register = props => {
     regForm = (
       <form>
         <div className={classes.RegisterContainer}>{formInputs}</div>
-
-        <div>
-          {/* <p className={classes.ForgotPassword}>forgot password?</p> */}
+        <div className={classes.ButtonRow}>
+          <span>{/* checkbox to accept terms of use and coockies */}</span>
           <Button
             clicked={event => onSubmit(event)}
-            disabled={disableConfirmButton}
-          >
-            Sign in
-          </Button>
+            disabled={!allControlsAreValid}
+          >Sign up</Button>
         </div>
       </form>
     );
@@ -260,7 +287,6 @@ const Register = props => {
   return (
     <div className={classes.Register}>
       {redirect}
-
       <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
       {errorMessage}
       {regForm}
