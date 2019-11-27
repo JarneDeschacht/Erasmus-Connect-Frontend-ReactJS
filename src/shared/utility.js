@@ -26,6 +26,24 @@ export const checkValidity = (value, rules) => {
         const pattern = /^\d+$/;
         isValid = pattern.test(value) && isValid
     }
+    if (rules.date) {
+        const pattern = /^\d{3,4}(\/)\d{1,2}(\/)\d{1,2}$/i;
+        const date = value.split('/');
+        isValid =
+            pattern.test(value) &&
+            +date[2] > 0 &&
+            +date[2] <= 31 &&
+            +date[1] > 0 &&
+            +date[1] <= 12 &&
+            +date[0] > 1800 &&
+            +date[0] <= new Date().getFullYear() &&
+            isValid;
+    }
+    if (rules.compare) {
+        const passwords = value.split(',');
+        const isEqual = passwords[0] === passwords[1];
+        isValid = isEqual && isValid;
+    }
 
     return isValid;
 }
@@ -33,7 +51,7 @@ export const checkValidity = (value, rules) => {
 export const checkPasswords = (password, passwordConfirmation) => {
     let isValid = false;
 
-    if(password === passwordConfirmation){
+    if (password === passwordConfirmation) {
         isValid = true
     }
     return isValid;

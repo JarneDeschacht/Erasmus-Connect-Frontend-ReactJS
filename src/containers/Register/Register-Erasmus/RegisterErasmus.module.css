@@ -1,0 +1,38 @@
+.RegisterErasmus{
+    width: 70%;
+    margin: 4% auto;
+}
+.Form{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    column-gap:5%;
+}
+.RegisterErasmus h1{
+    margin-bottom: 5%;
+}
+.RegisterErasmusForm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 25px;
+}
+.SubTitle {
+    text-align: center;
+    font-size: 2.3rem;
+    margin-bottom: 15%;
+}
+.ImagePreview{
+    margin-top: 20%;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+}
+.ButtonRow{
+    display: flex;
+    justify-content: flex-end;
+}
+.ButtonRow p{
+    margin-left: 3%;
+    padding-top: 4.5%;
+    cursor: pointer;
+}

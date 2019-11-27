@@ -1,29 +1,19 @@
 import * as actionTypes from './actionTypes';
 
-export const authStart = () => {
-    return {
-        type: actionTypes.AUTH_START
-    }
-}
-export const authSuccess = (idToken, userId) => {
-    return {
-        type: actionTypes.AUTH_SUCCESS,
-        idToken: idToken,
-        userId: userId
-    }
-}
-export const authFail = (error) => {
-    return {
-        type: actionTypes.AUTH_FAIL,
-        error: error
-    }
-}
+//CHECK STATE & TIMEOUT
 export const checkAuthTimeout = (expirationTime) => {
     return {
         type: actionTypes.AUTH_CHECK_TIMEOUT,
         expirationTime: expirationTime
     }
 }
+export const authCheckState = () => {
+    return {
+        type: actionTypes.AUTH_CHECK_STATE
+    }
+}
+
+//LOGOUT
 export const logout = () => {
     return {
         type: actionTypes.AUTH_INITIATE_LOGOUT,
@@ -34,42 +24,61 @@ export const logoutSucceed = () => {
         type: actionTypes.AUTH_LOGOUT,
     }
 }
-export const auth = (email, password) => {
+
+
+//LOGIN
+export const login = (email, password) => {
     return {
-        type: actionTypes.AUTH_USER,
+        type: actionTypes.LOGIN,
         email: email,
         password: password,
     }
 }
-export const authCheckState = () => {
+export const loginStart = () => {
     return {
-        type: actionTypes.AUTH_CHECK_STATE
+        type: actionTypes.LOGIN_START
+    }
+}
+export const loginSuccess = (idToken, userId) => {
+    return {
+        type: actionTypes.LOGIN_SUCCESS,
+        idToken: idToken,
+        userId: userId
+    }
+}
+export const loginFail = (error) => {
+    return {
+        type: actionTypes.LOGIN_FAIL,
+        error: error
     }
 }
 
-export const register = (credentials) => {
+//REGISTER
+export const register = (data) => {
     return {
-        type: actionTypes.REGISTER_USER,
-        credentials: credentials
+        type: actionTypes.REGISTER,
+        data: data
     }
 }
 
-export const registerStart = () =>{
-    return{
+export const registerStart = () => {
+    return {
         type: actionTypes.REGISTER_START
     }
 }
 
 export const registerFail = (error) => {
-    return{
+    return {
         type: actionTypes.REGISTER_FAIL,
         error: error
     }
 }
 
-export const registerSuccess = () => {
-    return{
-        type: actionTypes.REGISTER_SUCCESS
+export const registerSuccess = (idToken, userId) => {
+    return {
+        type: actionTypes.REGISTER_SUCCESS,
+        idToken: idToken,
+        userId: userId
     }
 }
 
