@@ -95,9 +95,34 @@ export function* registerUserSaga(action) {
     }
     catch (error) {
         yield put(actions.registerFail(error.response.data.error))
-
-
     }
+}
+
+export function* forgotPasswordSaga(action) {
+    const params = {
+        email: action.email
+    }
+
+    const response = yield axiosCustom.post('/forgotPassword', params, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
+export function* setNewPasswordSaga(action) {
+    yield console.log('in saga: '+ action.studentId + ' ' + action.newPassword)
+
+    const params = {
+        studentId: action.studentId,
+        newPassword: action.newPassword
+    }
+
+    const response = yield axiosCustom.post('/setNewPassword', params, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
 }
 
 const saveUserInDataBase = (userKey, userData) => {

@@ -47,7 +47,6 @@ const Login = props => {
     //whatever action that we dispatch, gets cought in the reducer (switch-case)
     const dispatch = useDispatch();
 
-
     //useSelector = getting data out of the redux store
     let isAuthenticated = useSelector(state => state.auth.idToken !== null);
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
@@ -90,6 +89,7 @@ const Login = props => {
         onAuth(loginForm.email.value, loginForm.password.value);
     }
 
+
     let formInputs = formElementsArray.map(el => {
         const extraErr = el.id === 'password' ? ' (min 6 chars)' : '';
         return (
@@ -111,7 +111,12 @@ const Login = props => {
         <form>
             {formInputs}
             <div>
-                <p className={classes.ForgotPassword}>forgot password?</p>
+                {/* <p
+                    className={classes.ForgotPassword}
+
+                >forgot password?</p> */}
+
+                <NavLink to="/forgotPassword" exact>forgot password</NavLink>
                 <Button
                     clicked={(event) => onSubmit(event)}
                 // disabled={false}

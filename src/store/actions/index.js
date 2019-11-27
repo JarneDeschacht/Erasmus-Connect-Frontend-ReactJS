@@ -10,7 +10,9 @@ export {
     register,
     registerStart,
     registerFail,
-    registerSuccess
+    registerSuccess,
+    sendForgotPasswordMail,
+    setNewPassword
 } from './auth';
 export {
     navbarSwitchDisplay

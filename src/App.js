@@ -12,6 +12,8 @@ import Students from './containers/Students/Students';
 import MyProfile from './containers/My-Profile/My-Profile';
 import StudentProfile from './containers/Student-Profile/Student-Profile';
 import RegisterOutgoingMobility from './containers/Register/RegisterOutgoingMobility/RegisterOutgoingMobility'
+import ForgotPassword from './containers/Login/ForgotPassword/ForgotPassword'
+import SetNewPassword from './containers/Login/SetNewPassword/SetNewPassword'
 
 const App = props => {
 
@@ -28,6 +30,8 @@ const App = props => {
     <Switch>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
+      <Route path="/forgotPassword" exact component={ForgotPassword} />
+      <Route path="/forgotPassword/:id" component={SetNewPassword} />
       <Route path="/" exact component={Main} />
       <Redirect to="/" />
     </Switch>

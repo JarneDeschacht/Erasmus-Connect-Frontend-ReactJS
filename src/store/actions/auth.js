@@ -72,3 +72,18 @@ export const registerSuccess = () => {
         type: actionTypes.REGISTER_SUCCESS
     }
 }
+
+export const sendForgotPasswordMail = (email) => {
+    return{
+        type: actionTypes.PASSWORDFORGOTTEN_START,
+        email: email
+    }
+}
+
+export const setNewPassword = (studentId, password) => {
+    return{
+        type: actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD,
+        newPassword: password,
+        studentId: studentId
+    }
+}

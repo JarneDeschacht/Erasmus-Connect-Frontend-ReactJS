@@ -1,8 +1,17 @@
-import { takeEvery, all } from 'redux-saga/effects';
-import { logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, registerUserSaga } from './auth';
+import { takeEvery, all, take } from 'redux-saga/effects';
 import { fetchProfileSaga, fetchStudentsSaga } from './student';
 import { fetchCountriesSaga } from './countries';
 import * as actionTypes from '../actions/actionTypes';
+import {
+    logoutSaga,
+    checkAuthTimeoutSaga,
+    authUserSaga,
+    authCheckStateSaga,
+    registerUserSaga,
+    forgotPasswordSaga, 
+    setNewPasswordSaga
+} from './auth';
+
 
 export function* watchAuth() {
     yield all([
@@ -10,7 +19,9 @@ export function* watchAuth() {
         takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga),
         takeEvery(actionTypes.AUTH_USER, authUserSaga),
         takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga),
-        takeEvery(actionTypes.REGISTER_USER, registerUserSaga)
+        takeEvery(actionTypes.REGISTER_USER, registerUserSaga),
+        takeEvery(actionTypes.PASSWORDFORGOTTEN_START, forgotPasswordSaga),
+        takeEvery(actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD, setNewPasswordSaga)
     ]);
 }
 export function* watchStudent() {
