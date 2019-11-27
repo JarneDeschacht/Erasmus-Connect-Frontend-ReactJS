@@ -1,0 +1,31 @@
+.InputFile{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.InputFile + label {
+    padding: 1% 15%;
+    border-radius: 11px;
+    color: rgb(0,174,239);
+    background-color: white;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: bold;
+    transition-duration: 0.2s;
+    border: 2px solid transparent;
+    width: 100%;
+    text-align: center;
+}
+
+.InputFile:focus + label,
+.InputFile + label:hover{
+    transition-duration: 0.2s;
+    border: 2px solid #222;
+    color: #222;
+}

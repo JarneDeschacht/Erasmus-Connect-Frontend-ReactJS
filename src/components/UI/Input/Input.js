@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './input.module.css';
-import DateInput from '../DateInput/DateInput';
+import DateInput from './DateInput/DateInput';
 
 const input = props => {
     let inputElement = null;
