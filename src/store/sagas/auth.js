@@ -55,7 +55,7 @@ export function* registerSaga(action) {
         yield put(actions.checkAuthTimeout(3600));
     }
     catch (error) {
-        yield put(actions.registerFail(error.response.data.error))
+        yield put(actions.registerFail(error.response.data.error));
     }
 }
 export function* authCheckStateSaga(action) {
@@ -70,8 +70,8 @@ export function* authCheckStateSaga(action) {
             yield put(actions.checkAuthTimeout((expirationTime.getTime() - new Date().getTime()) / 1000));
         } else {
             yield put(actions.logout());
-        }
-    }
+        };
+    };
 }
 
 
@@ -79,46 +79,43 @@ export function* forgotPasswordSaga(action) {
     try {
         const params = {
             email: action.email
-        }
+        };
 
         const response = yield axiosCustom.post('/forgotPassword', params, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
 
-        yield put(actions.sentPasswordMailSucces())
+        yield put(actions.sentPasswordMailSucces());
     }
     catch (error) {
-        yield put(actions.sentPasswordMailFail())
+        yield put(actions.sentPasswordMailFail(error.response.data.message));
     }
 }
 
 export function* setNewPasswordSaga(action) {
-    console.log('1')
     try {
-        console.log('2')
-        
         const params = {
             studentId: action.studentId,
             newPassword: action.newPassword
-        }
+        };
 
         const response = yield axiosCustom.post('/setNewPassword', params, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
 
-        console.log('in setnewpasswordsaga')
-        yield put(actions.passwordChangedSucces())
+        console.log('in setnewpasswordsaga');
+        yield put(actions.passwordChangedSucces());
     }catch (error){
-        yield put(actions.passwordChangedFail())
+        yield put(actions.passwordChangedFail(error.response.data.message));
     }
 }
 
 const saveUserInDataBase = (userKey, userData) => {
     axiosCustom.put(`/users/${userKey}.json`, { ...userData }
-    )
+    );
     // axiosCustom.post('/users.json', userData)
 }

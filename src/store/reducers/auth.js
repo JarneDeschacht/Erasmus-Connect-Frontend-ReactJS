@@ -7,7 +7,9 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
-    confirmationMessage: null
+    confirmationMessage: null,
+    forgotPasswordError: null,
+    updatePasswordError: null
 }
 const loginStart = (state, action) => {
     return updateObject(state, { error: null, loading: true });
@@ -49,16 +51,23 @@ const registerSuccess = (state, action) => {
     })
 }
 
+const passwordForgottenMailStart = (state, action) => {
+    return updateObject(state, {
+        forgotPasswordError: null,
+        confirmationMessage: null
+    })
+}
+
 const passwordForgottenMailSucces = (state, action) => {
     return updateObject(state, {
-        error: null,
+        forgotPasswordError: null,
         confirmationMessage: 'A message was sent to your email address'
     })
 }
 
 const passwordForgottenMailFail = (state, action) => {
     return updateObject(state, {
-        error: 'something went wrong, try again later',
+        forgotPasswordError: action.error,
         confirmationMessage: null
     })
 }
@@ -66,14 +75,14 @@ const passwordForgottenMailFail = (state, action) => {
 const passwordUpdatedSucces = (state, action) => {
     console.log('in password updated reducer')
     return updateObject(state, {
-        error: null,
+        updatePasswordError: null,
         confirmationMessage: 'Password was updated, log in with your new password.'
     })
 }
 
 const passwordUpdatedFail = (state, action) => {
     return updateObject(state, {
-        error: 'something went wrong, your password was not updated. try again later',
+        updatePasswordError: action.error,
         confirmationMessage: null
     })
 }
@@ -91,6 +100,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PASSWORDFORGOTTEN_MAIL_FAIL: return passwordForgottenMailFail(state, action);
         case actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_SUCCESS: return passwordUpdatedSucces(state, action);
         case actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL: return passwordUpdatedFail(state, action);
+        case actionTypes.PASSWORDFORGOTTEN_START: return passwordForgottenMailStart(state, action);
         default: return state;
     }
 }

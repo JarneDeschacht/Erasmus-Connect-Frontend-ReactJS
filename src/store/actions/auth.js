@@ -104,9 +104,10 @@ export const sentPasswordMailSucces = () => {
     }
 }
 
-export const sentPasswordMailFail = () => {
+export const sentPasswordMailFail = (error) => {
     return {
-        type: actionTypes.PASSWORDFORGOTTEN_MAIL_FAIL
+        type: actionTypes.PASSWORDFORGOTTEN_MAIL_FAIL,
+        error: error
     }
 }
 
@@ -117,9 +118,10 @@ export const passwordChangedSucces = () => {
     }
 }
 
-export const passwordChangedFail = () => {
+export const passwordChangedFail = (error) => {
     return{
-        type: actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL
+        type: actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL,
+        error: error
     }
 }
 
