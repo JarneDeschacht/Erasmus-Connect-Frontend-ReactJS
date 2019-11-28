@@ -5,6 +5,8 @@ import Input from '../../../components/UI/Input/Input'
 import Button from '../../../components/UI/Button/Button'
 import * as actions from '../../../store/actions'
 import classes from './SetNewPassword.module.css'
+import { Redirect } from 'react-router-dom';
+
 const SetNewPassword = props => {
 
     const [newPasswordForm, setNewPasswordForm] = useState({
@@ -38,6 +40,7 @@ const SetNewPassword = props => {
 
     const dispatch = useDispatch()
     const onSetNewPassword =(studentId, password) => dispatch(actions.setNewPassword(studentId, password))
+    const [shouldRedirect, setShouldRedirect] = useState(false)
 
     const formElementsArray = []
     for (let key in newPasswordForm) {
@@ -61,7 +64,7 @@ const SetNewPassword = props => {
     const onSubmit = (event) => {
         event.preventDefault();
         onSetNewPassword(props.match.params.id, newPasswordForm.password.value)
-        console.log('enter logic to change password here')
+        setShouldRedirect(true)
     }
 
     let formInputs = formElementsArray.map(el => {
@@ -80,10 +83,16 @@ const SetNewPassword = props => {
         )
     })
 
+    let redirect = null;
+    if(shouldRedirect){
+        redirect = <Redirect to='/'/>
+    }
+
     return (
         <div>
             <h1>Change your password</h1>
 
+            {redirect}
             <form className = {classes.SetNewPasswordForm}>
                 {formInputs}
                 <Button

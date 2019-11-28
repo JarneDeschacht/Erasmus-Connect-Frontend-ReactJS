@@ -7,6 +7,9 @@ import Button from '../../../components/UI/Button/Button'
 import { updateObject, checkValidity } from '../../../shared/utility'
 import * as actions from '../../../store/actions'
 import classes from './ForgotPassword.module.css'
+import { Redirect } from 'react-router-dom';
+
+
 const Forgotpassword = (props) => {
 
 
@@ -28,11 +31,13 @@ const Forgotpassword = (props) => {
     })
     const dispatch = useDispatch()
     const onSend = (email) => dispatch(actions.sendForgotPasswordMail(email))
+    const [shouldRedirect, setShouldRedirect] = useState(false)
+
 
     const onSubmit = (event) => {
         event.preventDefault()
-        console.log(forgotPasswordForm.email.value)
         onSend(forgotPasswordForm.email.value)
+        setShouldRedirect(true)
     }
 
 
@@ -83,6 +88,11 @@ const Forgotpassword = (props) => {
         </form>
     )
 
+    let redirect = null;
+    if(shouldRedirect){
+        redirect = <Redirect to='/'/>
+    }
+
     return (
         <div className={classes.ForgotPasswordContainer}>
             <h1>enter your email address</h1>
@@ -92,6 +102,7 @@ const Forgotpassword = (props) => {
                 We will send you an email with further instructions.
             </p>
 
+            {redirect}
             {form}
         </div>
     )

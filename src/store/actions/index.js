@@ -12,7 +12,11 @@ export {
     registerFail,
     registerSuccess,
     sendForgotPasswordMail,
-    setNewPassword
+    setNewPassword,
+    sentPasswordMailSucces,
+    sentPasswordMailFail,
+    passwordChangedSucces,
+    passwordChangedFail
 } from './auth';
 export {
     navbarSwitchDisplay

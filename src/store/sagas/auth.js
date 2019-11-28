@@ -76,30 +76,45 @@ export function* authCheckStateSaga(action) {
 
 
 export function* forgotPasswordSaga(action) {
-    const params = {
-        email: action.email
-    }
-
-    const response = yield axiosCustom.post('/forgotPassword', params, {
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        const params = {
+            email: action.email
         }
-    })
+
+        const response = yield axiosCustom.post('/forgotPassword', params, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        yield put(actions.sentPasswordMailSucces())
+    }
+    catch (error) {
+        yield put(actions.sentPasswordMailFail())
+    }
 }
 
 export function* setNewPasswordSaga(action) {
-    yield console.log('in saga: '+ action.studentId + ' ' + action.newPassword)
-
-    const params = {
-        studentId: action.studentId,
-        newPassword: action.newPassword
-    }
-
-    const response = yield axiosCustom.post('/setNewPassword', params, {
-        headers: {
-            'Content-Type': 'application/json'
+    console.log('1')
+    try {
+        console.log('2')
+        
+        const params = {
+            studentId: action.studentId,
+            newPassword: action.newPassword
         }
-    })
+
+        const response = yield axiosCustom.post('/setNewPassword', params, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log('in setnewpasswordsaga')
+        yield put(actions.passwordChangedSucces())
+    }catch (error){
+        yield put(actions.passwordChangedFail())
+    }
 }
 
 const saveUserInDataBase = (userKey, userData) => {

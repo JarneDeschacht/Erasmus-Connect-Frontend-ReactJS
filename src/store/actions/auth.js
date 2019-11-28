@@ -82,6 +82,7 @@ export const registerSuccess = (idToken, userId) => {
     }
 }
 
+//set new password
 export const sendForgotPasswordMail = (email) => {
     return{
         type: actionTypes.PASSWORDFORGOTTEN_START,
@@ -96,3 +97,30 @@ export const setNewPassword = (studentId, password) => {
         studentId: studentId
     }
 }
+
+export const sentPasswordMailSucces = () => {
+    return{
+        type: actionTypes.PASSWORDFORGOTTEN_MAIL_SUCCES
+    }
+}
+
+export const sentPasswordMailFail = () => {
+    return {
+        type: actionTypes.PASSWORDFORGOTTEN_MAIL_FAIL
+    }
+}
+
+export const passwordChangedSucces = () => {
+    console.log('in passwordchangedsucces action')
+    return {
+        type: actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_SUCCESS
+    }
+}
+
+export const passwordChangedFail = () => {
+    return{
+        type: actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL
+    }
+}
+
+
