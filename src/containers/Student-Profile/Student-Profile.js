@@ -22,10 +22,10 @@ const StudentProfile = props => {
 
     return (
         <div className={classes.StudentProfile}>
-            <NavLink className={classes.GoBack} to="/">Go back</NavLink>
+            <NavLink className={classes.GoBack} to="/students">Go back</NavLink>
             <div className={classes.ProfileColumns}>
                     <div>
-                        <ProfilePicture />
+                        <ProfilePicture imageUrl={student.imageUrl} />
                         <h2>{student.firstName} {student.lastName}</h2>
                         <div>
                             <h4>Bio</h4>

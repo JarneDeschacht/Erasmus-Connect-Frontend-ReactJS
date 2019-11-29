@@ -40,7 +40,7 @@ const Profile = props => {
                 </div>
                 <div className={classes.ProfileColumns}>
                     <div>
-                        <ProfilePicture />
+                        <ProfilePicture imageUrl={profile.imageUrl} />
                         <h2>{profile.firstName} {profile.lastName}</h2>
                         <div>
                             <h4>Bio</h4>

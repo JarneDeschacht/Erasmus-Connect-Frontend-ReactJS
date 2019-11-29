@@ -137,7 +137,7 @@ const Login = props => {
 
     let redirect = null;
     if (isAuthenticated || shouldRedirect) {
-        redirect = <Redirect to="/register-erasmus" />
+        redirect = <Redirect to="/" />
     }
 
     return (

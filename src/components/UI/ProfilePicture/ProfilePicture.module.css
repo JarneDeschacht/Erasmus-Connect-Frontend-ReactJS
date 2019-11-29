@@ -1,5 +1,7 @@
 .ProfilePicture{
     border-radius: 15px;
+    max-height: 400px;
+    max-width: 400px;
 }
 .ProfilePictureSearch{
     border-radius: 15px 0 0 15px;

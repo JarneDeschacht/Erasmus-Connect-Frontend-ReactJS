@@ -35,7 +35,8 @@ const fetchStudentsFail = (state, action) => {
 }
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
-        loading: true
+        loading: true,
+        error: null
     });
 }
 const registerErasmusSuccess = (state, action) => {
@@ -46,6 +47,7 @@ const registerErasmusSuccess = (state, action) => {
 const registerErasmusFail = (state, action) => {
     return updateObject(state, {
         loading: false,
+        error: action.error
     })
 }
 
@@ -53,6 +55,7 @@ const initialState = {
     profile: null,
     students: [],
     loading: false,
+    error: null,
 };
 
 const reducer = (state = initialState, action) => {

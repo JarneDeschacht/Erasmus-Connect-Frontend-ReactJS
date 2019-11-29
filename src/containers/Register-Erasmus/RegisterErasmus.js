@@ -17,6 +17,7 @@ const RegisterErasmus = props => {
 
     const dispatch = useDispatch();
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+    const error = useSelector(state => state.student.error);
 
     const onNavbarDisplaySwitch = useCallback(
         () => dispatch(actions.navbarSwitchDisplay()),
@@ -176,7 +177,6 @@ const RegisterErasmus = props => {
     };
 
     let formElementsArray = [];
-    //creating an array with an object for each form control
     for (let key in registerForm) {
         formElementsArray.push({
             id: key,
@@ -187,6 +187,10 @@ const RegisterErasmus = props => {
     let errorMessage = null;
     let regForm = null;
     let redirect = null;
+
+    if (error) {
+        errorMessage = <p className={classes.ErrorMessage}>{error}</p>;
+    }
 
     if (shouldRedirect) {
         redirect = <Redirect to="/" />
@@ -227,7 +231,9 @@ const RegisterErasmus = props => {
     const onSubmit = event => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append('image', image);
+        if(image){
+            formData.append('image', image[0]);
+        }
         formData.append('homeCourse', registerForm.homeCourse.value);
         formData.append('erasmusCourse', registerForm.erasmusCourse.value);
         formData.append('homeCountryId', registerForm.homeCountry.value);
@@ -237,6 +243,7 @@ const RegisterErasmus = props => {
         formData.append('homeUniversity', registerForm.homeUniversityName.value);
         formData.append('erasmusUniversity', registerForm.erasmusUniversityName.value);
         onRegisterErasmus(token, userId, formData);
+        setShouldRedirect(true);
     }
 
     formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
