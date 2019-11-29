@@ -70,34 +70,59 @@ export function* authCheckStateSaga(action) {
             yield put(actions.checkAuthTimeout((expirationTime.getTime() - new Date().getTime()) / 1000));
         } else {
             yield put(actions.logout());
-        }
-    }
+        };
+    };
 }
 
 
 export function* forgotPasswordSaga(action) {
-    const params = {
-        email: action.email
-    }
+    try {
+        // const params = {
+        //     email: action.email
+        // };
 
-    const response = yield axiosCustom.post('/forgotPassword', params, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+        // const response = yield axiosCustom.post('/forgotPassword', params, {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+
+        yield put(actions.sentPasswordMailSucces());
+    }
+    catch (error) {
+        yield put(actions.sentPasswordMailFail(error.response.data.message));
+    }
 }
 
 export function* setNewPasswordSaga(action) {
-    yield console.log('in saga: '+ action.studentId + ' ' + action.newPassword)
+    try {
+        // const params = {
+        //     studentId: action.studentId,
+        //     newPassword: action.newPassword
+        // };
 
-    const params = {
-        studentId: action.studentId,
-        newPassword: action.newPassword
+        // const response = yield axiosCustom.post('/setNewPassword', params, {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+
+        const response = yield axiosCustom.post('/setNewPassword', params, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log('in setnewpasswordsaga');
+        yield put(actions.passwordChangedSucces());
     }
-
-    const response = yield axiosCustom.post('/setNewPassword', params, {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    catch (error) {
+        yield put(actions.passwordChangedFail(error.response.data.message));
+    }
 }
+
+// const saveUserInDataBase = (userKey, userData) => {
+//     axiosCustom.put(`/users/${userKey}.json`, { ...userData }
+//     );
+//     // axiosCustom.post('/users.json', userData)
+// }

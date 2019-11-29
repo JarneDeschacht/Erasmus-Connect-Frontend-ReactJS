@@ -187,7 +187,7 @@ const Register = props => {
       valueToBeValidated = [registerForm.password.value, event.target.value];
     }
 
-    const updatedControls = updateObject(registerForm, {
+    let updatedControls = updateObject(registerForm, {
       [controlName]: updateObject(registerForm[controlName], {
         value: enteredValue,
         valid: checkValidity(
@@ -197,6 +197,23 @@ const Register = props => {
         touched: true
       })
     });
+
+    if (controlName === "password" && registerForm.confirmPassword.touched) {
+      valueToBeValidated = [
+        event.target.value,
+        registerForm.confirmPassword.value
+      ];
+      updatedControls = updateObject(updatedControls, {
+        confirmPassword: updateObject(registerForm.confirmPassword, {
+          value: registerForm.confirmPassword.value,
+          valid: checkValidity(
+            valueToBeValidated,
+            registerForm.confirmPassword.validation
+          ),
+          touched: true
+        })
+      });
+    }
 
     let valid = true;
 
