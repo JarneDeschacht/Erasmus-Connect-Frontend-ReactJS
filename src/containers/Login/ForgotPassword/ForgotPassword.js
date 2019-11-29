@@ -9,6 +9,7 @@ import * as actions from "../../../store/actions";
 import classes from "./ForgotPassword.module.css";
 import { Redirect } from "react-router-dom";
 
+
 const Forgotpassword = props => {
   const [forgotPasswordForm, setForgotPasswordForm] = useState({
     email: {
@@ -55,7 +56,8 @@ const Forgotpassword = props => {
         valid: checkValidity(
           event.target.value,
           forgotPasswordForm[controlName].validation
-        )
+        ),
+        touched: true
       })
     });
     setForgotPasswordForm(updatedControls);
@@ -70,10 +72,10 @@ const Forgotpassword = props => {
         elementConfig={el.config.elementConfig}
         changed={event => inputChangedHandler(event, el.id)}
         shouldValidate={el.config.validation}
-        errorMessage={"email is not valid"}
+        errorMessage={"Email is not valid"}
         touched={el.config.touched}
         value={el.config.value}
-        type='email'
+        type="email"
       />
     );
   });
@@ -81,7 +83,12 @@ const Forgotpassword = props => {
   let form = (
     <form>
       {formInputs}
-      <Button clicked={event => onSubmit(event)}>Send email</Button>
+      <Button
+        clicked={event => onSubmit(event)}
+        disabled={!forgotPasswordForm.email.valid}
+      >
+        Send email
+      </Button>
     </form>
   );
 

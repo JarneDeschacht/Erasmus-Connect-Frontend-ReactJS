@@ -16,7 +16,8 @@ export {
     sentPasswordMailSucces,
     sentPasswordMailFail,
     passwordChangedSucces,
-    passwordChangedFail
+    passwordChangedFail,
+    clearConfirmationMessage
 } from './auth';
 export {
     navbarSwitchDisplay
@@ -35,5 +36,5 @@ export {
     fetchCountries,
     fetchCountriesStart,
     fetchCountriesFail,
-    fetchCountriesSuccess
+    fetchCountriesSuccess,
 } from './countries';

@@ -77,15 +77,15 @@ export function* authCheckStateSaga(action) {
 
 export function* forgotPasswordSaga(action) {
     try {
-        const params = {
-            email: action.email
-        };
+        // const params = {
+        //     email: action.email
+        // };
 
-        const response = yield axiosCustom.post('/forgotPassword', params, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        // const response = yield axiosCustom.post('/forgotPassword', params, {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
 
         yield put(actions.sentPasswordMailSucces());
     }
@@ -96,16 +96,16 @@ export function* forgotPasswordSaga(action) {
 
 export function* setNewPasswordSaga(action) {
     try {
-        const params = {
-            studentId: action.studentId,
-            newPassword: action.newPassword
-        };
+        // const params = {
+        //     studentId: action.studentId,
+        //     newPassword: action.newPassword
+        // };
 
-        const response = yield axiosCustom.post('/setNewPassword', params, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        // const response = yield axiosCustom.post('/setNewPassword', params, {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
 
         console.log('in setnewpasswordsaga');
         yield put(actions.passwordChangedSucces());
@@ -114,8 +114,8 @@ export function* setNewPasswordSaga(action) {
     }
 }
 
-const saveUserInDataBase = (userKey, userData) => {
-    axiosCustom.put(`/users/${userKey}.json`, { ...userData }
-    );
-    // axiosCustom.post('/users.json', userData)
-}
+// const saveUserInDataBase = (userKey, userData) => {
+//     axiosCustom.put(`/users/${userKey}.json`, { ...userData }
+//     );
+//     // axiosCustom.post('/users.json', userData)
+// }

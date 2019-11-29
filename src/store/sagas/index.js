@@ -5,7 +5,6 @@ import {
     loginSaga,
     authCheckStateSaga,
     registerSaga,
-    registerUserSaga,
     forgotPasswordSaga,
     setNewPasswordSaga
 } from './auth';

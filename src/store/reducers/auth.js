@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-import { passwordChangedSucces, passwordChangedFail } from '../actions/auth';
 
 const initialState = {
     idToken: null,
@@ -87,6 +86,12 @@ const passwordUpdatedFail = (state, action) => {
     })
 }
 
+const clearConfirmationMessage = (state, action) => {
+    return updateObject(state, {
+        confirmationMessage: null
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.LOGIN_START: return loginStart(state, action);
@@ -101,6 +106,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_SUCCESS: return passwordUpdatedSucces(state, action);
         case actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL: return passwordUpdatedFail(state, action);
         case actionTypes.PASSWORDFORGOTTEN_START: return passwordForgottenMailStart(state, action);
+        case actionTypes.CLEAR_CONFIRMATION_MESSAGE: return clearConfirmationMessage(state, action);
         default: return state;
     }
 }
