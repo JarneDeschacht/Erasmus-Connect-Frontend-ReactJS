@@ -30,7 +30,17 @@ export {
     fetchStudents,
     fetchStudentsStart,
     fetchStudentsSuccess,
-    fetchStudentsFail
+    fetchStudentsFail,
+    getConnectionStatus,
+    getConnectionStatusStart,
+    getConnectionStatusSuccess,
+    getConnectionStatusFail,
+    makeConnection,
+    acceptConnection,
+    refuseConnection,
+    connectionStart,
+    connectionSuccess,
+    connectionFail
 } from './student';
 export {
     fetchCountries,

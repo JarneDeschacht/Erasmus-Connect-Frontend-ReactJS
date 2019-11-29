@@ -1,6 +1,19 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
+const initialState = {
+    profile: null,
+    students: [],
+    loading: false,
+    connecting: false,
+    connectionError: null,
+    fetchingStatus: false,
+    statusError: null,
+    connectionExists: false,
+    connectionRequestSent: false,
+    connectionRequestReceived: false
+};
+
 const fetchProfileStart = (state, action) => {
     return updateObject(state, {
         loading: true
@@ -33,12 +46,42 @@ const fetchStudentsFail = (state, action) => {
         loading: false,
     })
 }
-
-const initialState = {
-    profile: null,
-    students: [],
-    loading: false,
-};
+const getConnectionStatusStart = (state, action) => {
+    return updateObject(state, {
+        fetchingStatus: true
+    })
+}
+const getConnectionStatusSuccess = (state, action) => {
+    return updateObject(state, {
+        fetchingStatus: false,
+        connectionExists: action.connectionExists,
+        connectionRequestSent: action.connectionRequestSent,
+        connectionRequestReceived: action.connectionRequestReceived
+    })
+}
+const getConnectionStatusFail = (state, action) => {
+    return updateObject(state, {
+        fetchingStatus: false,
+        statusError: null
+    })
+}
+const connectionStart = (state, action) => {
+    return updateObject(state, {
+        connecting: true
+    })
+}
+const connectionSuccess = (state, action) => {
+    return updateObject(state, {
+        connecting: false,
+        connectionRequestSent: true
+    })
+}
+const connectionFail = (state, action) => {
+    return updateObject(state, {
+        connecting: false,
+        connectionError: action.error
+    })
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -48,6 +91,12 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_STUDENTS_START: return fetchStudentsStart(state, action);
         case actionTypes.FETCH_STUDENTS_SUCCESS: return fetchStudentsSuccess(state, action);
         case actionTypes.FETCH_STUDENTS_FAIL: return fetchStudentsFail(state, action);
+        case actionTypes.CONNECTION_START: return connectionStart(state, action);
+        case actionTypes.CONNECTION_SUCCESS: return connectionSuccess(state, action);
+        case actionTypes.CONNECTION_FAIL: return connectionFail(state, action);
+        case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
+        case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
+        case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
         default: return state;
     }
 };

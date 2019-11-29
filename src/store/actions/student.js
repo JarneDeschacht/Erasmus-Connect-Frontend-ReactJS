@@ -49,3 +49,73 @@ export const fetchStudents = (token, userId) => {
         userId: userId
     }
 }
+
+export const getConnectionStatus = (userId, connectToId) => {
+    return {
+        type: actionTypes.GET_CONNECTION_STATUS,
+        userId: userId,
+        connectToId: connectToId
+    }
+}
+export const getConnectionStatusStart = (userId, connectToId) => {
+    return {
+        type: actionTypes.GET_CONNECTION_STATUS_START,
+        userId: userId,
+        connectToId: connectToId
+    }
+}
+export const getConnectionStatusSuccess = (connectionExists, connectionRequestSent, connectionRequestReceived) => {
+    return {
+        type: actionTypes.GET_CONNECTION_STATUS_SUCCESS,
+        connectionExists: connectionExists,
+        connectionRequestSent: connectionRequestSent,
+        connectionRequestReceived: connectionRequestReceived
+    }
+}
+export const getConnectionStatusFail = (error) => {
+    return {
+        type: actionTypes.GET_CONNECTION_STATUS_FAIL,
+        error: error
+    }
+}
+export const getConnections = (userId) => {
+    return {
+        type: actionTypes.GET_CONNECTIONS,
+        userId: userId
+    }
+}
+export const makeConnection = (userId, connectToId) => {
+    return {
+        type: actionTypes.MAKE_CONNECTION,
+        userId: userId,
+        connectToId: connectToId
+    }
+}
+export const acceptConnection = () => {
+    return {
+        type: actionTypes.ACCEPT_CONNECTION
+    }
+}
+export const refuseConnection = () => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION
+    }
+}
+
+export const connectionStart = () => {
+    return {
+        type: actionTypes.CONNECTION_START
+    }
+}
+export const connectionSuccess = () => {
+    return {
+        type: actionTypes.CONNECTION_SUCCESS
+    }
+}
+
+export const connectionFail = (error) => {
+    return {
+        type: actionTypes.CONNECTION_FAIL,
+        error: error
+    }
+}

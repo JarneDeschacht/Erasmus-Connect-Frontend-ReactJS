@@ -26,10 +26,86 @@ export function* fetchStudentsSaga(action) {
                 'Authorization': 'Bearer ' + action.token
             }
         });
-        console.log(response.data.users);
         yield put(actions.fetchStudentsSuccess(response.data.users));
     }
     catch (error) {
         yield put(actions.fetchStudentsFail(error));
     }
 }
+export function* getConnectionStatusSaga(action) {
+    yield put(actions.getConnectionStatusStart());
+    const connectionStatusData = action.userId + '/' + action.connectToId;
+    
+    try {
+        const response = yield axios.get('/connectionStatus/' + connectionStatusData);
+        yield put(actions.getConnectionStatusSuccess(response.data.connectionExists, response.data.connectionRequestSent, response.data.connectionRequestReceived));
+    }
+    catch (error) {
+        yield put(actions.getConnectionStatusFail(error));
+    }
+}
+export function* getConnectionsSaga(action) {
+    yield put(actions.connectionStart());
+    const connectionData = {
+        userId: action.userId,
+        connectToId: action.connectToId
+    }
+    try {
+        yield axios.post('/connectToStudent', connectionData);
+        yield put(actions.connectionSuccess());
+    }
+    catch (error) {
+        yield put(actions.connectionFail(error));
+    }
+}
+export function* makeConnectionSaga(action) {
+    yield put(actions.connectionStart());
+    const connectionData = {
+        userId: action.userId,
+        connectToId: action.connectToId
+    }
+    try {
+        yield axios.post('/connectToStudent', connectionData, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.connectionSuccess());
+    }
+    catch (error) {
+        yield put(actions.connectionFail(error));
+    }
+}
+export function* acceptConnectionSaga(action) {
+    yield put(actions.fetchStudentsStart());
+    try {
+        const response = yield axios.get('/students', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.fetchStudentsSuccess(response.data.users));
+    }
+    catch (error) {
+        yield put(actions.fetchStudentsFail(error));
+    }
+}
+export function* refuseConnectionSaga(action) {
+    yield put(actions.fetchStudentsStart());
+    try {
+        const response = yield axios.get('/students', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.fetchStudentsSuccess(response.data.users));
+    }
+    catch (error) {
+        yield put(actions.fetchStudentsFail(error));
+    }
+}
+
+

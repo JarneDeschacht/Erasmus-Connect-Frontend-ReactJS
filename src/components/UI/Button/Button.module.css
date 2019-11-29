@@ -17,3 +17,7 @@
     background-color: grey;
     color: rgb(190, 190, 190);
 }
+
+.NoPointer{
+    cursor: default !important;
+}

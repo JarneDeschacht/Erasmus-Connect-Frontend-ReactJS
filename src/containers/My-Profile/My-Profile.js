@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import ProfilePicture from '../../components/UI/ProfilePicture/ProfilePicture';
 import Map from '../../components/UI/Map/Map';
 import Button from '../../components/UI/Button/Button';
+import Modal from '../../components/UI/Modal/modal';
 
 const Profile = props => {
 
@@ -19,11 +20,21 @@ const Profile = props => {
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
 
+    const [openModal, setOpenModal] = useState(false);
+
     useEffect(() => {
         if (isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
+    const openConnectionsModal = () => {
+        setOpenModal(true);
+    }
+
+    const closeConnectionsModal = () => {
+        setOpenModal(false);
+      };
 
     useEffect(() => {
         onFetchProfile();
@@ -34,6 +45,7 @@ const Profile = props => {
     if (!loading && profile) {
         content = (
             <div className={classes.Profile}>
+            <Modal open={openModal} onClose={() => closeConnectionsModal()}/>
                 <div className={classes.Header}>
                     <NavLink className={classes.GoBack} to="/">Go back</NavLink>
                     <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
@@ -65,7 +77,7 @@ const Profile = props => {
                             <h2>{profile.homeUniversity.name || '-----'}</h2>
                         </div>
                         <div>
-                            <Button>View connection</Button>
+                            <Button clicked={() => {openConnectionsModal()}}>My friends</Button>
                             <Button>Edit profile</Button>
                         </div>
                     </div>
