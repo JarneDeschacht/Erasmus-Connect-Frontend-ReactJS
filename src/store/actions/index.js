@@ -25,7 +25,11 @@ export {
     fetchStudents,
     fetchStudentsStart,
     fetchStudentsSuccess,
-    fetchStudentsFail
+    fetchStudentsFail,
+    registerErasmus,
+    registerErasmusStart,
+    registerErasmusFail,
+    registerErasmusSuccess
 } from './student';
 export {
     fetchCountries,

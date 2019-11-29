@@ -18,7 +18,8 @@ const NavigationItems = props => {
     if (isAuthenticated) {
         navItems = (
             <ul className={classes.NavigationItems}>
-                <NavigationItem link="/help">Help</NavigationItem>
+                {/* <NavigationItem link="/help">Help</NavigationItem> */}
+                <NavigationItem link="/register-erasmus">Register Erasmus</NavigationItem>
                 <NavigationItem link="/faq">FAQ</NavigationItem>
                 <NavigationItem link="/logout">Logout</NavigationItem>
             </ul>

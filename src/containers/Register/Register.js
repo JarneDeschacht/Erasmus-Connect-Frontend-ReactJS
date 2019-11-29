@@ -13,33 +13,6 @@ import { giveCustomErrorMessage } from "../../shared/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
 const Register = props => {
-  const [shouldRedirect, setShouldRedirect] = useState(false);
-  let [allControlsAreValid, setAllControlsAreValid] = useState(false);
-
-  const dispatch = useDispatch();
-  const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
-  const onNavbarDisplaySwitch = useCallback(
-    () => dispatch(actions.navbarSwitchDisplay()),
-    [dispatch]
-  );
-
-  const onRegister = credentials => dispatch(actions.register(credentials));
-
-  const loadingAuth = useSelector(state => state.auth.loading);
-  const error = useSelector(state => state.auth.error);
-  let isAuthenticated = useSelector(state => state.auth.idToken !== null);
-
-  const countries = useSelector(state => state.country.countries);
-  const isLoadingCountries = useSelector(state => state.country.loading);
-  const onFetchCountries = useCallback(
-    () => dispatch(actions.fetchCountries()),
-    [dispatch]
-  );
-
-  useEffect(() => {
-    onFetchCountries();
-  }, [onFetchCountries]);
-
   const [registerForm, setRegisterForm] = useState({
     firstName: {
       elementType: "input",
@@ -147,6 +120,31 @@ const Register = props => {
       touched: false
     }
   });
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+  let [allControlsAreValid, setAllControlsAreValid] = useState(false);
+
+  let isAuthenticated = useSelector(state => state.auth.idToken !== null);
+  const dispatch = useDispatch();
+  const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+  const onNavbarDisplaySwitch = useCallback(
+    () => dispatch(actions.navbarSwitchDisplay()),
+    [dispatch]
+  );
+
+  const onRegister = credentials => dispatch(actions.register(credentials));
+
+  const loadingAuth = useSelector(state => state.auth.loading);
+  const error = useSelector(state => state.auth.error);
+
+  const countries = useSelector(state => state.country.countries);
+  const onFetchCountries = useCallback(
+    () => dispatch(actions.fetchCountries()),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    onFetchCountries();
+  }, [onFetchCountries]);
 
   useEffect(() => {
     if (isNavbarVisible) {
@@ -154,10 +152,7 @@ const Register = props => {
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
 
-  let redirect = null;
-  if (shouldRedirect) {
-    redirect = <Redirect to="/" />;
-  }
+
   let formElementsArray = [];
   //creating an array with an object for each form control
   for (let key in registerForm) {
@@ -214,7 +209,6 @@ const Register = props => {
     setAllControlsAreValid(valid);
     setRegisterForm(updatedControls);
   };
-
   const onSubmit = event => {
     event.preventDefault();
 
@@ -240,11 +234,12 @@ const Register = props => {
 
   let regForm = null;
 
+  let redirect = null;
   if (isAuthenticated || shouldRedirect) {
-    redirect = <Redirect to="/" />
+    redirect = <Redirect to="/register-erasmus" />
   }
 
-  if (isLoadingCountries || loadingAuth) {
+  if (loadingAuth) {
     regForm = <Spinner />;
   } else {
     let formInputs = formElementsArray.map((el, index) => {

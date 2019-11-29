@@ -26,10 +26,26 @@ export function* fetchStudentsSaga(action) {
                 'Authorization': 'Bearer ' + action.token
             }
         });
-        console.log(response.data.users);
         yield put(actions.fetchStudentsSuccess(response.data.users));
     }
     catch (error) {
         yield put(actions.fetchStudentsFail(error));
+    }
+}
+export function* registerErasmusSaga(action) {
+    yield put(actions.registerErasmusStart());
+    try {
+        yield axios({
+            url: '/register-erasmus',
+            method: 'POST',
+            data: action.formData,
+            headers: {
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.registerErasmusSuccess());
+    }
+    catch (error) {
+        yield put(actions.registerErasmusFail(error));
     }
 }

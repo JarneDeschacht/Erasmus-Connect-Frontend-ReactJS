@@ -8,7 +8,7 @@ const initialState = {
     loading: false,
 }
 const loginStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
+    return updateObject(state, { error: null, loading: true, idToken: null, userId: null });
 }
 const loginSuccess = (state, action) => {
     return updateObject(state, {
@@ -29,7 +29,7 @@ const authLogout = (state, action) => {
 }
 
 const registerStart = (state, action) => {
-    return updateObject(state, { error: null, loading: true });
+    return updateObject(state, { error: null, loading: true, idToken: null, userId: null });
 }
 
 const registerFail = (state, action) => {

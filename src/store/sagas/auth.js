@@ -51,11 +51,11 @@ export function* registerSaga(action) {
         yield localStorage.setItem('token', response.data.token);
         yield localStorage.setItem('expirationTime', expirationTime);
         yield localStorage.setItem('userId', response.data.userId);
-        yield put(actions.registerSuccess(response.data.idToken, response.data.localId));
+        yield put(actions.registerSuccess(response.data.token, response.data.userId));
         yield put(actions.checkAuthTimeout(3600));
     }
     catch (error) {
-        yield put(actions.registerFail(error.response.data.error))
+        yield put(actions.registerFail(error.response.data.message))
     }
 }
 export function* authCheckStateSaga(action) {
@@ -100,10 +100,4 @@ export function* setNewPasswordSaga(action) {
             'Content-Type': 'application/json'
         }
     })
-}
-
-const saveUserInDataBase = (userKey, userData) => {
-    axiosCustom.put(`/users/${userKey}.json`, { ...userData }
-    )
-    // axiosCustom.post('/users.json', userData)
 }
