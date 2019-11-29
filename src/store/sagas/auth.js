@@ -105,15 +105,7 @@ export function* setNewPasswordSaga(action) {
         //     headers: {
         //         'Content-Type': 'application/json'
         //     }
-        // });
-
-        const response = yield axiosCustom.post('/setNewPassword', params, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-
-        console.log('in setnewpasswordsaga');
+        // })
         yield put(actions.passwordChangedSucces());
     }
     catch (error) {
