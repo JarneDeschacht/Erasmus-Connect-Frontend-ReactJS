@@ -121,7 +121,6 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
-        case actionTypes.GET_CONNECTIONS_SUCCESS: return getConnectionsSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_START: return registerErasmusStart(state, action);
         case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);

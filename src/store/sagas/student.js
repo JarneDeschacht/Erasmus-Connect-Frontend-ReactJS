@@ -47,12 +47,10 @@ export function* getConnectionStatusSaga(action) {
 export function* getConnectionsSaga(action) {
     yield put(actions.getConnectionsStart());
 
- 
     const userId = action.userId;
     try {
         const response = yield axios.get(`/getConnections/${userId}`);
-        console.log(response.data.connections);
-        yield put(actions.getConnectionsSuccess(response.data.connections));
+        yield put(actions.getConnectionsSuccess(response.data));
     }
     catch (error) {
         yield put(actions.getConnectionsFail(error));
