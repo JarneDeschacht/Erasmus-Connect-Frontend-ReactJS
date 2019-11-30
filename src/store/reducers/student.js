@@ -82,6 +82,23 @@ const connectionFail = (state, action) => {
         connectionError: action.error
     })
 }
+const registerErasmusStart = (state, action) => {
+    return updateObject(state, {
+        loading: true,
+        error: null
+    });
+}
+const registerErasmusSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+    })
+}
+const registerErasmusFail = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: action.error
+    })
+}
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -97,6 +114,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
+        case actionTypes.REGISTER_ERASMUS_START: return registerErasmusStart(state, action);
+        case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
+        case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);
         default: return state;
     }
 };

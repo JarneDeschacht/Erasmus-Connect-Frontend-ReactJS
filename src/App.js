@@ -13,7 +13,7 @@ import MyProfile from "./containers/My-Profile/My-Profile";
 import StudentProfile from "./containers/Student-Profile/Student-Profile";
 import ForgotPassword from "./containers/Login/ForgotPassword/ForgotPassword";
 import SetNewPassword from "./containers/Login/SetNewPassword/SetNewPassword";
-import RegisterErasmus from "./containers/Register/Register-Erasmus/RegisterErasmus";
+import RegisterErasmus from "./containers/Register-Erasmus/RegisterErasmus";
 import Snackbar from "./components/UI/Snackbar/snackbar";
 
 const App = props => {
@@ -34,7 +34,6 @@ const App = props => {
       <Route path="/register" component={Register} />
       <Route path="/forgotPassword" exact component={ForgotPassword} />
       <Route path="/forgotPassword/:id" component={SetNewPassword} />
-      <Route path="/register-erasmus" exact component={RegisterErasmus} />
       <Route path="/" exact component={Main} />
       <Redirect to="/" />
     </Switch>
@@ -46,12 +45,12 @@ const App = props => {
         <Route path="/login" component={Login} />
         <Route path="/profile" component={MyProfile} />
         <Route path="/logout" component={Logout} />
+        <Route path="/register-erasmus" component={RegisterErasmus} />
         <Route path="/students" exact component={Students} />
         <Route
           path={"/students/:id"}
           render={props => <StudentProfile {...props} />}
         />
-        <Route path="/register-erasmus" exact component={RegisterErasmus} />
         <Route path="/" exact component={Main} />
         <Redirect to="/" />
       </Switch>

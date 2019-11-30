@@ -42,7 +42,8 @@ const Students = props => {
                 student={{
                     name: `${student.firstName} ${student.lastName}`,
                     school: student.erasmusUniversity.name || '-----',
-                    location: `${student.erasmusUniversity.city.name || '-----'}, ${student.erasmusUniversity.city.country.name || '-----'} (${student.erasmusUniversity.city.country.code || '-----'})`
+                    location: `${student.erasmusUniversity.city.name || '-----'}, ${student.erasmusUniversity.city.country.name || '-----'} (${student.erasmusUniversity.city.country.code || '-----'})`,
+                    imageUrl: student.imageUrl
                 }}
             />
         ))

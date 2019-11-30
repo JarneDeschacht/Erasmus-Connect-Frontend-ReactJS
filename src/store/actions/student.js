@@ -119,3 +119,28 @@ export const connectionFail = (error) => {
         error: error
     }
 }
+
+export const registerErasmusSuccess = () => {
+    return {
+        type: actionTypes.REGISTER_ERASMUS_SUCCESS
+    }
+}
+export const registerErasmusFail = (error) => {
+    return {
+        type: actionTypes.REGISTER_ERASMUS_FAIL,
+        error: error,
+    }
+}
+export const registerErasmusStart = () => {
+    return {
+        type: actionTypes.REGISTER_ERASMUS_START
+    }
+}
+export const registerErasmus = (token, userId, formData) => {
+    return {
+        type: actionTypes.REGISTER_ERASMUS,
+        token: token,
+        userId: userId,
+        formData: formData
+    }
+}

@@ -109,3 +109,20 @@ export function* refuseConnectionSaga(action) {
 }
 
 
+export function* registerErasmusSaga(action) {
+    yield put(actions.registerErasmusStart());
+    try {
+        yield axios({
+            url: '/register-erasmus',
+            method: 'POST',
+            data: action.formData,
+            headers: {
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.registerErasmusSuccess());
+    }
+    catch (error) {
+        yield put(actions.registerErasmusFail(error));
+    }
+}

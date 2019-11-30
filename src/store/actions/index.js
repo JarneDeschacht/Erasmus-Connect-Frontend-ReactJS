@@ -40,7 +40,11 @@ export {
     refuseConnection,
     connectionStart,
     connectionSuccess,
-    connectionFail
+    connectionFail,
+    registerErasmus,
+    registerErasmusStart,
+    registerErasmusFail,
+    registerErasmusSuccess
 } from './student';
 export {
     fetchCountries,

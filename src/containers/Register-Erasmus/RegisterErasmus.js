@@ -1,22 +1,23 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from '../../../store/actions/index';
+import * as actions from '../../store/actions/index';
 import classes from './RegisterErasmus.module.css';
-import Input from '../../../components/UI/Input/Input';
+import Input from '../../components/UI/Input/Input';
 import {
     updateObject,
     checkValidity
-} from '../../../shared/utility';
-import FilePicker from '../../../components/UI/Input/FilePicker/FilePicker';
-import { generateBase64FromImage } from '../../../shared/image';
-import ImagePreview from '../../../components/UI/ImagePreview/ImagePreview';
-import Button from '../../../components/UI/Button/Button';
+} from '../../shared/utility';
+import FilePicker from '../../components/UI/Input/FilePicker/FilePicker';
+import { generateBase64FromImage } from '../../shared/image';
+import ImagePreview from '../../components/UI/ImagePreview/ImagePreview';
+import Button from '../../components/UI/Button/Button';
 import { Redirect } from 'react-router-dom';
 
 const RegisterErasmus = props => {
 
     const dispatch = useDispatch();
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+    const error = useSelector(state => state.student.error);
 
     const onNavbarDisplaySwitch = useCallback(
         () => dispatch(actions.navbarSwitchDisplay()),
@@ -28,6 +29,21 @@ const RegisterErasmus = props => {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
+    const onRegisterErasmus = (token, userId, formData) => dispatch(actions.registerErasmus(token, userId, formData));
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+
+    const countries = useSelector(state => state.country.countries);
+    const onFetchCountries = useCallback(
+        () => dispatch(actions.fetchCountries()),
+        [dispatch]
+    );
+
+    useEffect(() => {
+        onFetchCountries();
+    }, [onFetchCountries]);
+
     const [registerForm, setRegisterForm] = useState({
         homeCourse: {
             elementType: "input",
@@ -47,6 +63,52 @@ const RegisterErasmus = props => {
             elementConfig: {
                 type: "text",
                 placeholder: "Course"
+            },
+            value: "",
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        },
+        homeCountry: {
+            elementType: "select",
+            value: "",
+            elementConfig: {
+                placeholder: "Country"
+            },
+            validation: {},
+            valid: true,
+            touched: false
+        },
+        erasmusCountry: {
+            elementType: "select",
+            value: "",
+            elementConfig: {
+                placeholder: "Country"
+            },
+            validation: {},
+            valid: true,
+            touched: false
+        },
+        homeCityName: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "City"
+            },
+            value: "",
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        },
+        erasmusCityName: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "City"
             },
             value: "",
             validation: {
@@ -80,65 +142,12 @@ const RegisterErasmus = props => {
             },
             valid: false,
             touched: false
-        },
-        homeCityName: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "City"
-            },
-            value: "",
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        erasmusCity: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "City"
-            },
-            value: "",
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        homeCityZipcode: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "Zipcode"
-            },
-            value: "",
-            validation: {
-                required: true,
-                isNumeric: true
-            },
-            valid: false,
-            touched: false
-        },
-        erasmusCityZipcode: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "Zipcode"
-            },
-            value: "",
-            validation: {
-                required: true,
-                isNumeric: true
-            },
-            valid: false,
-            touched: false
         }
     });
     const [shouldRedirect, setShouldRedirect] = useState(false);
     let [allControlsAreValid, setAllControlsAreValid] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
+    const [image, setImage] = useState(null);
 
     const inputChangedHandler = (event, controlName) => {
         let enteredValue = event.target.value;
@@ -160,12 +169,14 @@ const RegisterErasmus = props => {
             valid = updatedControls[inputIdentifier].valid && valid;
         }
 
+        valid = updatedControls.homeCountry.value !== "" && valid;
+        valid = updatedControls.erasmusCountry.value !== "" && valid;
+
         setAllControlsAreValid(valid);
         setRegisterForm(updatedControls);
     };
 
     let formElementsArray = [];
-    //creating an array with an object for each form control
     for (let key in registerForm) {
         formElementsArray.push({
             id: key,
@@ -176,6 +187,10 @@ const RegisterErasmus = props => {
     let errorMessage = null;
     let regForm = null;
     let redirect = null;
+
+    if (error) {
+        errorMessage = <p className={classes.ErrorMessage}>{error}</p>;
+    }
 
     if (shouldRedirect) {
         redirect = <Redirect to="/" />
@@ -190,7 +205,7 @@ const RegisterErasmus = props => {
                 id={el.id}
                 invalid={!el.config.valid}
                 elementType={el.config.elementType}
-                elementConfig={el.config.elementConfig}
+                elementConfig={el.id.includes('Country') ? { 'options': countries } : el.config.elementConfig}
                 changed={(event) => { inputChangedHandler(event, el.id) }}
                 shouldValidate={el.config.validation}
                 errorMessage={"Please enter a valid " + el.config.elementConfig.placeholder}
@@ -201,15 +216,34 @@ const RegisterErasmus = props => {
     });
 
     const fileSelectedHandler = (input, value, files) => {
+        setImage(files);
         if (files) {
             generateBase64FromImage(files[0])
                 .then(b64 => {
                     setImagePreview(b64);
                 })
-                .catch(e => {
+                .catch(() => {
                     setImagePreview(null);
                 });
         }
+    }
+
+    const onSubmit = event => {
+        event.preventDefault();
+        const formData = new FormData();
+        if(image){
+            formData.append('image', image[0]);
+        }
+        formData.append('homeCourse', registerForm.homeCourse.value);
+        formData.append('erasmusCourse', registerForm.erasmusCourse.value);
+        formData.append('homeCountryId', registerForm.homeCountry.value);
+        formData.append('erasmusCountryId', registerForm.homeCountry.value);
+        formData.append('homeCity', registerForm.homeCityName.value);
+        formData.append('erasmusCity', registerForm.erasmusCityName.value);
+        formData.append('homeUniversity', registerForm.homeUniversityName.value);
+        formData.append('erasmusUniversity', registerForm.erasmusUniversityName.value);
+        onRegisterErasmus(token, userId, formData);
+        setShouldRedirect(true);
     }
 
     formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
@@ -229,16 +263,13 @@ const RegisterErasmus = props => {
                     label="Upload Profile Picture"
                     control="input"
                     onChange={fileSelectedHandler}
-                    onBlur={() => { }}
-                    valid={true}
-                    touched={true}
                 />
             </div>
             <div className={classes.RegisterErasmusForm}>{formInputs}</div>
             <div />
             <div className={classes.ButtonRow}>
                 <Button
-                    clicked={() => { }}
+                    clicked={(event) => { onSubmit(event) }}
                     disabled={!allControlsAreValid}
                 >Save</Button>
                 <p onClick={() => setShouldRedirect(true)}>Or Complete Later</p>
