@@ -127,8 +127,6 @@ const StudentProfile = props => {
                     </div>
                 </div>
         </div>
-      </div>
-    </div>
   );
 };
 
