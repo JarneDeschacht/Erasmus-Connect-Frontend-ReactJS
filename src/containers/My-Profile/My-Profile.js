@@ -34,7 +34,7 @@ const Profile = props => {
 
     const closeConnectionsModal = () => {
         setOpenModal(false);
-      };
+    };
 
     useEffect(() => {
         onFetchProfile();
@@ -45,7 +45,7 @@ const Profile = props => {
     if (!loading && profile) {
         content = (
             <div className={classes.Profile}>
-            <Modal open={openModal} onClose={() => closeConnectionsModal()}/>
+                <Modal open={openModal} onClose={() => closeConnectionsModal()} />
                 <div className={classes.Header}>
                     <NavLink className={classes.GoBack} to="/">Go back</NavLink>
                     <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
@@ -66,7 +66,7 @@ const Profile = props => {
                     <div>
                         <div>
                             <h4>Home City: {profile.homeUniversity.city.name || ''}</h4>
-                            <Map />
+                            <Map address={profile.homeUniversity.city.name} />
                         </div>
                         <div>
                             <h4>Home Country</h4>
@@ -77,14 +77,14 @@ const Profile = props => {
                             <h2>{profile.homeUniversity.name || '-----'}</h2>
                         </div>
                         <div>
-                            <Button clicked={() => {openConnectionsModal()}}>My friends</Button>
+                            <Button clicked={() => { openConnectionsModal() }}>My friends</Button>
                             <Button>Edit profile</Button>
                         </div>
                     </div>
                     <div>
                         <div>
                             <h4>Erasmus City: {profile.erasmusUniversity.city.name || ''}</h4>
-                            <Map />
+                            <Map address={profile.erasmusUniversity.city.name} />
                         </div>
                         <div>
                             <h4>Erasmus Country</h4>
