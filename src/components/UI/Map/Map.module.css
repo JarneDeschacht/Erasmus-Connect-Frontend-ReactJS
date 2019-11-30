@@ -1,4 +1,6 @@
 .Map{
+    display: block;
     border-radius: 15px;
-    max-height: 200px;
+    max-height: 30%;
+    max-width: 300px;
 }
