@@ -86,19 +86,19 @@ export const getConnections = (userId) => {
 }
 export const getConnectionsStart = () => {
     return {
-        type: actionTypes.CONNECTION_START
+        type: actionTypes.GET_CONNECTIONS_START
     }
 }
 export const getConnectionsSuccess = (connections) => {
     return {
-        type: actionTypes.CONNECTION_SUCCESS,
+        type: actionTypes.GET_CONNECTIONS_SUCCESS,
         connections: connections
     }
 }
 
 export const getConnectionsFail = (error) => {
     return {
-        type: actionTypes.CONNECTION_FAIL,
+        type: actionTypes.GET_CONNECTIONS_FAIL,
         error: error
     }
 }

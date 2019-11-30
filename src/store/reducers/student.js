@@ -12,7 +12,8 @@ const initialState = {
     connectionExists: false,
     connectionRequestSent: false,
     connectionRequestReceived: false,
-    connections: null
+    connections: null,
+    fetchingConnections: false
 };
 
 const fetchProfileStart = (state, action) => {
@@ -66,30 +67,28 @@ const getConnectionStatusFail = (state, action) => {
         statusError: null
     })
 }
-const connectionStart = (state, action) => {
+
+const getConnectionsStart = (state, action) => {
     return updateObject(state, {
-        connecting: true
+        fetchingConnections: true
     })
 }
-const connectionSuccess = (state, action) => {
+const getConnectionsSuccess = (state, action) => {
+    console.log('reducer - ' + action.connections)
     return updateObject(state, {
-        connecting: false,
-        connectionRequestSent: true
+        fetchingConnections: false,
+        connections: action.connections
     })
 }
-const connectionFail = (state, action) => {
+const getConnectionsFail = (state, action) => {
     return updateObject(state, {
-        connecting: false,
+        fetchingConnections: false,
         connectionError: action.error
     })
 }
 
-const getConnectionsSuccess = (state, action) => {
-    console.log('reducer - ' + action.connections)
-    return updateObject(state, {
-        connections: action.connections
-    })
-}
+
+
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
         loading: true,
@@ -116,9 +115,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_STUDENTS_START: return fetchStudentsStart(state, action);
         case actionTypes.FETCH_STUDENTS_SUCCESS: return fetchStudentsSuccess(state, action);
         case actionTypes.FETCH_STUDENTS_FAIL: return fetchStudentsFail(state, action);
-        case actionTypes.CONNECTION_START: return connectionStart(state, action);
-        case actionTypes.CONNECTION_SUCCESS: return connectionSuccess(state, action);
-        case actionTypes.CONNECTION_FAIL: return connectionFail(state, action);
+        case actionTypes.GET_CONNECTIONS_START: return getConnectionsStart(state, action);
+        case actionTypes.GET_CONNECTIONS_SUCCESS: return getConnectionsSuccess(state, action);
+        case actionTypes.GET_CONNECTIONS_FAIL: return getConnectionsFail(state, action);
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);

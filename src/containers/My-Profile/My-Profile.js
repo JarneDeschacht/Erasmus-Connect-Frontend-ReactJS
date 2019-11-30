@@ -19,17 +19,20 @@ const Profile = props => {
     const loading = useSelector(state => state.student.loading);
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
+    const onFetchConnections = (userId) => dispatch(actions.getConnections(userId));
 
     const [openModal, setOpenModal] = useState(false);
+    const [connectionsState, setConnectionsState] = useState(null);
 
     useEffect(() => {
         if (isNavbarVisible) {
-            onNavbarDisplaySwitch();
+            setConnectionsState(onNavbarDisplaySwitch());
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
 
     const openConnectionsModal = () => {
         setOpenModal(true);
+        onFetchConnections();
     }
 
     const closeConnectionsModal = () => {

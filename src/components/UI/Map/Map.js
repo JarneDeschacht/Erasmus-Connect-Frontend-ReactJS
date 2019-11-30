@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import MapImage from '../../../assets/images/map.png';
 import classes from './Map.module.css';
-import apiKey from '../../../shared/GoogleApiKey';
+import apiKey from '../../../shared/GoogleApiKey.js';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios';
 
 const MapContainer = (props) => {
 
     const [location, setLocation] = useState(null);
-    console.log(location);
 
     const fetchGeoCoding = address => {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}&language=en`).then(
