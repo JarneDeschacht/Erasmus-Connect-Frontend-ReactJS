@@ -45,21 +45,21 @@ export function* getConnectionStatusSaga(action) {
     }
 }
 export function* getConnectionsSaga(action) {
-    yield put(actions.connectionStart());
-    const connectionData = {
-        userId: action.userId,
-        connectToId: action.connectToId
-    }
+    yield put(actions.getConnectionsStart());
+
+ 
+    const userId = action.userId;
     try {
-        yield axios.post('/connectToStudent', connectionData);
-        yield put(actions.connectionSuccess());
+        const response = yield axios.get(`/getConnections/${userId}`);
+        console.log(response.data.connections);
+        yield put(actions.getConnectionsSuccess(response.data.connections));
     }
     catch (error) {
-        yield put(actions.connectionFail(error));
+        yield put(actions.getConnectionsFail(error));
     }
 }
 export function* makeConnectionSaga(action) {
-    yield put(actions.connectionStart());
+    yield put(actions.getConnectionsStart());
     const connectionData = {
         userId: action.userId,
         connectToId: action.connectToId
@@ -71,10 +71,10 @@ export function* makeConnectionSaga(action) {
                 'Authorization': 'Bearer ' + action.token
             }
         });
-        yield put(actions.connectionSuccess());
+        yield put(actions.getConnectionsSuccess());
     }
     catch (error) {
-        yield put(actions.connectionFail(error));
+        yield put(actions.getConnectionsFail(error));
     }
 }
 export function* acceptConnectionSaga(action) {

@@ -1,0 +1,6 @@
+.ChatWindow{
+    width: 70%;
+    height: 75vh;
+    box-sizing: border-box;
+    border: black 1px solid;
+}

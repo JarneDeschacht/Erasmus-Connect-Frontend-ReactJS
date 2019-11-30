@@ -11,7 +11,8 @@ const initialState = {
     statusError: null,
     connectionExists: false,
     connectionRequestSent: false,
-    connectionRequestReceived: false
+    connectionRequestReceived: false,
+    connections: null
 };
 
 const fetchProfileStart = (state, action) => {
@@ -82,6 +83,13 @@ const connectionFail = (state, action) => {
         connectionError: action.error
     })
 }
+
+const getConnectionsSuccess = (state, action) => {
+    console.log('reducer - ' + action.connections)
+    return updateObject(state, {
+        connections: action.connections
+    })
+}
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
         loading: true,
@@ -114,6 +122,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
+        case actionTypes.GET_CONNECTIONS_SUCCESS: return getConnectionsSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_START: return registerErasmusStart(state, action);
         case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);

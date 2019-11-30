@@ -84,6 +84,24 @@ export const getConnections = (userId) => {
         userId: userId
     }
 }
+export const getConnectionsStart = () => {
+    return {
+        type: actionTypes.CONNECTION_START
+    }
+}
+export const getConnectionsSuccess = (connections) => {
+    return {
+        type: actionTypes.CONNECTION_SUCCESS,
+        connections: connections
+    }
+}
+
+export const getConnectionsFail = (error) => {
+    return {
+        type: actionTypes.CONNECTION_FAIL,
+        error: error
+    }
+}
 export const makeConnection = (userId, connectToId) => {
     return {
         type: actionTypes.MAKE_CONNECTION,
@@ -102,23 +120,8 @@ export const refuseConnection = () => {
     }
 }
 
-export const connectionStart = () => {
-    return {
-        type: actionTypes.CONNECTION_START
-    }
-}
-export const connectionSuccess = () => {
-    return {
-        type: actionTypes.CONNECTION_SUCCESS
-    }
-}
 
-export const connectionFail = (error) => {
-    return {
-        type: actionTypes.CONNECTION_FAIL,
-        error: error
-    }
-}
+
 
 export const registerErasmusSuccess = () => {
     return {
