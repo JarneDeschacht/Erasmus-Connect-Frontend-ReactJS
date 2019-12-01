@@ -18,8 +18,20 @@ import {
   getConnectionsSaga,
   registerErasmusSaga
 } from "./student";
-import { fetchCountriesSaga } from "./countries";
+import {
+  fetchCountriesSaga
+} from "./countries";
+import {
+  getMessagesSaga
+} from "./chat"
 import * as actionTypes from "../actions/actionTypes";
+
+export function* watchChat() {
+  yield takeEvery(actionTypes.GET_MESSAGES, getMessagesSaga)
+  // yield all([
+    
+  // ]);
+}
 
 export function* watchAuth() {
   yield all([
@@ -29,7 +41,7 @@ export function* watchAuth() {
     takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga),
     takeEvery(actionTypes.PASSWORDFORGOTTEN_START, forgotPasswordSaga),
     takeEvery(actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD, setNewPasswordSaga),
-    takeEvery(actionTypes.REGISTER, registerSaga)
+    takeEvery(actionTypes.REGISTER, registerSaga),
   ]);
 }
 export function* watchStudent() {
@@ -48,3 +60,4 @@ export function* watchStudent() {
 export function* watchCountries() {
   yield takeEvery(actionTypes.FETCH_COUNTRIES, fetchCountriesSaga);
 }
+

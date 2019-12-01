@@ -74,7 +74,6 @@ const getConnectionsStart = (state, action) => {
     })
 }
 const getConnectionsSuccess = (state, action) => {
-    console.log('reducer - ' + action.connections)
     return updateObject(state, {
         fetchingConnections: false,
         connections: action.connections
@@ -86,8 +85,6 @@ const getConnectionsFail = (state, action) => {
         connectionError: action.error
     })
 }
-
-
 
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
