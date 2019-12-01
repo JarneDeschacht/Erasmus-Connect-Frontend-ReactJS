@@ -62,3 +62,10 @@ export {
     fetchCountriesFail,
     fetchCountriesSuccess,
 } from './countries';
+export {
+    getMessages,
+    getMessagesStart,
+    getMessagesSuccess,
+    getMessagesFailed,
+    selectChat
+} from './chat'

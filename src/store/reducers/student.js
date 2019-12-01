@@ -128,8 +128,6 @@ const refuseConnectionFail = (state, action) => {
     })
 }
 
-
-
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
         loading: true,

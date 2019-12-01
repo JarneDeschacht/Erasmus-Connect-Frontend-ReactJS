@@ -79,7 +79,6 @@ const passwordForgottenMailFail = (state, action) => {
 }
 
 const passwordUpdatedSucces = (state, action) => {
-    console.log('in password updated reducer')
     return updateObject(state, {
         updatePasswordError: null,
         confirmationMessage: 'Password was updated, log in with your new password.'

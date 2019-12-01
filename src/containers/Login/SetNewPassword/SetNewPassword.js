@@ -91,13 +91,10 @@ const SetNewPassword = props => {
     }
 
     for (let inputIdentifier in updatedControls) {
-      console.log(updatedControls[inputIdentifier]);
       valid = updatedControls[inputIdentifier].valid && valid;
     }
 
     setAllControlsAreValid(valid);
-
-    console.log(allControlsAreValid);
 
     setNewPasswordForm(updatedControls);
   };
