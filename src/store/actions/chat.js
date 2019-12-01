@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes'
 
 
-export const getMessages = (userId) => {
+export const getMessages = (userId, chatWithId) => {
     return {
         type: actionTypes.GET_MESSAGES,
-        userId: userId
+        userId: parseInt(userId, 10),
+        chatWithId: chatWithId
     }
 }
 

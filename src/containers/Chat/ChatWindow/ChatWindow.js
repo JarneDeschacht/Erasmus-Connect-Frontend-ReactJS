@@ -9,12 +9,15 @@ const ChatWindow = props => {
     const dispatch = useDispatch();
     const userId = localStorage.getItem('userId')
     const messages = useSelector(state => state.chat.messages)
-    const onFetchMessages = useCallback((userId) => dispatch(actions.getMessages(userId)), [dispatch])
+    const onFetchMessages = useCallback((userId, chatWithId) => dispatch(actions.getMessages(userId, chatWithId)), [dispatch])
 
-    
     useEffect(() => {
-        onFetchMessages(userId)
-    }, [onFetchMessages, userId])
+        if(props.connection){
+            onFetchMessages(userId, props.connection.userId)
+        }
+
+       
+    }, [onFetchMessages, userId, props])
 
     let messageComponents = null;
     if (messages) {
@@ -31,6 +34,7 @@ const ChatWindow = props => {
 
     return (
         <div className={classes.ChatWindow}>
+           
             {messageComponents}
         </div>
     )

@@ -49,7 +49,6 @@ const Profile = props => {
 
   let content = <Spinner />;
 
-  console.log(connections);
   let modalContent = null;
   if (connections) {
     modalContent = (

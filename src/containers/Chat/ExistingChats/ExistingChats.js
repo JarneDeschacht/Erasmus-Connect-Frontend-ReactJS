@@ -32,8 +32,6 @@ const ExistingChats = props => {
     let connectionList = null;
     if (connections) {
         connectionList = connections.connections.map(con => {
-            console.log('con')
-            console.log(con)
             return (
                 <ChatConnection
                     name={con.firstName + ' ' + con.lastName}
@@ -41,7 +39,8 @@ const ExistingChats = props => {
                     clicked={() => clickedHandler({
                         connectionId : con.connectionId,
                         firstName: con.firstName,
-                        lastName: con.lastName
+                        lastName: con.lastName,
+                        userId: con.userId
                     })}
                 />
             )

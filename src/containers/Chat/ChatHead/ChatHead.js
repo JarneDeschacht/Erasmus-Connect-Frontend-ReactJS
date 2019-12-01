@@ -2,8 +2,6 @@ import React from 'react'
 import classes from './ChatHead.module.css'
 
 const ChatHead = props => {
-
-    console.log(props)
     return (
         <div className={classes.ChatHead}>
             <p>

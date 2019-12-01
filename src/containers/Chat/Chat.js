@@ -8,8 +8,6 @@ import {useSelector} from 'react-redux'
 const Chat = props => {
 
     const selectedUser = useSelector(state => state.chat.selectedConnection)
-    console.log(selectedUser)
-
     return (
         <div>
             <ChatHead
