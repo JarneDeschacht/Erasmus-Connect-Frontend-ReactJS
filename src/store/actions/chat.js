@@ -27,3 +27,10 @@ export const getMessagesFailed = (error) => {
         error: error
     }
 }
+
+export const selectChat = (connectionId) => {
+    return {
+        type: actionTypes.SELECT_CHAT,
+        connectionId: connectionId
+    }
+}

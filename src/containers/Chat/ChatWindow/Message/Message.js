@@ -4,7 +4,6 @@ const Message = props => {
     return(
         <div>
             <p>
-               {props.date}
                {props.content}
             </p>
         </div>

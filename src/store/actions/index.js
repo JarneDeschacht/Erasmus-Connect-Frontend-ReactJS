@@ -57,5 +57,6 @@ export {
     getMessages,
     getMessagesStart,
     getMessagesSuccess,
-    getMessagesFailed
+    getMessagesFailed,
+    selectChat
 } from './chat'
