@@ -88,25 +88,64 @@ MySnackbarContentWrapper.propTypes = {
 const SnackbarComponent = props => {
   const dispatch = useDispatch();
 
-  const onShow = useCallback(
+  const onShowConfirmation = useCallback(
     () => dispatch(actions.clearConfirmationMessage()),
+    [dispatch]
+  );
+  const onShowConnectionError = useCallback(
+    () => dispatch(actions.clearConnectionError()),
+    [dispatch]
+  );
+  const onShowAuthError = useCallback(
+    () => dispatch(actions.clearErrorsAuth()),
     [dispatch]
   );
 
   const confirmMessage = useSelector(state => state.auth.confirmationMessage);
+  const connectionError = useSelector(state => state.student.connectionError);
+  const authError = useSelector(state => state.auth.error);
+  const forgotPasswordError = useSelector(state => state.auth.forgotPasswordError);
+  const updatePasswordError = useSelector(state => state.auth.updatePasswordError);
+
   const [open, setOpen] = React.useState(true);
+  const [variant, setVariant] = React.useState("success");
+  const [message, setMessage] = React.useState(null);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-    onShow();
+    if (variant === "success")
+      onShowConfirmation();
+    if (variant === "error") {
+      onShowConnectionError();
+      onShowAuthError();
+    }
     setOpen(false);
   };
 
   useEffect(() => {
     setOpen(confirmMessage !== null);
-  }, [confirmMessage, open]);
+    setVariant("success");
+    setMessage(confirmMessage);
+  }, [confirmMessage]);
+
+  useEffect(() => {
+    setOpen(connectionError !== null);
+    setVariant("error");
+    setMessage(connectionError);
+  }, [connectionError]);
+
+  useEffect(() => {
+    setOpen(authError !== null || forgotPasswordError !== null || updatePasswordError !== null);
+    setVariant("error");
+    if (authError !== null)
+      setMessage(authError);
+    else if (forgotPasswordError !== null)
+      setMessage(forgotPasswordError);
+    else if (updatePasswordError !== null)
+      setMessage(updatePasswordError);
+  }, [authError, forgotPasswordError, updatePasswordError]);
 
   return (
     <div>
@@ -121,8 +160,8 @@ const SnackbarComponent = props => {
       >
         <MySnackbarContentWrapper
           onClose={handleClose}
-          variant="success"
-          message={confirmMessage}
+          variant={variant}
+          message={message}
         />
       </Snackbar>
     </div>

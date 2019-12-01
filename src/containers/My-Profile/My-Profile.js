@@ -8,6 +8,7 @@ import ProfilePicture from "../../components/UI/ProfilePicture/ProfilePicture";
 import Map from "../../components/UI/Map/Map";
 import Button from "../../components/UI/Button/Button";
 import Modal from "../../components/UI/Modal/modal";
+import ConnectionSummary from "../../components/UI/ConnectionSummary/ConnectionSummary";
 
 const Profile = props => {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ const Profile = props => {
 
   const openConnectionsModal = () => {
     setOpenModal(true);
+    if (connections === null) {
+      onFetchConnections(userId);
+    }
   };
 
   const closeConnectionsModal = () => {
@@ -49,14 +53,61 @@ const Profile = props => {
 
   let content = <Spinner />;
 
-  console.log(connections);
   let modalContent = null;
-  if (connections) {
+  if (connections !== null) {
     modalContent = (
-      <div>{connections.connections.map(connection => {
-          return (<div>{connection.firstName}</div>)
-      })}</div>
+      <div>
+        <div>
+          <h2>Received Requests</h2>
+          {connections.received
+            ? connections.received.map(connection => {
+              return (
+                <ConnectionSummary
+                  key={userId.concat(connection.userId)}
+                  name={connection.firstName + " " + connection.lastName}
+                  userId={connection.userId}
+                  isReceived
+                />
+              );
+            })
+            : null}
+          <hr className={classes.Hr} />
+        </div>
+        <div>
+          <h2>Sent Requests</h2>
+          {connections.sended
+            ? connections.sended.map(connection => {
+              return (
+                <ConnectionSummary
+                  key={userId.concat(connection.userId)}
+                  name={connection.firstName + " " + connection.lastName}
+                  userId={connection.userId}
+                  isSent
+                />
+              );
+            })
+            : null}
+          <hr className={classes.Hr} />
+        </div>
+        <div>
+          <h2>Connections</h2>
+          {connections.connections
+            ? connections.connections.map(connection => {
+              return (
+                <ConnectionSummary
+                  key={userId.concat(connection.userId)}
+                  name={connection.firstName + " " + connection.lastName}
+                  userId={connection.userId}
+                  isConnection
+                />
+              );
+            })
+            : null}
+        </div>
+      </div>
     );
+  } else {
+    modalContent = <Spinner />;
   }
 
   if (!loading && profile) {
@@ -65,8 +116,7 @@ const Profile = props => {
         <Modal
           open={openModal}
           onClose={() => closeConnectionsModal()}
-          content={modalContent}
-        />
+        >{modalContent}</Modal>
         <div className={classes.Header}>
           <NavLink className={classes.GoBack} to="/">
             Go back

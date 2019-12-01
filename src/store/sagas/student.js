@@ -63,12 +63,7 @@ export function* makeConnectionSaga(action) {
         connectToId: action.connectToId
     }
     try {
-        yield axios.post('/connectToStudent', connectionData, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + action.token
-            }
-        });
+        yield axios.post('/connectToStudent', connectionData);
         yield put(actions.getConnectionsSuccess());
     }
     catch (error) {
@@ -76,33 +71,33 @@ export function* makeConnectionSaga(action) {
     }
 }
 export function* acceptConnectionSaga(action) {
-    yield put(actions.fetchStudentsStart());
+    yield put(actions.acceptConnectionStart());
+    const connectionData = {
+        sender: action.senderId,
+        receiver: action.receiverId
+    }
     try {
-        const response = yield axios.get('/students', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + action.token
-            }
-        });
-        yield put(actions.fetchStudentsSuccess(response.data.users));
+        yield axios.post('/acceptConnection', connectionData);
+        yield put(actions.fetchStudentsSuccess());
+        yield put(actions.getConnections(action.receiverId));
     }
     catch (error) {
-        yield put(actions.fetchStudentsFail(error));
+        yield put(actions.fetchStudentsFail(error.response.data.message));
     }
 }
 export function* refuseConnectionSaga(action) {
-    yield put(actions.fetchStudentsStart());
+    yield put(actions.refuseConnectionStart());
+    const connectionData = {
+        sender: action.senderId,
+        receiver: action.receiverId
+    }
     try {
-        const response = yield axios.get('/students', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + action.token
-            }
-        });
-        yield put(actions.fetchStudentsSuccess(response.data.users));
+        yield axios.post('/refuseConnection', connectionData);
+        yield put(actions.refuseConnectionSuccess());
+        yield put(actions.getConnections(action.receiverId));
     }
     catch (error) {
-        yield put(actions.fetchStudentsFail(error));
+        yield put(actions.refuseConnectionFail(error.response.data.message));
     }
 }
 

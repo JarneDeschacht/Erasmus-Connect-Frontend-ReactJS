@@ -21,3 +21,8 @@
     grid-template-columns: 1fr 10fr;
     align-items: center;
 }
+.Hr{
+    border: 0;
+    height: 0;
+    border-top: 1px solid white;
+}

@@ -128,3 +128,9 @@ export const clearConfirmationMessage = () => {
     type: actionTypes.CLEAR_CONFIRMATION_MESSAGE
   };
 };
+
+export const clearErrorsAuth = () => {
+  return {
+    type: actionTypes.CLEAR_ERRORS_AUTH
+  };
+};

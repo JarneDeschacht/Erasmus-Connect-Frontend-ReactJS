@@ -10,6 +10,13 @@ const initialState = {
     forgotPasswordError: null,
     updatePasswordError: null
 }
+const clearErrors = (state, action) => {
+    return updateObject(state, {
+        error: null,
+        forgotPasswordError: null,
+        updatePasswordError: null
+    })
+}
 const loginStart = (state, action) => {
     return updateObject(state, { error: null, loading: true, idToken: null, userId: null });
 }
@@ -107,6 +114,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.PASSWORDFORGOTTEN_NEWPASSWORD_FAIL: return passwordUpdatedFail(state, action);
         case actionTypes.PASSWORDFORGOTTEN_START: return passwordForgottenMailStart(state, action);
         case actionTypes.CLEAR_CONFIRMATION_MESSAGE: return clearConfirmationMessage(state, action);
+        case actionTypes.CLEAR_ERRORS_AUTH: return clearErrors(state, action);
         default: return state;
     }
 }
