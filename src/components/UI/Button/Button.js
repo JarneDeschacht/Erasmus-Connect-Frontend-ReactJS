@@ -3,9 +3,11 @@ import classes from './Button.module.css';
 
 const button = props => {
     let styles = [classes.Button];
-    if(props.noPointer)
-    {
+    if (props.noPointer) {
         styles.push(classes.NoPointer)
+    }
+    if (props.smallButton) {
+        styles.push(classes.SmallButton);
     }
     return (
         <button

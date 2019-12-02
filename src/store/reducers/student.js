@@ -13,12 +13,20 @@ const initialState = {
     connectionRequestSent: false,
     connectionRequestReceived: false,
     connections: null,
-    fetchingConnections: false
+    fetchingConnections: false,
+    acceptingConnection: false,
+    refusingConnection: false
 };
 
+const clearConnectionError = (state, action) => {
+    return updateObject(state, {
+        connectionError: null
+    });
+}
 const fetchProfileStart = (state, action) => {
     return updateObject(state, {
-        loading: true
+        loading: true,
+        connections: null
     });
 }
 const fetchProfileSuccess = (state, action) => {
@@ -86,6 +94,40 @@ const getConnectionsFail = (state, action) => {
     })
 }
 
+const acceptConnectionStart = (state, action) => {
+    return updateObject(state, {
+        acceptingConnection: true
+    })
+}
+const acceptConnectionSuccess = (state, action) => {
+    return updateObject(state, {
+        acceptingConnection: false
+    })
+}
+const acceptConnectionFail = (state, action) => {
+    return updateObject(state, {
+        acceptingConnection: false,
+        connectionError: action.error
+    })
+}
+
+const refuseConnectionStart = (state, action) => {
+    return updateObject(state, {
+        refusingConnection: true
+    })
+}
+const refuseConnectionSuccess = (state, action) => {
+    return updateObject(state, {
+        refusingConnection: false
+    })
+}
+const refuseConnectionFail = (state, action) => {
+    return updateObject(state, {
+        refusingConnection: false,
+        connectionError: action.error
+    })
+}
+
 const registerErasmusStart = (state, action) => {
     return updateObject(state, {
         loading: true,
@@ -118,9 +160,16 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
+        case actionTypes.ACCEPT_CONNECTION_START: return acceptConnectionStart(state, action);
+        case actionTypes.ACCEPT_CONNECTION_SUCCESS: return acceptConnectionSuccess(state, action);
+        case actionTypes.ACCEPT_CONNECTION_FAIL: return acceptConnectionFail(state, action);
+        case actionTypes.REFUSE_CONNECTION_START: return refuseConnectionStart(state, action);
+        case actionTypes.REFUSE_CONNECTION_SUCCESS: return refuseConnectionSuccess(state, action);
+        case actionTypes.REFUSE_CONNECTION_FAIL: return refuseConnectionFail(state, action);
         case actionTypes.REGISTER_ERASMUS_START: return registerErasmusStart(state, action);
         case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);
+        case actionTypes.CLEAR_CONNECTION_ERROR: return clearConnectionError(state, action);
         default: return state;
     }
 };

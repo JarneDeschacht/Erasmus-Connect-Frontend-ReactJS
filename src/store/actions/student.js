@@ -109,19 +109,52 @@ export const makeConnection = (userId, connectToId) => {
         connectToId: connectToId
     }
 }
-export const acceptConnection = () => {
+export const acceptConnection = (senderId, receiverId) => {
     return {
-        type: actionTypes.ACCEPT_CONNECTION
+        type: actionTypes.ACCEPT_CONNECTION,
+        senderId: senderId,
+        receiverId: receiverId
     }
 }
-export const refuseConnection = () => {
+export const acceptConnectionStart = () => {
     return {
-        type: actionTypes.REFUSE_CONNECTION
+        type: actionTypes.ACCEPT_CONNECTION_START
     }
 }
-
-
-
+export const acceptConnectionSuccess = () => {
+    return {
+        type: actionTypes.ACCEPT_CONNECTION_SUCCESS
+    }
+}
+export const acceptConnectionFail = (error) => {
+    return {
+        type: actionTypes.ACCEPT_CONNECTION_FAIL,
+        error: error
+    }
+}
+export const refuseConnection = (senderId, receiverId) => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION,
+        senderId: senderId,
+        receiverId: receiverId
+    }
+}
+export const refuseConnectionStart = () => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_START
+    }
+}
+export const refuseConnectionSuccess = () => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_SUCCESS
+    }
+}
+export const refuseConnectionFail = (error) => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_FAIL,
+        error: error
+    }
+}
 
 export const registerErasmusSuccess = () => {
     return {
@@ -145,5 +178,10 @@ export const registerErasmus = (token, userId, formData) => {
         token: token,
         userId: userId,
         formData: formData
+    }
+}
+export const clearConnectionError = () => {
+    return {
+        type: actionTypes.CLEAR_CONNECTION_ERROR
     }
 }
