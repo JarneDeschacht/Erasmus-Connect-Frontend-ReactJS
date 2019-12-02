@@ -42,11 +42,12 @@ export const fetchStudentsStart = () => {
         type: actionTypes.FETCH_STUDENTS_START
     }
 }
-export const fetchStudents = (token, userId) => {
+export const fetchStudents = (token, userId, keyword) => {
     return {
         type: actionTypes.FETCH_STUDENTS,
         token: token,
-        userId: userId
+        userId: userId,
+        keyword: keyword
     }
 }
 

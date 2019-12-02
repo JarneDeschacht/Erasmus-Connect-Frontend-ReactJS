@@ -20,7 +20,8 @@ export function* fetchProfileSaga(action) {
 export function* fetchStudentsSaga(action) {
     yield put(actions.fetchStudentsStart());
     try {
-        const response = yield axios.get('/students/EMPTY', {
+        const keyword = action.keyword === '' ? 'EMPTY' : action.keyword;
+        const response = yield axios.get('/students/' + keyword, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + action.token
@@ -35,7 +36,7 @@ export function* fetchStudentsSaga(action) {
 export function* getConnectionStatusSaga(action) {
     yield put(actions.getConnectionStatusStart());
     const connectionStatusData = action.userId + '/' + action.connectToId;
-    
+
     try {
         const response = yield axios.get('/connectionStatus/' + connectionStatusData);
         yield put(actions.getConnectionStatusSuccess(response.data.connectionExists, response.data.connectionRequestSent, response.data.connectionRequestReceived));
