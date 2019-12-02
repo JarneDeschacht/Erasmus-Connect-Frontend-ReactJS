@@ -29,7 +29,7 @@ const Main = () => {
         content = (
             <div className={classes.Links}>
                 <NavLink to="/universities" exact>Find universities</NavLink>
-                <NavLink to="/profile" exact>My profile</NavLink>
+                <NavLink to="/my-profile" exact>My profile</NavLink>
                 <NavLink to="/students" exact>Find student</NavLink>
                 <NavLink to="/chat" exact>Chat</NavLink>
             </div>

@@ -1,10 +1,14 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { NavLink } from 'react-router-dom';
 import classes from './Students.module.css';
 import SearchResult from '../../components/Student/Search-Result/Search-Result';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Input from '../../components/UI/Input/Input';
+import {
+    updateObject
+} from '../../shared/utility';
 
 const Students = props => {
 
@@ -17,6 +21,35 @@ const Students = props => {
     const isLoading = useSelector(state => state.student.loading);
     const onFetchStudents = useCallback((token, userId) => dispatch(actions.fetchStudents(token, userId)), [dispatch]);
 
+    const [keywordForm, setKeywordForm] = useState({
+        keyword: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "Search on students"
+            },
+            value: "",
+            validation: {},
+        }
+    });
+
+    const formElementsArray = [];
+    for (let key in keywordForm) {
+        formElementsArray.push({
+            id: key,
+            config: keywordForm[key]
+        });
+    }
+
+    const inputChangedHandler = (event, controlName) => {
+        const updatedControls = updateObject(keywordForm, {
+            [controlName]: updateObject(keywordForm[controlName], {
+                value: event.target.value
+            })
+        });
+        setKeywordForm(updatedControls);
+        console.log(updatedControls);
+    };
 
     useEffect(() => {
         if (isNavbarVisible) {
@@ -55,7 +88,18 @@ const Students = props => {
     return (
         <div className={classes.Students}>
             <NavLink className={classes.GoBack} to="/">Go back</NavLink>
-            <h1>Search results</h1>
+            <div className={classes.Header}>
+                <h1>Search results</h1>
+                <Input
+                    key={formElementsArray[0].id}
+                    invalid={!formElementsArray[0].config.valid}
+                    elementType={formElementsArray[0].config.elementType}
+                    elementConfig={formElementsArray[0].config.elementConfig}
+                    changed={event => inputChangedHandler(event, formElementsArray[0].id)}
+                    shouldValidate={formElementsArray[0].config.validation}
+                    type="email"
+                />
+            </div>
             {
                 results
             }

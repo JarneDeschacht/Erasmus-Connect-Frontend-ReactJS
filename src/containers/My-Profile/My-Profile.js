@@ -66,7 +66,7 @@ const Profile = props => {
                     <div>
                         <div>
                             <h4>Home City: {profile.homeUniversity.city.name || ''}</h4>
-                            <Map address={profile.homeUniversity.city.name} />
+                            <Map address={profile.homeUniversity.city.name  + '+' + profile.homeUniversity.city.country.name} />
                         </div>
                         <div>
                             <h4>Home Country</h4>
@@ -84,7 +84,7 @@ const Profile = props => {
                     <div>
                         <div>
                             <h4>Erasmus City: {profile.erasmusUniversity.city.name || ''}</h4>
-                            <Map address={profile.erasmusUniversity.city.name} />
+                            <Map address={profile.erasmusUniversity.city.name  + '+' + profile.erasmusUniversity.city.country.name} />
                         </div>
                         <div>
                             <h4>Erasmus Country</h4>
