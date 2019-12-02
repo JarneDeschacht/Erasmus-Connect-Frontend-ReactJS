@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {useDispatch} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
 import { updateObject, checkValidity } from '../../../../shared/utility'
 import Input from '../../../../components/UI/Input/Input'
@@ -7,7 +7,7 @@ import Button from '../../../../components/UI/Button/Button'
 
 const SendMessage = props => {
 
-    const [sendMessageForm, setSendMessageForm] = useState({
+    let [sendMessageForm, setSendMessageForm] = useState({
         message: {
             elementType: "input",
             elementConfig: {
@@ -21,12 +21,14 @@ const SendMessage = props => {
             valid: false,
             touched: false
         }
-    })
+    });
+
 
     const loggedInUserId = localStorage.getItem('userId')
     const dispatch = useDispatch();
-    const onMessageSend = (sendToId, message) =>  dispatch(actions.sendMessage(loggedInUserId, sendToId, message))
+    const onMessageSend = (sendToId, message) => dispatch(actions.sendMessage(loggedInUserId, sendToId, message))
 
+    
 
     const formElementsArray = [];
     for (let key in sendMessageForm) {
@@ -50,11 +52,24 @@ const SendMessage = props => {
         setSendMessageForm(updatedControls)
     }
 
+    const emptyMessageField = () => {
+        const updatedControls = updateObject(sendMessageForm, {
+            message: updateObject(sendMessageForm.message, {
+                value: '',
+                valid: checkValidity(
+                    '',
+                    sendMessageForm.message.validation
+                ),
+                touched: false
+            })
+        });
+        setSendMessageForm(updatedControls);
+    }
+
     const onSubmit = event => {
         event.preventDefault()
-        // console.log(props.selectedUser)
-        onMessageSend(props.selectedUser,sendMessageForm.message.value);
-        sendMessageForm.message.value = '';
+        onMessageSend(props.selectedUser, sendMessageForm.message.value);
+        emptyMessageField();
     }
 
 
@@ -76,16 +91,16 @@ const SendMessage = props => {
 
     return (
         <div>
-           <form>
-               {formInputs}
-               <Button
-                    clicked = {event => onSubmit(event)}
+            <form>
+                {formInputs}
+                <Button
+                    clicked={event => onSubmit(event)}
                     disabled={!sendMessageForm.message.valid}
                 >
                     =>
                </Button>
-           </form>
-       </div>
+            </form>
+        </div>
     )
 }
 

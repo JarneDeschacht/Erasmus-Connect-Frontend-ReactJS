@@ -4,3 +4,7 @@
     border: 1px solid black;
     height: 20vh;
 }
+
+.ImageContainer{
+    max-height: 18vh;
+}

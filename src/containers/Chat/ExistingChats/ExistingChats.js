@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classes from './ExistingChats.module.css'
 import * as actions from '../../../store/actions/index'
@@ -11,8 +11,6 @@ const ExistingChats = props => {
 
     const onFetchConnections = useCallback((userId) => dispatch(actions.getConnections(userId)), [dispatch])
     const onSelectChat = (connectionId) => dispatch(actions.selectChat(connectionId))
-
-
 
     useEffect(() => {
         onFetchConnections(userId)
@@ -40,7 +38,8 @@ const ExistingChats = props => {
                         connectionId : con.connectionId,
                         firstName: con.firstName,
                         lastName: con.lastName,
-                        userId: con.userId
+                        userId: con.userId, 
+                        imageUrl: con.imageUrl
                     })}
                 />
             )

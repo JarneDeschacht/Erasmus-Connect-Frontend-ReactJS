@@ -1,4 +1,3 @@
-
 export {
     checkAuthTimeout,
     authCheckState,
