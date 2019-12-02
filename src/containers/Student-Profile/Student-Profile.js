@@ -26,7 +26,6 @@ const StudentProfile = props => {
       state => state.student.connectionRequestReceived
     )
   };
-
   const loadingStatus = useSelector(state => state.student.fetchingStatus);
 
   const students = useSelector(state => state.student.students);

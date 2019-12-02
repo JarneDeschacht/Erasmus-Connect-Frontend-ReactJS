@@ -106,6 +106,7 @@ export function* setNewPasswordSaga(action) {
                 'Content-Type': 'application/json'
             }
         });
+
         yield put(actions.passwordChangedSucces());
     }
     catch (error) {

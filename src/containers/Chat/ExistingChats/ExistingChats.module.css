@@ -1,0 +1,6 @@
+.ExistingChats{
+    width: 25%;
+    height: 75vh;
+    box-sizing: border-box;
+    border: black 1px solid;
+}

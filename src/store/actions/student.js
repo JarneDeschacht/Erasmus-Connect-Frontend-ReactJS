@@ -84,6 +84,24 @@ export const getConnections = (userId) => {
         userId: userId
     }
 }
+export const getConnectionsStart = () => {
+    return {
+        type: actionTypes.GET_CONNECTIONS_START
+    }
+}
+export const getConnectionsSuccess = (connections) => {
+    return {
+        type: actionTypes.GET_CONNECTIONS_SUCCESS,
+        connections: connections
+    }
+}
+
+export const getConnectionsFail = (error) => {
+    return {
+        type: actionTypes.GET_CONNECTIONS_FAIL,
+        error: error
+    }
+}
 export const makeConnection = (userId, connectToId) => {
     return {
         type: actionTypes.MAKE_CONNECTION,
@@ -91,31 +109,49 @@ export const makeConnection = (userId, connectToId) => {
         connectToId: connectToId
     }
 }
-export const acceptConnection = () => {
+export const acceptConnection = (senderId, receiverId) => {
     return {
-        type: actionTypes.ACCEPT_CONNECTION
+        type: actionTypes.ACCEPT_CONNECTION,
+        senderId: senderId,
+        receiverId: receiverId
     }
 }
-export const refuseConnection = () => {
+export const acceptConnectionStart = () => {
     return {
-        type: actionTypes.REFUSE_CONNECTION
+        type: actionTypes.ACCEPT_CONNECTION_START
     }
 }
-
-export const connectionStart = () => {
+export const acceptConnectionSuccess = () => {
     return {
-        type: actionTypes.CONNECTION_START
+        type: actionTypes.ACCEPT_CONNECTION_SUCCESS
     }
 }
-export const connectionSuccess = () => {
+export const acceptConnectionFail = (error) => {
     return {
-        type: actionTypes.CONNECTION_SUCCESS
+        type: actionTypes.ACCEPT_CONNECTION_FAIL,
+        error: error
     }
 }
-
-export const connectionFail = (error) => {
+export const refuseConnection = (senderId, receiverId) => {
     return {
-        type: actionTypes.CONNECTION_FAIL,
+        type: actionTypes.REFUSE_CONNECTION,
+        senderId: senderId,
+        receiverId: receiverId
+    }
+}
+export const refuseConnectionStart = () => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_START
+    }
+}
+export const refuseConnectionSuccess = () => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_SUCCESS
+    }
+}
+export const refuseConnectionFail = (error) => {
+    return {
+        type: actionTypes.REFUSE_CONNECTION_FAIL,
         error: error
     }
 }
@@ -142,5 +178,10 @@ export const registerErasmus = (token, userId, formData) => {
         token: token,
         userId: userId,
         formData: formData
+    }
+}
+export const clearConnectionError = () => {
+    return {
+        type: actionTypes.CLEAR_CONNECTION_ERROR
     }
 }

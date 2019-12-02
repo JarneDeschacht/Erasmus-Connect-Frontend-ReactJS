@@ -1,0 +1,18 @@
+.ConnectionSummary {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Control {
+  background-color: red;
+}
+
+.Info {
+  display: flex;
+  align-items: center;
+}

@@ -1,3 +1,4 @@
+
 export {
     checkAuthTimeout,
     authCheckState,
@@ -17,7 +18,8 @@ export {
     sentPasswordMailFail,
     passwordChangedSucces,
     passwordChangedFail,
-    clearConfirmationMessage
+    clearConfirmationMessage,
+    clearErrorsAuth
 } from './auth';
 export {
     navbarSwitchDisplay
@@ -35,16 +37,24 @@ export {
     getConnectionStatusStart,
     getConnectionStatusSuccess,
     getConnectionStatusFail,
+    getConnections,
+    getConnectionsStart,
+    getConnectionsSuccess,
+    getConnectionsFail,
     makeConnection,
     acceptConnection,
+    acceptConnectionStart,
+    acceptConnectionSuccess,
+    acceptConnectionFail,
     refuseConnection,
-    connectionStart,
-    connectionSuccess,
-    connectionFail,
+    refuseConnectionStart,
+    refuseConnectionSuccess,
+    refuseConnectionFail,
     registerErasmus,
     registerErasmusStart,
     registerErasmusFail,
-    registerErasmusSuccess
+    registerErasmusSuccess,
+    clearConnectionError
 } from './student';
 export {
     fetchCountries,
@@ -52,3 +62,13 @@ export {
     fetchCountriesFail,
     fetchCountriesSuccess,
 } from './countries';
+export {
+    getMessages,
+    getMessagesStart,
+    getMessagesSuccess,
+    getMessagesFailed,
+    selectChat,
+    sendMessage,
+    sendMessageStart,
+    sendMessagefail
+} from './chat'
