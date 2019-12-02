@@ -35,3 +35,25 @@ export const selectChat = (connectionId) => {
         connectionId: connectionId
     }
 }
+
+export const sendMessage = (senderId, receiverId, content) => {
+    return{
+        type: actionTypes.SEND_MESSAGE,
+        senderId: senderId,
+        receiverId: receiverId,
+        content: content
+    }
+}
+
+export const sendMessageStart = () => {
+    return{
+        type: actionTypes.SEND_MESSAGE_START
+    }
+}
+
+export const sendMessagefail = (error) => {
+    return{
+        type: actionTypes.SEND_MESSAGE_FAIL,
+        error: error
+    }
+}
