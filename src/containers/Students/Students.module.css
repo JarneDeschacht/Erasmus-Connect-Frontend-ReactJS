@@ -14,3 +14,13 @@
     column-gap: 5%;
     row-gap: 50px;
 }
+.Header{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.Header h1 {
+    text-align: left;
+}
+.Header Input {
+    margin-top: 10%;
+}

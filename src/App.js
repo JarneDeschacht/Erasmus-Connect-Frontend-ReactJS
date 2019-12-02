@@ -44,7 +44,7 @@ const App = props => {
     routes = (
       <Switch>
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={MyProfile} />
+        <Route path="/my-profile" component={MyProfile} />
         <Route path="/logout" component={Logout} />
         <Route path="/register-erasmus" component={RegisterErasmus} />
         <Route path="/students" exact component={Students} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MapImage from '../../../assets/images/map.png';
 import classes from './Map.module.css';
-import apiKey from '../../../shared/GoogleApiKey.js';
+import apiKey from '../../../shared/GoogleApiKey';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios';
 
@@ -27,20 +27,22 @@ const MapContainer = (props) => {
 
     const mapStyles = {
         borderRadius: '15px',
-        height: '250px',
-        width: '300px',
+        height: '15rem',
+        width: '20rem',
         display: 'block',
-        clear:'both'
     };
 
-    return location ? <Map
-        google={props.google}
-        zoom={11.5}
-        style={mapStyles}
-        initialCenter={{ lat: location.latitude, lng: location.longitude }}
-        mapTypeControl={false}
-        streetViewControl={false}
-    /> : <p>Loading...</p>
+    return location ? <div className={classes.Map}>
+        <Map
+            google={props.google}
+            zoom={11.5}
+            style={mapStyles}
+            initialCenter={{ lat: location.latitude, lng: location.longitude }}
+            mapTypeControl={false}
+            streetViewControl={false}
+            fullscreenControl={false}
+        />
+    </div> : <p>Loading...</p>
 }
 export default GoogleApiWrapper({
     apiKey: apiKey

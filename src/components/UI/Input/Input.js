@@ -20,10 +20,13 @@ const input = props => {
         }
     }
 
+
+
     switch (props.elementType) {
         case ('input'):
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
             inputElement = <input
+                ref={props.inputRef}
                 id={props.id}
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}

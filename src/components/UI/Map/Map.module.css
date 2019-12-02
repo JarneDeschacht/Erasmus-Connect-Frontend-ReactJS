@@ -1,6 +1,8 @@
-.Map{
-    display: block;
-    border-radius: 15px;
-    max-height: 30%;
-    max-width: 300px;
+.Map:first-child{
+    height: 15rem;
+    width: 20rem;
+}
+.Map:first-child div {
+    max-height: 15rem !important;
+    max-width: 20rem !important;
 }
