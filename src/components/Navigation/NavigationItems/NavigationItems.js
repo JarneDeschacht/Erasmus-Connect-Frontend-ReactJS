@@ -9,9 +9,9 @@ const NavigationItems = props => {
 
     let navItems = (
         <ul className={classes.NavigationItems}>
-            <NavigationItem link="/about">About</NavigationItem>
             <NavigationItem link="/login">Sign in</NavigationItem>
             <NavigationItem link="/register">Sign up</NavigationItem>
+            <NavigationItem link="/about">About</NavigationItem>
         </ul>
     );
 

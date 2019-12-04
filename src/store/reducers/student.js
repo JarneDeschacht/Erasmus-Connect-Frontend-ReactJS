@@ -97,22 +97,19 @@ const getConnectionStatusFail = (state, action) => {
 
 const getConnectionsStart = (state, action) => {
     return updateObject(state, {
-        fetchingConnections: true,
-        loading: true
+        fetchingConnections: true
     })
 }
 const getConnectionsSuccess = (state, action) => {
     return updateObject(state, {
         fetchingConnections: false,
-        connections: action.connections,
-        loading: false
+        connections: action.connections
     })
 }
 const getConnectionsFail = (state, action) => {
     return updateObject(state, {
         fetchingConnections: false,
-        connectionError: action.error,
-        loading: false
+        connectionError: action.error
     })
 }
 

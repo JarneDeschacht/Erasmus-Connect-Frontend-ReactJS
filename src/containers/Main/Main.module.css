@@ -6,7 +6,13 @@
     width: 70%;
     margin: 10% auto;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(auto-fit, (1fr 2fr));
+}
+.FrontPage h1.SubText{
+    font-size: 1em;
+}
+.FrontPage h1:first-of-type{
+    margin-bottom: 0;
 }
 .FrontPage h1 span{
     clear: both;
@@ -36,7 +42,17 @@
     background-color: red;
     border: 2px solid white;
     position: absolute;
-    top: 0%;
-    right: 20%;
+    top: 0px;
+    right: 10%;
+    /* right: 110px; */
     margin: 0 !important;
 }
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

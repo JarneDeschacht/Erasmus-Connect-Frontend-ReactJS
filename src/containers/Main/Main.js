@@ -31,7 +31,7 @@ const Main = () => {
     let content = (
         <div className={classes.FrontPage}>
             <h1><span>ESN</span>PARTNER</h1>
-            <h1>Know your erasmus partners before departing</h1>
+            <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
         </div>
     );
 

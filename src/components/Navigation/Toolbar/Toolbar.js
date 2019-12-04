@@ -5,7 +5,7 @@ import classes from './Toolbar.module.css';
 const toolbar = props => {
     return (
         <header className={classes.Toolbar}>
-            <nav>
+            <nav style={{height: '100%'}}>
                 <NavigationItems />
             </nav>
         </header>

@@ -1,8 +1,8 @@
-.Toolbar{
+.Toolbar {
     width: 100%;
     position: fixed;
     bottom: 0;
-    left:0;
+    left: 0;
     justify-content: center;
     display: flex;
     align-items: center;
@@ -10,6 +10,15 @@
     z-index: 90;
     padding-bottom: 4%;
 }
-.Toolbar nav{
+
+.Toolbar nav {
     width: 100%;
 }
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}
