@@ -129,7 +129,7 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
-    if (isNavbarVisible) {
+    if (!isNavbarVisible) {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);

@@ -1,17 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './NavigationItem.module.css';
+import { withRouter } from 'react-router'
 
 const navigationItem = props => {
-    return (
-        <li className={classes.NavigationItem}>
-            <NavLink
-                to={props.link}
-                exact
-            >{props.children}
-            </NavLink>
-        </li>
-    );
+
+    let content = null;
+    if (props.link === "goBack") {
+        content = (
+            <li className={classes.GoBack} onClick={() => props.history.goBack()}>
+                {props.children}
+            </li>
+        )
+    }
+    else {
+        content = (
+            <li className={classes.NavigationItem}>
+                <NavLink
+                    to={props.link}
+                    exact
+                >{props.children}
+                </NavLink>
+            </li>
+        )
+    }
+
+    return content;
 }
 
-export default navigationItem;
+export default withRouter(navigationItem);

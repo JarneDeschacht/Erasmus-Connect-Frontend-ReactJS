@@ -1,6 +1,11 @@
 .EditProfile{
-    width: 55%;
-    margin: 4% auto;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+.EditProfile form{
+    width: 65%;
+    margin: 0 auto;
 }
 .EditProfile h1{
     margin-bottom: 5%;

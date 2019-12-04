@@ -3,7 +3,7 @@
     list-style: none;
     display: flex;
     flex-flow: row;
-    justify-content: center;
     width: 100%;
+    justify-content: flex-start;
     height: 100%;
 }

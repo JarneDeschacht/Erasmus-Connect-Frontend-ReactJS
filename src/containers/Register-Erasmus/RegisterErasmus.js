@@ -25,7 +25,7 @@ const RegisterErasmus = props => {
     );
 
     useEffect(() => {
-        if (isNavbarVisible) {
+        if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);

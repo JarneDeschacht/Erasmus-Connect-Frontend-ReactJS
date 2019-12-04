@@ -1,15 +1,15 @@
 .Toolbar{
     width: 100%;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left:0;
     justify-content: center;
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    z-index: 90;
-    padding-bottom: 4%;
+    z-index: 100;
+    background-color: transparent;
 }
 .Toolbar nav{
-    width: 100%;
+    width: 75%;
 }

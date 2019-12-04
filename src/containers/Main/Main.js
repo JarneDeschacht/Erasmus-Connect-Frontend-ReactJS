@@ -16,10 +16,10 @@ const Main = () => {
     const onGetNotificationStatus = useCallback((userId) => dispatch(actions.getNotificationStatus(userId)), [dispatch]);
 
     useEffect(() => {
-        if (!isNavbarVisible) {
+        if ((isNavbarVisible)) {
             onNavbarDisplaySwitch();
         }
-    }, [onNavbarDisplaySwitch, isNavbarVisible]);
+    }, [onNavbarDisplaySwitch, isNavbarVisible,isAuthenticated]);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -32,6 +32,15 @@ const Main = () => {
         <div className={classes.FrontPage}>
             <h1><span>ESN</span>PARTNER</h1>
             <h1>Know your erasmus partners before departing</h1>
+            <header className={classes.BottomToolBar}>
+                <nav>
+                    <ul className={classes.NavigationItems}>
+                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
+                        <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
+                        <li className={classes.NavigationItem}><NavLink to="/signup" exact >Sign up</NavLink></li>
+                    </ul>
+                </nav>
+            </header>
         </div>
     );
 

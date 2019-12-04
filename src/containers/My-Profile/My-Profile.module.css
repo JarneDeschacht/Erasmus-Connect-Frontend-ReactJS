@@ -1,6 +1,6 @@
 .Profile{
-    width: 80%;
-    margin: 0 auto;
+    width: 75%;
+    margin: 6% auto;
 }
 .ProfileColumns{
     display: grid;
@@ -15,11 +15,6 @@
     color:white;
     text-decoration: none;
     font-size: 1.5rem;
-}
-.Header{
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-    align-items: center;
 }
 .Hr{
     border: 0;
