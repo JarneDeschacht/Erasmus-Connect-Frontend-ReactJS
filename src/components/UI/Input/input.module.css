@@ -42,5 +42,9 @@
 .DateError{
     margin-top: 1%;
 }
+.Textarea{
+    resize: vertical;
+    width: calc(200% + 25px);
+}
 
 

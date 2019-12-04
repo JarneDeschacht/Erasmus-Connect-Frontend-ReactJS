@@ -14,6 +14,8 @@ import StudentProfile from "./containers/Student-Profile/Student-Profile";
 import ForgotPassword from "./containers/Login/ForgotPassword/ForgotPassword";
 import SetNewPassword from "./containers/Login/SetNewPassword/SetNewPassword";
 import RegisterErasmus from "./containers/Register-Erasmus/RegisterErasmus";
+import EditProfile from './containers/Edit-Profile/Edit-Profile';
+import EditErasmus from './containers/Edit-Erasmus/Edit-Erasmus';
 import Chat from "./containers/Chat/Chat";
 import Snackbar from "./components/UI/Snackbar/snackbar";
 
@@ -45,6 +47,8 @@ const App = props => {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/my-profile" component={MyProfile} />
+        <Route path='/edit-profile' component={EditProfile} />
+        <Route path='/edit-erasmus' component={EditErasmus} />
         <Route path="/logout" component={Logout} />
         <Route path="/register-erasmus" component={RegisterErasmus} />
         <Route path="/students" exact component={Students} />

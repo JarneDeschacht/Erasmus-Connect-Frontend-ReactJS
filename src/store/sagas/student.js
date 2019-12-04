@@ -131,3 +131,39 @@ export function* registerErasmusSaga(action) {
         yield put(actions.registerErasmusFail(error));
     }
 }
+
+export function* editProfileSaga(action) {
+    yield put(actions.editProfileStart());
+    try {
+        yield axios({
+            url: '/edit-profile',
+            method: 'PATCH',
+            data: action.data,
+            headers: {
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.editProfileSuccess());
+    }
+    catch (error) {
+        yield put(actions.editProfileFail(error));
+    }
+}
+
+export function* editErasmusSaga(action) {
+    yield put(actions.editErasmusStart());
+    try {
+        yield axios({
+            url: '/edit-erasmus',
+            method: 'PATCH',
+            data: action.data,
+            headers: {
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.editErasmusSuccess());
+    }
+    catch (error) {
+        yield put(actions.editErasmusFail(error));
+    }
+}

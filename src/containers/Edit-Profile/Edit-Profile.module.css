@@ -1,0 +1,37 @@
+.EditProfile{
+    width: 55%;
+    margin: 4% auto;
+}
+.EditProfile h1{
+    margin-bottom: 5%;
+}
+.EditProfile a,.EditProfile h2{
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    margin-top: 7%;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.EditProfile h2{
+    margin: 0;
+}
+
+.EditProfileContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 25px;
+}
+.ErrorMessage{
+    text-align: center;
+    color: red;
+    font-size: 2.5rem;
+}
+.ButtonRow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

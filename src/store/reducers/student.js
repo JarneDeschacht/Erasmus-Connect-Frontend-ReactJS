@@ -211,6 +211,42 @@ const getNotificationStatusFail = (state, action) => {
     })
 }
 
+const editProfileStart = (state, action) => {
+    return updateObject(state, {
+        loading: true,
+        error: null
+    });
+}
+const editProfileSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+    })
+}
+const editProfileFail = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: action.error
+    })
+}
+
+const editErasmusStart = (state, action) => {
+    return updateObject(state, {
+        loading: true,
+        error: null
+    });
+}
+const editErasmusSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+    })
+}
+const editErasmusFail = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: action.error
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_STUDENT_PROFILE_START: return fetchProfileStart(state, action);
@@ -238,6 +274,12 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);
         case actionTypes.CLEAR_CONNECTION_ERROR: return clearConnectionError(state, action);
+        case actionTypes.EDIT_PROFILE_START: return editProfileStart(state, action);
+        case actionTypes.EDIT_PROFILE_FAIL: return editProfileFail(state, action);
+        case actionTypes.EDIT_PROFILE_SUCCESS: return editProfileSuccess(state, action);
+        case actionTypes.EDIT_ERASMUS_START: return editErasmusStart(state, action);
+        case actionTypes.EDIT_ERASMUS_FAIL: return editErasmusFail(state, action);
+        case actionTypes.EDIT_ERASMUS_SUCCESS: return editErasmusSuccess(state, action);
         case actionTypes.CLEAR_STUDENT_CONFIRMATION_MESSAGE: return clearStudentConfirmationMessage(state, action);
         case actionTypes.CLEAR_PROFILE: return clearProfile(state, action);
         case actionTypes.GET_NOTIFICATION_STATUS_START: return getNotificationStatusStart(state, action);

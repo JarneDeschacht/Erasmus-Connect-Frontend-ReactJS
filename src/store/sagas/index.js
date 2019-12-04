@@ -17,6 +17,8 @@ import {
   getConnectionStatusSaga,
   getConnectionsSaga,
   registerErasmusSaga,
+  editProfileSaga,
+  editErasmusSaga,
   getNotificationStatus
 } from "./student";
 import {
@@ -58,6 +60,8 @@ export function* watchStudent() {
     takeEvery(actionTypes.GET_CONNECTION_STATUS, getConnectionStatusSaga),
     takeEvery(actionTypes.GET_CONNECTIONS, getConnectionsSaga),
     takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga),
+    takeEvery(actionTypes.EDIT_PROFILE, editProfileSaga),
+    takeEvery(actionTypes.EDIT_ERASMUS, editErasmusSaga),
     takeEvery(actionTypes.GET_NOTIFICATION_STATUS, getNotificationStatus)
   ]);
 }

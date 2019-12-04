@@ -203,6 +203,56 @@ export const clearConnectionError = () => {
         type: actionTypes.CLEAR_CONNECTION_ERROR
     }
 }
+
+export const editProfileSuccess = () => {
+    return {
+        type: actionTypes.EDIT_PROFILE_SUCCESS
+    }
+}
+export const editProfileFail = (error) => {
+    return {
+        type: actionTypes.EDIT_PROFILE_FAIL,
+        error: error,
+    }
+}
+export const editProfileStart = () => {
+    return {
+        type: actionTypes.EDIT_PROFILE_START
+    }
+}
+export const editProfile = (token, data) => {
+    return {
+        type: actionTypes.EDIT_PROFILE,
+        token: token,
+        data: data
+    }
+}
+
+export const editErasmusSuccess = () => {
+    return {
+        type: actionTypes.EDIT_ERASMUS_SUCCESS
+    }
+}
+export const editErasmusFail = (error) => {
+    return {
+        type: actionTypes.EDIT_ERASMUS_FAIL,
+        error: error,
+    }
+}
+export const editErasmusStart = () => {
+    return {
+        type: actionTypes.EDIT_ERASMUS_START
+    }
+}
+export const editErasmus = (token, data) => {
+    return {
+        type: actionTypes.EDIT_ERASMUS,
+        token: token,
+        data: data
+    }
+}
+
+
 export const clearStudentConfirmationMessage = () => {
     return {
         type: actionTypes.CLEAR_STUDENT_CONFIRMATION_MESSAGE
