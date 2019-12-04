@@ -1,0 +1,21 @@
+.SendForm{
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    max-height: 25px;
+    align-items: center;
+    justify-items: center;
+    position: absolute;
+    bottom: 50px;
+    width: 70%;
+
+}
+
+.Input{
+    padding: 0px;
+    margin: 0px;
+    width: 90%;;
+}
+
+.Button{
+    margin-bottom: 20%;
+}

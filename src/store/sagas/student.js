@@ -20,7 +20,8 @@ export function* fetchProfileSaga(action) {
 export function* fetchStudentsSaga(action) {
     yield put(actions.fetchStudentsStart());
     try {
-        const response = yield axios.get('/students/EMPTY', {
+        const keyword = action.keyword === '' ? 'EMPTY' : action.keyword;
+        const response = yield axios.get('/students/' + keyword, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + action.token

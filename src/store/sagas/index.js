@@ -23,15 +23,17 @@ import {
   fetchCountriesSaga
 } from "./countries";
 import {
-  getMessagesSaga, 
-  sendMessageSaga
+  getMessagesSaga,
+  sendMessageSaga,
+  getLastMessageOfConversationSaga
 } from "./chat"
 import * as actionTypes from "../actions/actionTypes";
 
 export function* watchChat() {
   yield all([
     takeEvery(actionTypes.GET_MESSAGES, getMessagesSaga),
-    takeEvery(actionTypes.SEND_MESSAGE, sendMessageSaga)
+    takeEvery(actionTypes.SEND_MESSAGE, sendMessageSaga),
+    takeEvery(actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION, getLastMessageOfConversationSaga)
   ]);
 }
 

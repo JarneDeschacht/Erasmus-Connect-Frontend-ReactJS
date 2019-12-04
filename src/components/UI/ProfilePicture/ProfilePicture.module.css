@@ -6,3 +6,16 @@
 .ProfilePictureSearch{
     border-radius: 15px 0 0 15px;
 }
+
+.ChatHead{
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 5px;
+    border: white solid 2px
+}
+
+.ExistingChat{
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 5px;
+}

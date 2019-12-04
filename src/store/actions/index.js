@@ -1,4 +1,3 @@
-
 export {
     checkAuthTimeout,
     authCheckState,
@@ -79,5 +78,9 @@ export {
     selectChat,
     sendMessage,
     sendMessageStart,
-    sendMessagefail
+    sendMessagefail,
+    getLastMessageOfConversation,
+    getLastMessageOfConversationStart, 
+    getLastMessageOfConversationSuccess,
+    getLastMessageOfConversationFail
 } from './chat'

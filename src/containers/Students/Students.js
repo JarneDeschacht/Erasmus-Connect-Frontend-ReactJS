@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { NavLink } from 'react-router-dom';
@@ -13,13 +13,14 @@ import {
 const Students = props => {
 
     const dispatch = useDispatch();
+    const inputRef = useRef();
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
     const students = useSelector(state => state.student.students);
     const isLoading = useSelector(state => state.student.loading);
-    const onFetchStudents = useCallback((token, userId) => dispatch(actions.fetchStudents(token, userId)), [dispatch]);
+    const onFetchStudents = useCallback((token, userId, keyword) => dispatch(actions.fetchStudents(token, userId, keyword)), [dispatch]);
 
     const [keywordForm, setKeywordForm] = useState({
         keyword: {
@@ -48,7 +49,6 @@ const Students = props => {
             })
         });
         setKeywordForm(updatedControls);
-        console.log(updatedControls);
     };
 
     useEffect(() => {
@@ -58,8 +58,16 @@ const Students = props => {
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
 
     useEffect(() => {
-        onFetchStudents(token, userId);
-    }, [onFetchStudents, token, userId]);
+        const timer = setTimeout(() => {
+            if (keywordForm.keyword.value === inputRef.current.value) {
+                onFetchStudents(token, userId, keywordForm.keyword.value);
+            }
+        }, 500);
+        return () => {
+            clearTimeout(timer);
+        }
+
+    }, [onFetchStudents, token, userId, keywordForm.keyword.value]);
 
     const studentSelectHandler = (id) => {
         props.history.push({ pathname: '/students/' + id });
@@ -91,6 +99,7 @@ const Students = props => {
             <div className={classes.Header}>
                 <h1>Search results</h1>
                 <Input
+                    inputRef={inputRef}
                     key={formElementsArray[0].id}
                     invalid={!formElementsArray[0].config.valid}
                     elementType={formElementsArray[0].config.elementType}
