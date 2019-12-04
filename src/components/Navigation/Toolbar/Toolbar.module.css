@@ -1,24 +1,27 @@
 .Toolbar {
     width: 100%;
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     justify-content: center;
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    z-index: 90;
-    padding-bottom: 4%;
+    z-index: 100;
+    background-color: transparent;
 }
 
 .Toolbar nav {
-    width: 100%;
+    width: 75%;
 }
 
-@media (min-width: 576px) {}
+@media (max-width: 576px) {
+    .Toolbar {
+        bottom: 0;
+        left: 0;
+    }
+    .Toolbar nav {
+        width: 100%;
+    }
+}
 
-@media (min-width: 768px) {}
-
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}

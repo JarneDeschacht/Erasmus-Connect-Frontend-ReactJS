@@ -136,7 +136,7 @@ const EditErasmus = () => {
     }, [onFetchCountries]);
 
     useEffect(() => {
-        if (isNavbarVisible) {
+        if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);

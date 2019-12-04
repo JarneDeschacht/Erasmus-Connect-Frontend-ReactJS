@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { NavLink } from 'react-router-dom';
 import classes from './Students.module.css';
 import SearchResult from '../../components/Student/Search-Result/Search-Result';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -52,7 +51,7 @@ const Students = props => {
     };
 
     useEffect(() => {
-        if (isNavbarVisible) {
+        if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
@@ -95,7 +94,6 @@ const Students = props => {
     }
     return (
         <div className={classes.Students}>
-            <NavLink className={classes.GoBack} to="/">Go back</NavLink>
             <div className={classes.Header}>
                 <h1>Search results</h1>
                 <Input

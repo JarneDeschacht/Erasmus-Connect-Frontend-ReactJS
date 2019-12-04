@@ -151,7 +151,6 @@ const StudentProfile = props => {
 
   return (
     <div className={classes.StudentProfile}>
-      <p className={classes.GoBack} onClick={() => { props.history.goBack() }}>Go back</p>
       {studentContent}
     </div>
   );

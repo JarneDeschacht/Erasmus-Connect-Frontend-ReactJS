@@ -1,31 +1,17 @@
 import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 import classes from './NavigationItems.module.css';
-import { useSelector } from 'react-redux';
 
 const NavigationItems = props => {
-
-    const isAuthenticated = useSelector(state => state.auth.idToken !== null);
-
-    let navItems = (
+    return (
         <ul className={classes.NavigationItems}>
-            <NavigationItem link="/login">Sign in</NavigationItem>
-            <NavigationItem link="/register">Sign up</NavigationItem>
-            <NavigationItem link="/about">About</NavigationItem>
+            <NavigationItem link="goBack">&larr; Go Back</NavigationItem>
+            <NavigationItem link="/students">Find Students</NavigationItem>
+            <NavigationItem link="/chat">Chat</NavigationItem>
+            <NavigationItem link="/my-profile">My Profile</NavigationItem>
+            <NavigationItem link="/logout">Logout</NavigationItem>
         </ul>
     );
-
-    if (isAuthenticated) {
-        navItems = (
-            <ul className={classes.NavigationItems}>
-                {/* <NavigationItem link="/help">Help</NavigationItem> */}
-                <NavigationItem link="/register-erasmus">Register Erasmus</NavigationItem>
-                <NavigationItem link="/faq">FAQ</NavigationItem>
-                <NavigationItem link="/logout">Logout</NavigationItem>
-            </ul>
-        )
-    }
-    return navItems;
 }
 
 export default NavigationItems;

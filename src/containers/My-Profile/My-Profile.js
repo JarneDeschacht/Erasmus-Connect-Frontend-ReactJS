@@ -31,7 +31,7 @@ const Profile = props => {
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    if (isNavbarVisible) {
+    if (!isNavbarVisible) {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
@@ -66,7 +66,7 @@ const Profile = props => {
     modalContent = (
       <div>
         <div>
-          <h2 style={{marginTop:"10px"}}>Received Requests</h2>
+          <h2 style={{ marginTop: "10px" }}>Received Requests</h2>
           {connections.received
             ? connections.received.map(connection => {
               return (
@@ -74,7 +74,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
-                  goTo={(link, params) => {goToLink(link, params)}}
+                  goTo={(link, params) => { goToLink(link, params) }}
                   isReceived
                 />
               );
@@ -91,7 +91,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
-                  goTo={(link, params) => {goToLink(link, params)}}
+                  goTo={(link, params) => { goToLink(link, params) }}
                   isSent
                 />
               );
@@ -108,7 +108,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
-                  goTo={(link, params) => {goToLink(link, params)}}
+                  goTo={(link, params) => { goToLink(link, params) }}
                   isConnection
                 />
               );
@@ -128,12 +128,7 @@ const Profile = props => {
           open={openModal}
           onClose={() => closeConnectionsModal()}
         >{modalContent}</Modal>
-        <div className={classes.Header}>
-          <NavLink className={classes.GoBack} to="/">
-            Go back
-          </NavLink>
-          <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
-        </div>
+        <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
         <div className={classes.ProfileColumns}>
           <div>
             <ProfilePicture imageUrl={profile.imageUrl} />

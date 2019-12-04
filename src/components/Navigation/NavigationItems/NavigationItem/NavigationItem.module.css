@@ -1,21 +1,33 @@
-.NavigationItem{
+.NavigationItem, .GoBack{
     height: 100%;
-    margin:0 5%;
+    margin:0 3%;
     box-sizing: border-box;
     display: block;
 }
-.NavigationItem a {
+.NavigationItem:last-of-type{
+  margin-right: 0;
+}
+.NavigationItem a, .GoBack {
     color: white;
     height: 100%;
     text-decoration: none;
     box-sizing: border-box;
-    font-size: 3.5rem;
+    font-size: 2rem;
     text-align: center;
     display: inline-block;
     padding: 15px 20px;
     position: relative;
 }
-.NavigationItem a:after {    
+.GoBack{
+  margin-left: 0;
+  margin-right: auto;
+  cursor: pointer;
+  padding: 15px 0;
+}
+.NavigationItem a:last-of-type{
+  padding: 15px 0;
+}
+.NavigationItem a:after,.GoBack:after {    
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -27,7 +39,7 @@
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }
-  .NavigationItem a:hover:after{ 
+  .NavigationItem a:hover:after,.GoBack:hover:after{ 
     width: 100%; 
     left: 0; 
   }

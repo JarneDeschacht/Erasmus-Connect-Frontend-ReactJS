@@ -18,14 +18,14 @@ const Chat = props => {
     );
 
     useEffect(() => {
-        if (isNavbarVisible) {
+        if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
 
 
     return (
-        <div>
+        <div className={classes.Chat}>
             <ChatHead
                 connection={selectedUser}
             />
