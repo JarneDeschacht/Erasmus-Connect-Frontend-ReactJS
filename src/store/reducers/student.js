@@ -5,6 +5,7 @@ const initialState = {
     profile: null,
     students: [],
     loading: false,
+    error: null,
     connecting: false,
     connectionError: null,
     fetchingStatus: false,
@@ -13,9 +14,14 @@ const initialState = {
     connectionRequestSent: false,
     connectionRequestReceived: false,
     connections: null,
+    makingConnection: false,
     fetchingConnections: false,
     acceptingConnection: false,
-    refusingConnection: false
+    refusingConnection: false,
+    confirmationMessage: null,
+    gettingNotificationStatus: false,
+    notificationError: null,
+    isNotification: false
 };
 
 const clearConnectionError = (state, action) => {
@@ -23,6 +29,19 @@ const clearConnectionError = (state, action) => {
         connectionError: null
     });
 }
+
+const clearStudentConfirmationMessage = (state, action) => {
+    return updateObject(state, {
+        confirmationMessage: null
+    })
+}
+
+const clearProfile = (state, action) => {
+    return updateObject(state, {
+        profile: null
+    })
+}
+
 const fetchProfileStart = (state, action) => {
     return updateObject(state, {
         loading: true,
@@ -97,6 +116,26 @@ const getConnectionsFail = (state, action) => {
     })
 }
 
+const makeConnectionStart = (state, action) => {
+    return updateObject(state, {
+        makingConnection: true
+    })
+}
+const makeConnectionSuccess = (state, action) => {
+    return updateObject(state, {
+        makingConnection: false,
+        confirmationMessage: 'Request sent',
+        connectionExists: false,
+        connectionRequestSent: true,
+        connectionRequestReceived: false
+    })
+}
+const makeConnectionFail = (state, action) => {
+    return updateObject(state, {
+        makingConnection: false,
+        error: action.error
+    })
+}
 const acceptConnectionStart = (state, action) => {
     return updateObject(state, {
         acceptingConnection: true
@@ -104,7 +143,11 @@ const acceptConnectionStart = (state, action) => {
 }
 const acceptConnectionSuccess = (state, action) => {
     return updateObject(state, {
-        acceptingConnection: false
+        acceptingConnection: false,
+        confirmationMessage: 'Request accepted',
+        connectionExists: true,
+        connectionRequestSent: true,
+        connectionRequestReceived: false
     })
 }
 const acceptConnectionFail = (state, action) => {
@@ -121,7 +164,11 @@ const refuseConnectionStart = (state, action) => {
 }
 const refuseConnectionSuccess = (state, action) => {
     return updateObject(state, {
-        refusingConnection: false
+        refusingConnection: false,
+        confirmationMessage: 'Request refused',
+        connectionExists: false,
+        connectionRequestSent: false,
+        connectionRequestReceived: false
     })
 }
 const refuseConnectionFail = (state, action) => {
@@ -140,12 +187,30 @@ const registerErasmusStart = (state, action) => {
 const registerErasmusSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
+        confirmationMessage: 'Erasmus registered'
     })
 }
 const registerErasmusFail = (state, action) => {
     return updateObject(state, {
         loading: false,
         error: action.error
+    })
+}
+const getNotificationStatusStart = (state, action) => {
+    return updateObject(state, {
+        gettingNotificationStatus: true
+    })
+}
+const getNotificationStatusSuccess = (state, action) => {
+    return updateObject(state, {
+        gettingNotificationStatus: false,
+        isNotification: action.isNotification
+    })
+}
+const getNotificationStatusFail = (state, action) => {
+    return updateObject(state, {
+        gettingNotificationStatus: false,
+        notificationError: action.error
     })
 }
 
@@ -163,6 +228,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_CONNECTION_STATUS_START: return getConnectionStatusStart(state, action);
         case actionTypes.GET_CONNECTION_STATUS_SUCCESS: return getConnectionStatusSuccess(state, action);
         case actionTypes.GET_CONNECTION_STATUS_FAIL: return getConnectionStatusFail(state, action);
+        case actionTypes.MAKE_CONNECTION_START: return makeConnectionStart(state, action);
+        case actionTypes.MAKE_CONNECTION_SUCCESS: return makeConnectionSuccess(state, action);
+        case actionTypes.MAKE_CONNECTION_FAIL: return makeConnectionFail(state, action);
         case actionTypes.ACCEPT_CONNECTION_START: return acceptConnectionStart(state, action);
         case actionTypes.ACCEPT_CONNECTION_SUCCESS: return acceptConnectionSuccess(state, action);
         case actionTypes.ACCEPT_CONNECTION_FAIL: return acceptConnectionFail(state, action);
@@ -173,6 +241,11 @@ const reducer = (state = initialState, action) => {
         case actionTypes.REGISTER_ERASMUS_SUCCESS: return registerErasmusSuccess(state, action);
         case actionTypes.REGISTER_ERASMUS_FAIL: return registerErasmusFail(state, action);
         case actionTypes.CLEAR_CONNECTION_ERROR: return clearConnectionError(state, action);
+        case actionTypes.CLEAR_STUDENT_CONFIRMATION_MESSAGE: return clearStudentConfirmationMessage(state, action);
+        case actionTypes.CLEAR_PROFILE: return clearProfile(state, action);
+        case actionTypes.GET_NOTIFICATION_STATUS_START: return getNotificationStatusStart(state, action);
+        case actionTypes.GET_NOTIFICATION_STATUS_SUCCESS: return getNotificationStatusSuccess(state, action);
+        case actionTypes.GET_NOTIFICATION_STATUS_FAIL: return getNotificationStatusFail(state, action);
         default: return state;
     }
 };

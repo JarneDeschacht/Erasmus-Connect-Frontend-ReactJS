@@ -5,7 +5,7 @@ import * as actions from '../actions/index';
 export function* fetchProfileSaga(action) {
     yield put(actions.fetchProfileStart());
     try {
-        const response = yield axios.get('/my-profile', {
+        const response = yield axios.get('/student/' + action.userId, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + action.token
@@ -58,20 +58,21 @@ export function* getConnectionsSaga(action) {
     }
 }
 export function* makeConnectionSaga(action) {
-    yield put(actions.getConnectionsStart());
+    yield put(actions.makeConnectionStart());
     const connectionData = {
         userId: action.userId,
         connectToId: action.connectToId
     }
     try {
         yield axios.post('/connectToStudent', connectionData);
-        yield put(actions.getConnectionsSuccess());
+        yield put(actions.makeConnectionSuccess());
     }
     catch (error) {
-        yield put(actions.getConnectionsFail(error));
+        yield put(actions.makeConnectionFail(error.response.data.message));
     }
 }
 export function* acceptConnectionSaga(action) {
+
     yield put(actions.acceptConnectionStart());
     const connectionData = {
         sender: action.senderId,
@@ -79,11 +80,11 @@ export function* acceptConnectionSaga(action) {
     }
     try {
         yield axios.post('/acceptConnection', connectionData);
-        yield put(actions.fetchStudentsSuccess());
+        yield put(actions.acceptConnectionSuccess());
         yield put(actions.getConnections(action.receiverId));
     }
     catch (error) {
-        yield put(actions.fetchStudentsFail(error.response.data.message));
+        yield put(actions.acceptConnectionFail(error.response.data.message));
     }
 }
 export function* refuseConnectionSaga(action) {
@@ -99,6 +100,16 @@ export function* refuseConnectionSaga(action) {
     }
     catch (error) {
         yield put(actions.refuseConnectionFail(error.response.data.message));
+    }
+}
+export function* getNotificationStatus(action) {
+    yield put(actions.getNotificationStatusStart());
+    try {
+        const response = yield axios.get('/getNotificationStatus/' + action.userId);
+        yield put(actions.getNotificationStatusSuccess(response.data.response));
+    }
+    catch (error) {
+        yield put(actions.getNotificationStatusFail(error.response.data.message));
     }
 }
 

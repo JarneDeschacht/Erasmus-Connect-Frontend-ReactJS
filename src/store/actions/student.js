@@ -110,6 +110,23 @@ export const makeConnection = (userId, connectToId) => {
         connectToId: connectToId
     }
 }
+export const makeConnectionStart = () => {
+    return {
+        type: actionTypes.MAKE_CONNECTION_START
+    }
+}
+export const makeConnectionSuccess = () => {
+    return {
+        type: actionTypes.MAKE_CONNECTION_SUCCESS
+    }
+}
+export const makeConnectionFail = (error) => {
+    return {
+        type: actionTypes.MAKE_CONNECTION_FAIL,
+        error: error
+    }
+}
+
 export const acceptConnection = (senderId, receiverId) => {
     return {
         type: actionTypes.ACCEPT_CONNECTION,
@@ -184,5 +201,38 @@ export const registerErasmus = (token, userId, formData) => {
 export const clearConnectionError = () => {
     return {
         type: actionTypes.CLEAR_CONNECTION_ERROR
+    }
+}
+export const clearStudentConfirmationMessage = () => {
+    return {
+        type: actionTypes.CLEAR_STUDENT_CONFIRMATION_MESSAGE
+    }
+}
+export const clearProfile = () => {
+    return {
+        type: actionTypes.CLEAR_PROFILE
+    }
+}
+export const getNotificationStatus = (userId) => {
+    return {
+        type: actionTypes.GET_NOTIFICATION_STATUS,
+        userId: userId
+    }
+}
+export const getNotificationStatusStart = () => {
+    return {
+        type: actionTypes.GET_NOTIFICATION_STATUS_START
+    }
+}
+export const getNotificationStatusSuccess = (isNotification) => {
+    return {
+        type: actionTypes.GET_NOTIFICATION_STATUS_SUCCESS,
+        isNotification: isNotification
+    }
+}
+export const getNotificationStatusFail = (error) => {
+    return {
+        type: actionTypes.GET_NOTIFICATION_STATUS_FAIL,
+        error: error
     }
 }

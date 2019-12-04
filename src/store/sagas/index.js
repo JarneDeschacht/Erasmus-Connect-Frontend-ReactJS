@@ -16,7 +16,8 @@ import {
   refuseConnectionSaga,
   getConnectionStatusSaga,
   getConnectionsSaga,
-  registerErasmusSaga
+  registerErasmusSaga,
+  getNotificationStatus
 } from "./student";
 import {
   fetchCountriesSaga
@@ -56,7 +57,8 @@ export function* watchStudent() {
     takeEvery(actionTypes.REFUSE_CONNECTION, refuseConnectionSaga),
     takeEvery(actionTypes.GET_CONNECTION_STATUS, getConnectionStatusSaga),
     takeEvery(actionTypes.GET_CONNECTIONS, getConnectionsSaga),
-    takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga)
+    takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga),
+    takeEvery(actionTypes.GET_NOTIFICATION_STATUS, getNotificationStatus)
   ]);
 }
 

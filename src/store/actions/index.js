@@ -41,6 +41,9 @@ export {
     getConnectionsSuccess,
     getConnectionsFail,
     makeConnection,
+    makeConnectionStart,
+    makeConnectionSuccess,
+    makeConnectionFail,
     acceptConnection,
     acceptConnectionStart,
     acceptConnectionSuccess,
@@ -53,7 +56,13 @@ export {
     registerErasmusStart,
     registerErasmusFail,
     registerErasmusSuccess,
-    clearConnectionError
+    clearConnectionError,
+    clearStudentConfirmationMessage,
+    clearProfile,
+    getNotificationStatus,
+    getNotificationStatusStart,
+    getNotificationStatusSuccess,
+    getNotificationStatusFail
 } from './student';
 export {
     fetchCountries,

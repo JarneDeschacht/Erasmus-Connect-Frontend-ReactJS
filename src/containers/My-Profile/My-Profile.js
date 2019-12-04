@@ -47,6 +47,14 @@ const Profile = props => {
     setOpenModal(false);
   };
 
+  const goToLink = (link, params) => {
+    let destination = link;
+    params.forEach(param => {
+      destination = destination + '/' + param;
+    });
+    props.history.push({ pathname: destination });
+  }
+
   useEffect(() => {
     onFetchProfile();
   }, [onFetchProfile]);
@@ -58,7 +66,7 @@ const Profile = props => {
     modalContent = (
       <div>
         <div>
-          <h2>Received Requests</h2>
+          <h2 style={{marginTop:"10px"}}>Received Requests</h2>
           {connections.received
             ? connections.received.map(connection => {
               return (
@@ -66,6 +74,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
+                  goTo={(link, params) => {goToLink(link, params)}}
                   isReceived
                 />
               );
@@ -82,6 +91,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
+                  goTo={(link, params) => {goToLink(link, params)}}
                   isSent
                 />
               );
@@ -98,6 +108,7 @@ const Profile = props => {
                   key={userId.concat(connection.userId)}
                   name={connection.firstName + " " + connection.lastName}
                   userId={connection.userId}
+                  goTo={(link, params) => {goToLink(link, params)}}
                   isConnection
                 />
               );
