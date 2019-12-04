@@ -16,7 +16,7 @@ const input = props => {
     if (props.invalid && props.touched) {
         validationError = <p className={classes.ValidationError}>{props.errorMessage}</p>;
         if (props.elementType === 'date') {
-            validationError = <p className={[classes.ValidationError,classes.DateError].join(' ')}>{props.errorMessage}</p>;
+            validationError = <p className={[classes.ValidationError, classes.DateError].join(' ')}>{props.errorMessage}</p>;
         }
     }
 
@@ -34,6 +34,19 @@ const input = props => {
                 value={props.value}
             />;
             break;
+        case 'textarea':
+            inputClasses.push(classes.Textarea);
+            label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
+            inputElement = <textarea
+                rows="6"
+                ref={props.inputRef}
+                id={props.id}
+                className={inputClasses.join(' ')}
+                {...props.elementConfig}
+                onChange={props.changed}
+                value={props.value}>
+            </textarea>
+            break;
         case ('select'):
             inputClasses.push(classes.Select);
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
@@ -42,7 +55,8 @@ const input = props => {
                     id={props.id}
                     required
                     className={inputClasses.join(' ')}
-                    onChange={props.changed}>
+                    onChange={props.changed}
+                    value={props.value}>
                     <option value="" defaultValue hidden>--- Select Country ---</option>
                     {
                         props.elementConfig.options.map(country => (
@@ -57,7 +71,7 @@ const input = props => {
             break;
         case ('date'):
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
-            inputElement = <DateInput id={props.id} changed={props.changed} />
+            inputElement = <DateInput date={props.value} id={props.id} changed={props.changed} />
             break;
         default:
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>

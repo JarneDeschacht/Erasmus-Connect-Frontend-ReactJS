@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import MapImage from '../../../assets/images/map.png';
 import classes from './Map.module.css';
 import apiKey from '../../../shared/GoogleApiKey';
 import { Map, GoogleApiWrapper } from 'google-maps-react';

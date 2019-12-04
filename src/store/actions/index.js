@@ -54,7 +54,15 @@ export {
     registerErasmusStart,
     registerErasmusFail,
     registerErasmusSuccess,
-    clearConnectionError
+    clearConnectionError,
+    editProfile,
+    editProfileFail,
+    editProfileStart,
+    editProfileSuccess,
+    editErasmus,
+    editErasmusFail,
+    editErasmusStart,
+    editErasmusSuccess
 } from './student';
 export {
     fetchCountries,

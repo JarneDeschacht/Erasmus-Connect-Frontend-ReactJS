@@ -83,7 +83,7 @@ const Register = props => {
         type: "text",
         placeholder: "Date Of Birth"
       },
-      value: "//",
+      value: ['', '', ''],
       validation: {
         required: true,
         date: true
@@ -167,7 +167,7 @@ const Register = props => {
     let valueToBeValidated = event.target.value;
 
     if (controlName === 'dateOfBirth') {
-      const date = registerForm.dateOfBirth.value.split('/');
+      const date = registerForm.dateOfBirth.value;
       switch (event.target.name) {
         case 'DD':
           date[2] = enteredValue
@@ -181,7 +181,7 @@ const Register = props => {
         default: break;
       }
       valueToBeValidated = date.join('/');
-      enteredValue = date.join('/');
+      enteredValue = date;
     }
     if (controlName === 'confirmPassword') {
       valueToBeValidated = [registerForm.password.value, event.target.value];
@@ -235,7 +235,7 @@ const Register = props => {
       email: registerForm.email.value,
       countryId: registerForm.country.value,
       phoneNumber: registerForm.phoneNumber.value,
-      dateOfBirth: registerForm.dateOfBirth.value.replace('/', '-'),
+      dateOfBirth: registerForm.dateOfBirth.value.join('/').replace('/', '-'),
       password: registerForm.password.value
     }
 

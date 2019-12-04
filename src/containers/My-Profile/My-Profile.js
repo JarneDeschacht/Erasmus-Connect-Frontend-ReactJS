@@ -159,7 +159,8 @@ const Profile = props => {
               >
                 My friends
               </Button>
-              <Button>Edit profile</Button>
+              <NavLink className={classes.NavLink} exact to="/edit-profile"><Button>Edit Profile</Button></NavLink>
+
             </div>
           </div>
           <div>
@@ -176,8 +177,8 @@ const Profile = props => {
               <h2>{profile.erasmusUniversity.name || "-----"}</h2>
             </div>
             <div>
-              <Button>Manage photos</Button>
               <Button>Social profiles</Button>
+              <NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button>Edit Erasmus</Button></NavLink>
             </div>
           </div>
         </div>

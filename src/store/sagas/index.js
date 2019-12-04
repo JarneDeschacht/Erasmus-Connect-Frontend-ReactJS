@@ -16,13 +16,15 @@ import {
   refuseConnectionSaga,
   getConnectionStatusSaga,
   getConnectionsSaga,
-  registerErasmusSaga
+  registerErasmusSaga,
+  editProfileSaga,
+  editErasmusSaga
 } from "./student";
 import {
   fetchCountriesSaga
 } from "./countries";
 import {
-  getMessagesSaga, 
+  getMessagesSaga,
   sendMessageSaga
 } from "./chat"
 import * as actionTypes from "../actions/actionTypes";
@@ -54,7 +56,9 @@ export function* watchStudent() {
     takeEvery(actionTypes.REFUSE_CONNECTION, refuseConnectionSaga),
     takeEvery(actionTypes.GET_CONNECTION_STATUS, getConnectionStatusSaga),
     takeEvery(actionTypes.GET_CONNECTIONS, getConnectionsSaga),
-    takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga)
+    takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga),
+    takeEvery(actionTypes.EDIT_PROFILE, editProfileSaga),
+    takeEvery(actionTypes.EDIT_ERASMUS, editErasmusSaga)
   ]);
 }
 
