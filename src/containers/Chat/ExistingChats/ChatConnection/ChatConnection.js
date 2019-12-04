@@ -5,9 +5,6 @@ import classes from './ChatConnection.module.css'
 
 const ChatConnection = props => {
     const lastMessage = useSelector(state => state.chat.lastMessages[props.connectionId])
-    if (lastMessage !== undefined) {
-        console.log(lastMessage.content)
-    }
 
     return (
         <div onClick={props.clicked} className={classes.Container}>

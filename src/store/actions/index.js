@@ -73,5 +73,6 @@ export {
     getLastMessageOfConversation,
     getLastMessageOfConversationStart, 
     getLastMessageOfConversationSuccess,
-    getLastMessageOfConversationFail
+    getLastMessageOfConversationFail,
+    newMessage
 } from './chat'
