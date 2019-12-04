@@ -4,6 +4,7 @@ import * as actions from '../../../../store/actions/index'
 import { updateObject, checkValidity } from '../../../../shared/utility'
 import Input from '../../../../components/UI/Input/Input'
 import Button from '../../../../components/UI/Button/Button'
+import classes from './SendMessage.module.css'
 
 const SendMessage = props => {
 
@@ -27,8 +28,6 @@ const SendMessage = props => {
     const loggedInUserId = localStorage.getItem('userId')
     const dispatch = useDispatch();
     const onMessageSend = (sendToId, message) => dispatch(actions.sendMessage(loggedInUserId, sendToId, message))
-
-    
 
     const formElementsArray = [];
     for (let key in sendMessageForm) {
@@ -91,14 +90,19 @@ const SendMessage = props => {
 
     return (
         <div>
-            <form>
-                {formInputs}
-                <Button
-                    clicked={event => onSubmit(event)}
-                    disabled={!sendMessageForm.message.valid}
-                >
-                    =>
+            <form className={classes.SendForm}>
+                <div className={classes.Input}>
+                    {formInputs}
+                </div>
+                <div className={classes.Button}>
+                    <Button
+                        clicked={event => onSubmit(event)}
+                        disabled={!sendMessageForm.message.valid}
+                    >
+                        SEND
                </Button>
+                </div>
+
             </form>
         </div>
     )

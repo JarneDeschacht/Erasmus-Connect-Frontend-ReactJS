@@ -17,7 +17,6 @@ const ChatWindow = props => {
             onFetchMessages(userId, props.connection.userId)
         }
 
-
     }, [onFetchMessages, userId, props])
 
     let messageComponents = null;
@@ -28,6 +27,8 @@ const ChatWindow = props => {
                     date={mes.sendDate}
                     content={mes.content}
                     key={mes.messageId}
+                    sender={mes.sender}
+                    receiver={mes.receiver}
                 />
             )
         })
@@ -35,9 +36,11 @@ const ChatWindow = props => {
 
     return (
         <div className={classes.ChatWindow}>
-            {messageComponents}
+            <div className={classes.Conversation}>
+                {messageComponents}
+            </div>
             <SendMessage
-                selectedUser={props.connection?props.connection.userId: null}
+                selectedUser={props.connection ? props.connection.userId : null}
             />
         </div>
     )

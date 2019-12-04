@@ -5,7 +5,8 @@ export const getMessages = (userId, chatWithId) => {
     return {
         type: actionTypes.GET_MESSAGES,
         userId: parseInt(userId, 10),
-        chatWithId: chatWithId
+        chatWithId: chatWithId,
+        loading: false
     }
 }
 
@@ -16,7 +17,7 @@ export const getMessagesStart = () => {
 }
 
 export const getMessagesSuccess = (messages) => {
-    return{
+    return {
         type: actionTypes.GET_MESSAGES_SUCCESS,
         messages: messages
     }
@@ -37,7 +38,7 @@ export const selectChat = (connectionId) => {
 }
 
 export const sendMessage = (senderId, receiverId, content) => {
-    return{
+    return {
         type: actionTypes.SEND_MESSAGE,
         senderId: senderId,
         receiverId: receiverId,
@@ -46,14 +47,40 @@ export const sendMessage = (senderId, receiverId, content) => {
 }
 
 export const sendMessageStart = () => {
-    return{
+    return {
         type: actionTypes.SEND_MESSAGE_START
     }
 }
 
 export const sendMessagefail = (error) => {
-    return{
+    return {
         type: actionTypes.SEND_MESSAGE_FAIL,
         error: error
+    }
+}
+
+export const getLastMessageOfConversation = (connection_ids) => {
+    return {
+        type: actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION,
+        connection_ids: connection_ids
+    }
+}
+
+export const getLastMessageOfConversationStart = () => {
+    return {
+        type: actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_START
+    }
+}
+
+export const getLastMessageOfConversationFail = () => {
+    return {
+        type: actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_FAIL
+    }
+}
+
+export const getLastMessageOfConversationSuccess = (messages) => {
+    return {
+        type: actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_SUCCESS,
+        messages: messages
     }
 }
