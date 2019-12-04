@@ -51,7 +51,6 @@ const Login = props => {
     let isAuthenticated = useSelector(state => state.auth.idToken !== null);
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const loading = useSelector(state => state.auth.loading);
-    const error = useSelector(state => state.auth.error);
 
     //actions.auth is a method that manages the state
     const onAuth = (email, password) => dispatch(actions.login(email, password));
@@ -130,11 +129,6 @@ const Login = props => {
         form = <Spinner />
     }
 
-    let errorMessage = null;
-    if (error) {
-        errorMessage = <p className={classes.ErrorMessage}>{error}</p>;
-    }
-
     let redirect = null;
     if (isAuthenticated || shouldRedirect) {
         redirect = <Redirect to="/" />
@@ -142,12 +136,13 @@ const Login = props => {
 
     return (
         <div className={classes.Login}>
-            <h1>WELCOME BACK, YOUR ERASMUS PARTNERS HAVE BEEN WAITING FOR YOU</h1>
-            {errorMessage}
-            {redirect}
-            {form}
-            <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
-            <NavLink to="/register" exact>Create a new account</NavLink>
+            <div>
+                <h1>WELCOME BACK, YOUR ERASMUS PARTNERS HAVE BEEN WAITING FOR YOU</h1>
+                {redirect}
+                {form}
+                <NavLink to="/register" exact>Create a new account</NavLink>
+                <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
+            </div>
         </div>
     );
 }

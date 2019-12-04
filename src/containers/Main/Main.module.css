@@ -1,41 +1,40 @@
-.Main h1{
+.Main h1 {
     text-align: center;
     padding-top: 10%;
 }
-.FrontPage{
+
+.FrontPage {
     width: 70%;
     margin: 10% auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, (1fr 2fr));
 }
-.FrontPage h1.SubText{
-    font-size: 1em;
-}
-.FrontPage h1:first-of-type{
-    margin-bottom: 0;
-}
-.FrontPage h1 span{
+
+.FrontPage h1 span {
     clear: both;
     display: block;
     width: 100%;
     font-size: 6.7rem;
     margin-bottom: -5%;
 }
-.Links{
+
+.Links {
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 80%;
     margin: 10% auto;
 }
-.Links a, .Links > div{
-    color:white; 
+
+.Links a, .Links>div {
+    color: white;
     text-decoration: none;
     text-align: center;
     margin: 5%;
     font-size: 4rem;
     font-weight: bold;
 }
-.NotificationBubble{
+
+.NotificationBubble {
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -48,8 +47,19 @@
     margin: 0 !important;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
+    .FrontPage {
+        grid-template-columns: repeat(auto-fit, (1fr 2fr));
+    }
+    .FrontPage h1.SubText {
+        font-size: 1em;
+    }
+    .FrontPage h1:first-of-type {
+        margin-bottom: 0;
+    }
 }
+
+@media (min-width: 576px) {}
 
 @media (min-width: 768px) {}
 

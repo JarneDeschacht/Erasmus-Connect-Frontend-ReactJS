@@ -31,3 +31,9 @@
     width: 100%; 
     left: 0; 
   }
+
+  @media (max-width: 576px) {
+    .NavigationItem a {
+      font-size: 3rem;
+  }
+  }

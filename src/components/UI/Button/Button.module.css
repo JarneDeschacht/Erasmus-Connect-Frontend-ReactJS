@@ -1,29 +1,38 @@
-.Button{
-    background-color: white;
-    color: rgb(0,174,239);
+.Button {
+    background-color: transparent;
+    color: white;
     border-radius: 10px;
     display: block;
     outline: none;
-    border: 1px solid rgb(0,174,239);
+    border: 2px solid white;
     padding: 5px 15px;
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 00;
     margin: 5% 1%;
     margin-right: 0;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.Button:disabled{
-    background-color: grey;
-    color: rgb(190, 190, 190);
+.Button:hover {
+    background-color: white;
+    color: rgb(0, 174, 239);
 }
 
-.NoPointer{
+.Button:disabled {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.699);
+    cursor: not-allowed;
+    color: rgba(255, 255, 255, 0.699);
+}
+
+.NoPointer {
     cursor: default !important;
 }
 
-.SmallButton{
+.SmallButton {
     padding: 5px 15px;
-    font-size: 1rem;;
+    font-size: 1rem;
+    ;
     border-radius: 5px;
 }

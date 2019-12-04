@@ -34,3 +34,15 @@
     color: red;
     margin: 5px 0;
 } 
+
+@media (max-width: 576px) {
+    .Input::placeholder{
+        font-size: 0.8em;
+    }
+    .DateInput{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.2fr;
+        column-gap: 2%;
+        margin: 2% 1% 6% 1%;
+    }
+}
