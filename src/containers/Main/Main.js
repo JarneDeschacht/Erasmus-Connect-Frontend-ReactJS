@@ -37,7 +37,7 @@ const Main = () => {
                     <ul className={classes.NavigationItems}>
                         <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
                         <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
-                        <li className={classes.NavigationItem}><NavLink to="/signup" exact >Sign up</NavLink></li>
+                        <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
                     </ul>
                 </nav>
             </header>
