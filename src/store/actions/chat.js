@@ -84,3 +84,10 @@ export const getLastMessageOfConversationSuccess = (messages) => {
         messages: messages
     }
 }
+
+export const newMessage = (message) => {
+    return{
+        type: actionTypes.NEW_MESSAGE,
+        message: message
+    }
+}
