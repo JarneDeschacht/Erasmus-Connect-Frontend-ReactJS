@@ -2,20 +2,30 @@ import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import classes from './Main.module.css';
-import * as actions from '../../store/actions/navbar';
+import * as actions from '../../store/actions';
 
 const Main = () => {
 
     const dispatch = useDispatch();
+    const userId = localStorage.getItem('userId');
+
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const isAuthenticated = useSelector(state => state.auth.idToken !== null);
+    const isNotification = useSelector(state => state.student.isNotification);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
+    const onGetNotificationStatus = useCallback((userId) => dispatch(actions.getNotificationStatus(userId)), [dispatch]);
 
     useEffect(() => {
         if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            onGetNotificationStatus(userId);
+        }
+    }, [onGetNotificationStatus, isAuthenticated, userId]);
 
 
     let content = (
@@ -25,11 +35,21 @@ const Main = () => {
         </div>
     );
 
+    let notificationBubble = null;
+    if (isNotification) {
+        notificationBubble = (<div className={classes.NotificationBubble}></div>)
+    }
+
     if (isAuthenticated) {
         content = (
             <div className={classes.Links}>
                 <NavLink to="/universities" exact>Find universities</NavLink>
-                <NavLink to="/my-profile" exact>My profile</NavLink>
+                <div>
+                    <div style={{ position: 'relative', margin: "0 !important" }}>
+                        {notificationBubble}
+                        <NavLink to="/my-profile" exact>My profile</NavLink>
+                    </div>
+                </div>
                 <NavLink to="/students" exact>Find student</NavLink>
                 <NavLink to="/chat" exact>Chat</NavLink>
             </div>
