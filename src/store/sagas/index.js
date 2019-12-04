@@ -18,21 +18,24 @@ import {
   getConnectionsSaga,
   registerErasmusSaga,
   editProfileSaga,
-  editErasmusSaga
+  editErasmusSaga,
+  getNotificationStatus
 } from "./student";
 import {
   fetchCountriesSaga
 } from "./countries";
 import {
   getMessagesSaga,
-  sendMessageSaga
+  sendMessageSaga,
+  getLastMessageOfConversationSaga
 } from "./chat"
 import * as actionTypes from "../actions/actionTypes";
 
 export function* watchChat() {
   yield all([
     takeEvery(actionTypes.GET_MESSAGES, getMessagesSaga),
-    takeEvery(actionTypes.SEND_MESSAGE, sendMessageSaga)
+    takeEvery(actionTypes.SEND_MESSAGE, sendMessageSaga),
+    takeEvery(actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION, getLastMessageOfConversationSaga)
   ]);
 }
 
@@ -58,7 +61,8 @@ export function* watchStudent() {
     takeEvery(actionTypes.GET_CONNECTIONS, getConnectionsSaga),
     takeEvery(actionTypes.REGISTER_ERASMUS, registerErasmusSaga),
     takeEvery(actionTypes.EDIT_PROFILE, editProfileSaga),
-    takeEvery(actionTypes.EDIT_ERASMUS, editErasmusSaga)
+    takeEvery(actionTypes.EDIT_ERASMUS, editErasmusSaga),
+    takeEvery(actionTypes.GET_NOTIFICATION_STATUS, getNotificationStatus)
   ]);
 }
 

@@ -8,7 +8,6 @@ import * as actions from "../../../store/actions/index";
 const ConnectionSummary = props => {
   const dispatch = useDispatch();
 
-  let history = useHistory();
   const userId = localStorage.getItem("userId");
 
   const onAcceptConnection = (senderId, receiverId) => dispatch(actions.acceptConnection(senderId, receiverId));
@@ -26,9 +25,9 @@ const ConnectionSummary = props => {
       <div className={classes.Info}>{props.name}</div>
       {props.isConnection ? (
         <div className={classes.Controls}>
-          <Button clicked={() => {history.push(`/students/${props.userId}`)}} smallButton>View Profile</Button>
+          <Button clicked={() => {props.goTo('/students', [props.userId])}} smallButton>View Profile</Button>
           <Button smallButton>Chat</Button>
-          <Button smallButton>Remove Connection</Button>
+          <Button smallButton clicked={() => {onRefuse()}}>Remove Connection</Button>
         </div>
       ) : null}
       {props.isReceived ? (

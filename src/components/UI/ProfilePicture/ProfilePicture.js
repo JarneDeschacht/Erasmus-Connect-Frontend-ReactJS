@@ -3,7 +3,9 @@ import classes from './ProfilePicture.module.css';
 import ProfilePicture from '../../../assets/images/default.png';
 
 const profilePicture = props => {
-    let imgClass = classes.ProfilePicture;
+
+
+    let imgClass = props.styleType?classes[props.styleType]: classes.ProfilePicture
     if (window.location.pathname === '/students') {
         imgClass = classes.ProfilePictureSearch;
     }

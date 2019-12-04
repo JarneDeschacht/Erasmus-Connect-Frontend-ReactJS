@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
 import classes from './modal.module.css';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 function getModalStyle() {
   const top = 50;
@@ -26,6 +27,7 @@ const SimpleModal = props => {
         onClose={props.onClose}
       >
         <div style={modalStyle} className={classes.Modal}>
+        <CloseOutlinedIcon className={classes.Close} onClick={props.onClose}/>
           {props.children}
         </div>
       </Modal>

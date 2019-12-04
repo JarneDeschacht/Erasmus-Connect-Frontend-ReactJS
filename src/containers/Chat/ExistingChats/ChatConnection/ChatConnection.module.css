@@ -1,0 +1,45 @@
+.Container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 10fr ;
+    border: white solid 2px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.UserName{
+    background-color: white;
+    color: #1c81f1;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 4px;
+}
+
+.PictureContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.ContentContainer{
+    margin-left: 5px;
+}
+
+.UserName{
+    padding: 2.5px;
+    padding-top: 0px;
+    padding-right: 0px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.LastMessage{
+    padding: 2.5px;
+}
+
+
+

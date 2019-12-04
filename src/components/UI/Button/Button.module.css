@@ -23,6 +23,7 @@
 }
 
 .SmallButton{
-    padding: 2px 6px;
+    padding: 5px 15px;
     font-size: 1rem;;
+    border-radius: 5px;
 }

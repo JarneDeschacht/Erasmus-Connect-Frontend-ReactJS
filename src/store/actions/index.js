@@ -1,4 +1,3 @@
-
 export {
     checkAuthTimeout,
     authCheckState,
@@ -42,6 +41,9 @@ export {
     getConnectionsSuccess,
     getConnectionsFail,
     makeConnection,
+    makeConnectionStart,
+    makeConnectionSuccess,
+    makeConnectionFail,
     acceptConnection,
     acceptConnectionStart,
     acceptConnectionSuccess,
@@ -62,7 +64,13 @@ export {
     editErasmus,
     editErasmusFail,
     editErasmusStart,
-    editErasmusSuccess
+    editErasmusSuccess,
+    clearStudentConfirmationMessage,
+    clearProfile,
+    getNotificationStatus,
+    getNotificationStatusStart,
+    getNotificationStatusSuccess,
+    getNotificationStatusFail
 } from './student';
 export {
     fetchCountries,
@@ -78,5 +86,10 @@ export {
     selectChat,
     sendMessage,
     sendMessageStart,
-    sendMessagefail
+    sendMessagefail,
+    getLastMessageOfConversation,
+    getLastMessageOfConversationStart,
+    getLastMessageOfConversationSuccess,
+    getLastMessageOfConversationFail,
+    newMessage
 } from './chat'

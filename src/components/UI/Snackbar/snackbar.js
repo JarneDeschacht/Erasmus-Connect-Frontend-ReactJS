@@ -100,12 +100,17 @@ const SnackbarComponent = props => {
     () => dispatch(actions.clearErrorsAuth()),
     [dispatch]
   );
+  const onShowStudentConfirmation = useCallback(
+    () => dispatch(actions.clearStudentConfirmationMessage()),
+    [dispatch]
+  );
 
   const confirmMessage = useSelector(state => state.auth.confirmationMessage);
   const connectionError = useSelector(state => state.student.connectionError);
   const authError = useSelector(state => state.auth.error);
   const forgotPasswordError = useSelector(state => state.auth.forgotPasswordError);
   const updatePasswordError = useSelector(state => state.auth.updatePasswordError);
+  const studentConfirmationMessage = useSelector(state => state.student.confirmationMessage);
 
   const [open, setOpen] = React.useState(true);
   const [variant, setVariant] = React.useState("success");
@@ -117,6 +122,7 @@ const SnackbarComponent = props => {
     }
     if (variant === "success")
       onShowConfirmation();
+      onShowStudentConfirmation();
     if (variant === "error") {
       onShowConnectionError();
       onShowAuthError();
@@ -129,6 +135,12 @@ const SnackbarComponent = props => {
     setVariant("success");
     setMessage(confirmMessage);
   }, [confirmMessage]);
+
+  useEffect(() => {
+    setOpen(studentConfirmationMessage !== null);
+    setVariant("success");
+    setMessage(studentConfirmationMessage);
+  }, [studentConfirmationMessage]);
 
   useEffect(() => {
     setOpen(connectionError !== null);
