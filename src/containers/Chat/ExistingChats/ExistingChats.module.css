@@ -1,6 +1,21 @@
-.ExistingChats{
-    width: 15%;
+.ExistingChats {
+    width: 50px;
     height: 70vh;
     box-sizing: border-box;
-    margin-right: 50px;
+    margin: 0px;
+    padding: 0px;
+
 }
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    .ExistingChats {
+        width: 15%;
+        margin-right: 50px; 
+    }
+}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

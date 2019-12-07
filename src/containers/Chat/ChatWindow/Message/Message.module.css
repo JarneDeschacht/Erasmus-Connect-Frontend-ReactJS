@@ -1,4 +1,4 @@
-    .Container{
+    /* .Container{
         margin-bottom: 25px;
     }
         
@@ -17,4 +17,49 @@
     .Date{
         margin-top: 2px;
         margin-left: 5px;
+    } */
+
+    .Container{
+        margin-bottom: 25px;
     }
+        
+    .Content{
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 10px;
+        width: 140px;
+        position: relative;
+    }
+
+    .Right{
+        margin-left: 25%;
+    }
+
+    .Date{
+        margin-top: 2px;
+        margin-left: 5px;
+    }
+@media (min-width: 576px) {
+    .Content{
+        width: 80%;
+    }
+    .Right{
+        margin-left: 30%;
+    }
+    .Left{
+        margin-right: 30%;
+    }
+
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+    
+}
+
+@media (min-width: 1200px) {
+   
+}

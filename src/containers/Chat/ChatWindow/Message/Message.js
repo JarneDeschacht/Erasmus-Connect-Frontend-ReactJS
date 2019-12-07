@@ -14,6 +14,9 @@ const Message = props => {
     if (props.sender.toString() === userId.toString()) {
         messageStyle.push(classes.Right)
     }
+    else{
+        messageStyle.push(classes.Left)
+    }
 
     let message = (
         <div

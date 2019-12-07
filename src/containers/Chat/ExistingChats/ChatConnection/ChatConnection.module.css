@@ -1,23 +1,60 @@
-.Container{
+/* .Container {
     margin-top: 10px;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 1fr 10fr ;
+    grid-template-columns: 1fr 10fr;
     border: white solid 2px;
     border-radius: 10px;
     box-sizing: border-box;
     align-items: center;
-}
+} */
 
-.UserName{
+/* .UserName {
     background-color: white;
     color: #1c81f1;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    padding: 4px;
+    padding: 2.5px;
+    padding-top: 0px;
+    padding-right: 0px;
+    width: 100%;
+    box-sizing: border-box;
+} */
+
+/* .PictureContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+} */
+
+/* .ContentContainer {
+    margin-left: 5px;
+} */
+
+/* .LastMessage {
+    padding: 2.5px;
+} */
+
+.Container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: white solid 2px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
-.PictureContainer{
+.ContentContainer {
+    display: none;
+}
+
+.PictureContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,21 +64,36 @@
     height: 40px;
 }
 
-.ContentContainer{
-    margin-left: 5px;
+
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    .Container {
+        display: grid;
+        grid-template-columns: 1fr 10fr;
+    }
+    .ContentContainer {
+        display: block;
+        margin-left: 5px;
+    }
+    .UserName {
+        background-color: white;
+        color: #1c81f1;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding: 2.5px;
+        padding-top: 0px;
+        padding-right: 0px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .LastMessage {
+        padding: 2.5px;
+    }
 }
 
-.UserName{
-    padding: 2.5px;
-    padding-top: 0px;
-    padding-right: 0px;
-    width: 100%;
-    box-sizing: border-box;
-}
+@media (min-width: 992px) {}
 
-.LastMessage{
-    padding: 2.5px;
-}
-
-
-
+@media (min-width: 1200px) {}
