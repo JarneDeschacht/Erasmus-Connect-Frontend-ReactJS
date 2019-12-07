@@ -56,10 +56,6 @@ const getLastMessageFail = (state, action) => {
 }
 
 const newMessage = (state, action) => {
-    console.log(state.messages);
-    console.log(action)
-
-
     const messages = state.messages;
     let lastKey = 0
     for (let key in messages) {

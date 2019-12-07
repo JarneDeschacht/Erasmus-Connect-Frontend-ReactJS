@@ -47,4 +47,6 @@
     width: calc(200% + 25px);
 }
 
-
+.SendMessage{
+   margin: 0px;
+}

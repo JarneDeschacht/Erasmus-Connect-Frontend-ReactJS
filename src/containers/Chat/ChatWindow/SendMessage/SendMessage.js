@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
 import { updateObject, checkValidity } from '../../../../shared/utility'
@@ -27,7 +27,12 @@ const SendMessage = props => {
 
     const loggedInUserId = localStorage.getItem('userId')
     const dispatch = useDispatch();
-    const onMessageSend = (sendToId, message) => dispatch(actions.sendMessage(loggedInUserId, sendToId, message))
+
+    const onMessageSend = useCallback(
+        (sendToId, message) => dispatch(actions.sendMessage(loggedInUserId, sendToId, message)),
+        [dispatch, loggedInUserId]
+      );
+
 
     const formElementsArray = [];
     for (let key in sendMessageForm) {
@@ -51,7 +56,7 @@ const SendMessage = props => {
         setSendMessageForm(updatedControls)
     }
 
-    const emptyMessageField = () => {
+    const emptyForm = () => {
         const updatedControls = updateObject(sendMessageForm, {
             message: updateObject(sendMessageForm.message, {
                 value: '',
@@ -62,28 +67,32 @@ const SendMessage = props => {
                 touched: false
             })
         });
-        setSendMessageForm(updatedControls);
+        setSendMessageForm(updatedControls)
     }
+
+   
 
     const onSubmit = event => {
         event.preventDefault()
-        onMessageSend(props.selectedUser, sendMessageForm.message.value);
-        emptyMessageField();
+        onMessageSend(props.selectedUser, sendMessageForm.message.value);  
+        emptyForm();  
     }
 
 
     let formInputs = formElementsArray.map(el => {
+        console.log(el)
         return (
             <Input
                 key={el.id}
-                invalid={!el.config.valid}
-                elementType={el.config.elementType}
-                elementConfig={el.config.elementConfig}
+                invalid={!el.config.message.valid}
+                elementType={el.config.message.elementType}
+                elementConfig={el.config.message.elementConfig}
                 changed={event => inputChangedHandler(event, el.id)}
-                shouldValidate={el.config.validation}
+                shouldValidate={el.config.message.validation}
                 errorMessage={"Message is empty"}
-                touched={el.config.touched}
-                value={el.config.value}
+                touched={el.config.message.touched}
+                value={el.config.message.value}
+                styleType="SendMessage"
             />
         )
     })

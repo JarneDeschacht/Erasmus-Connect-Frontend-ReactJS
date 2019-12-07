@@ -8,6 +8,12 @@ const input = props => {
 
     const inputClasses = [classes.Input];
 
+    if(props.styleType){
+        inputClasses.push(classes[props.styleType])
+    }
+
+    
+
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
     }
@@ -20,8 +26,7 @@ const input = props => {
         }
     }
 
-
-
+    console.log(props);
     switch (props.elementType) {
         case ('input'):
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
