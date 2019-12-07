@@ -2,7 +2,6 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import Button from "../Button/Button";
 import classes from "./ConnectionSummarty.module.css";
-import {useHistory} from "react-router-dom";
 import * as actions from "../../../store/actions/index";
 
 const ConnectionSummary = props => {

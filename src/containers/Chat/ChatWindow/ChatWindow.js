@@ -14,26 +14,42 @@ const ChatWindow = props => {
     const onFetchMessages = useCallback((userId, chatWithId) => dispatch(actions.getMessages(userId, chatWithId)), [dispatch])
     const onNewMessage = (message) => dispatch(actions.newMessage(message))
 
+
+    const [newMessage, setNewMessage] = useState(false);
+
     useEffect(() => {
         if (props.connection) {
             onFetchMessages(userId, props.connection.userId)
+            setNewMessage(false)
         }
-    }, [onFetchMessages, userId, props, messages])
+    }, [props.connection, newMessage, userId, onFetchMessages])
+
+    // onfec, userId, props, messages
 
     useEffect(() => {
         const socket = openSocket('http://localhost:8080/')
         socket.on('messages', data => {
-            console.log('data receiver')
             onNewMessage(data.message)
+            setNewMessage(true)
         })
     }, [])
 
-
-
+    useEffect(()=> {
+        var lastMessage = document.getElementById("last");
+        console.log(lastMessage)
+        if(lastMessage){
+            // lastMessage.scrollTop = lastMessage.scrollHeight;
+            lastMessage.scrollIntoView()
+        }
+    })
 
     let messageComponents = null;
     if (messages) {
+        const amountOfMessages = messages.length;
+        let counter = 0;
         messageComponents = messages.map(mes => {
+            counter++;
+
             return (
                 <Message
                     date={mes.sendDate}
@@ -41,12 +57,11 @@ const ChatWindow = props => {
                     key={mes.messageId}
                     sender={mes.sender}
                     receiver={mes.receiver}
+                    id={counter === amountOfMessages ? 'last' : ''}
                 />
             )
         })
     }
-
-
 
 
     return (

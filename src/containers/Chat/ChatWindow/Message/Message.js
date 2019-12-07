@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './Message.module.css'
+import Aux from '../../../../hoc/Auxiliary/Auxiliary'
 
 const Message = props => {
 
@@ -10,19 +11,41 @@ const Message = props => {
 
     const formattedDate = `${date.getHours()}:${date.getMinutes()}`
 
-    if(props.sender.toString() === userId.toString()){
+    if (props.sender.toString() === userId.toString()) {
         messageStyle.push(classes.Right)
     }
 
-    return(
-        <div className={messageStyle.join(' ')}>
-            <div className={classes.Content}>
-                {props.content}
+    let message = (
+        <div
+                className={messageStyle.join(' ')}>
+                <div className={classes.Content}>
+                    {props.content}
+                </div>
+                <div className={classes.Date}>
+                    {formattedDate}
+                </div>
             </div>
-            <div className={classes.Date}>
-                {formattedDate}
+    );
+    if (props.id) {
+        message = (
+            <div
+                id='last'
+                className={messageStyle.join(' ')}>
+                <div className={classes.Content}>
+                    {props.content}
+                </div>
+                <div className={classes.Date}>
+                    {formattedDate}
+                </div>
             </div>
-        </div>
+        )
+    }
+   
+    return (
+      
+       <Aux>
+           {message}
+       </Aux>
     )
 }
 
