@@ -5,6 +5,7 @@ import { updateObject, checkValidity } from '../../../../shared/utility'
 import Input from '../../../../components/UI/Input/Input'
 import Button from '../../../../components/UI/Button/Button'
 import classes from './SendMessage.module.css'
+import FontAwesome from 'react-fontawesome/lib/index'
 
 const SendMessage = props => {
 
@@ -89,7 +90,6 @@ const SendMessage = props => {
                 elementConfig={el.config.message.elementConfig}
                 changed={event => inputChangedHandler(event, el.id)}
                 shouldValidate={el.config.message.validation}
-                errorMessage={"Message is empty"}
                 touched={el.config.message.touched}
                 value={el.config.message.value}
                 styleType="SendMessage"
@@ -108,7 +108,11 @@ const SendMessage = props => {
                         clicked={event => onSubmit(event)}
                         disabled={!sendMessageForm.message.valid}
                     >
-                        SEND
+                        <FontAwesome 
+                        icon='fas fa-paper-plane'
+                        name='fas fa-paper-plane'
+                        className= 'fas fa-paper-plane' />
+                       
                </Button>
                 </div>
 

@@ -15,7 +15,7 @@ const ChatHead = props => {
             />
 
             <p className={classes.ChatHeadTitle}>
-                chat with <strong>{firstName} {lastName}</strong>
+                <span className={classes.ChatWith}>chat with</span> <strong>{firstName} {lastName}</strong>
             </p>
         </div>
     )

@@ -11,8 +11,9 @@
 
 @media (min-width: 768px) {
     .ExistingChats {
-        width: 15%;
+        width: 25%;
         margin-right: 50px; 
+        margin-left: 10px;
     }
 }
 

@@ -2,6 +2,8 @@ import React from 'react'
 import classes from './Message.module.css'
 import Aux from '../../../../hoc/Auxiliary/Auxiliary'
 
+
+
 const Message = props => {
 
     const userId = localStorage.getItem('userId')

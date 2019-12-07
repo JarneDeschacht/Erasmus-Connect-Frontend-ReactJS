@@ -8,15 +8,17 @@
     grid-template-columns: 1fr 3fr;
     box-sizing: border-box;
     align-items: center;
-
 }
 
+.ChatWith {
+    display: none;
+}
 
-.ChatHeadTitle{
+.ChatHeadTitle {
     font-size: 1.3em;
 }
 
-strong{
+strong {
     font-weight: 700;
     font-size: 1.5em;
 }
@@ -25,11 +27,14 @@ strong{
 
 @media (min-width: 576px) {}
 
-@media (min-width: 768px) { 
-    .ChatHeadTitle{
+@media (min-width: 768px) {
+    .ChatHeadTitle {
         font-size: 1.2em;
-    }}
-   
+    }
+    .ChatWith {
+        display: inline;
+    }
+}
 
 @media (min-width: 992px) {}
 
