@@ -11,7 +11,7 @@ const Main = () => {
 
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const isAuthenticated = useSelector(state => state.auth.idToken !== null);
-    const isNotification = useSelector(state => state.student.isNotification);
+    const isNotification = useSelector(state => state.student.isNotification); 
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
     const onGetNotificationStatus = useCallback((userId) => dispatch(actions.getNotificationStatus(userId)), [dispatch]);
 
@@ -19,7 +19,7 @@ const Main = () => {
         if ((isNavbarVisible)) {
             onNavbarDisplaySwitch();
         }
-    }, [onNavbarDisplaySwitch, isNavbarVisible,isAuthenticated]);
+    }, [onNavbarDisplaySwitch, isNavbarVisible, isAuthenticated]);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -35,9 +35,9 @@ const Main = () => {
             <header className={classes.BottomToolBar}>
                 <nav>
                     <ul className={classes.NavigationItems}>
-                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
                         <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
                         <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
+                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
                     </ul>
                 </nav>
             </header>
@@ -52,15 +52,22 @@ const Main = () => {
     if (isAuthenticated) {
         content = (
             <div className={classes.Links}>
-                <NavLink to="/universities" exact>Find universities</NavLink>
-                <div>
-                    <div style={{ position: 'relative', margin: "0 !important" }}>
-                        {notificationBubble}
-                        <NavLink to="/my-profile" exact>My profile</NavLink>
-                    </div>
+                <div className={classes.Brand}>
+                    <h1><span>ESN</span>PARTNER</h1>
+                    <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
                 </div>
-                <NavLink to="/students" exact>Find student</NavLink>
-                <NavLink to="/chat" exact>Chat</NavLink>
+                <div className={classes.LinkItems}>
+                    <div>
+                        <div style={{ position: 'relative', margin: "0 !important" }}>
+                            {notificationBubble}
+                            <NavLink to="/my-profile" exact>My profile</NavLink>
+                        </div>
+                    </div>
+                    <NavLink to="/students" exact>Find student</NavLink>
+                    <NavLink to="/chat" exact>Chat</NavLink>
+                    <NavLink to="/logout" exact>Logout</NavLink>
+                </div>
+
             </div>
         )
     }

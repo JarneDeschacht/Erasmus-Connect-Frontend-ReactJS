@@ -15,26 +15,6 @@
     border: none;
 }
 
-.Modal::-webkit-scrollbar {
-    width: 10px;
-}
-
-.Modal::-webkit-scrollbar-track {
-    background: linear-gradient(rgb(0, 174, 239), rgb(67, 64, 243));
-    border-radius: 5px;
-    /* border: 1.5px solid white; */
-}
-
-.Modal::-webkit-scrollbar-thumb {
-    background: white;
-    border-radius: 5px;
-}
-
-.Modal::-webkit-scrollbar-thumb:hover {
-    background: rgb(185, 185, 185);
-
-}
-
 .Close{
     position: fixed;
     top: 10px;
