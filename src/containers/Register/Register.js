@@ -11,6 +11,7 @@ import {
 } from "../../shared/utility";
 import { giveCustomErrorMessage } from "../../shared/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { useHistory } from "react-router-dom";
 
 const Register = props => {
   const [registerForm, setRegisterForm] = useState({
@@ -151,7 +152,7 @@ const Register = props => {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
-
+  let history = useHistory()
 
   let formElementsArray = [];
   //creating an array with an object for each form control
@@ -240,6 +241,7 @@ const Register = props => {
     }
 
     onRegister(data);
+    history.push('/register-erasmus')
   };
 
   let errorMessage = null;

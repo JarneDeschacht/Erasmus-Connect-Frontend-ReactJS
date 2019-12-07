@@ -91,5 +91,6 @@ export {
     getLastMessageOfConversationStart,
     getLastMessageOfConversationSuccess,
     getLastMessageOfConversationFail,
-    newMessage
+    newMessage,
+    goToChat
 } from './chat'

@@ -81,7 +81,7 @@ const SendMessage = props => {
 
 
     let formInputs = formElementsArray.map(el => {
-        console.log(el)
+      
         return (
             <Input
                 key={el.id}

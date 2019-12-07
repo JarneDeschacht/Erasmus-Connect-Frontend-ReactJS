@@ -68,9 +68,7 @@ const Profile = props => {
 
   let notificationBubble = null;
   if (isNotification) {
-    notificationBubble = (<div className={classes.NotificationBubble}></div>)
-    console.log(isNotification);
-    
+    notificationBubble = (<div className={classes.NotificationBubble}></div>)    
   }
 
   let content = <Spinner />;

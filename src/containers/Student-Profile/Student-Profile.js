@@ -7,6 +7,7 @@ import Button from "../../components/UI/Button/Button";
 import * as actions from "../../store/actions";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import Aux from "../../hoc/Auxiliary/Auxiliary";
+import { useHistory } from "react-router-dom";
 
 const StudentProfile = props => {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ const StudentProfile = props => {
     [dispatch]
   );
 
+  let selectedUserId = props.match.params.id
+  const onGoToChat = () => dispatch(actions.goToChat(selectedUserId))
+
   const connectionStatus = {
     exists: useSelector(state => state.student.connectionExists),
     requestSent: useSelector(state => state.student.connectionRequestSent),
@@ -45,6 +49,10 @@ const StudentProfile = props => {
 
   const studentProfile = useSelector(state => state.student.profile);
   const userId = localStorage.getItem("userId");
+  let history = useHistory()
+  
+  
+
 
   useEffect(() => {
     clearProfile();
@@ -65,7 +73,8 @@ const StudentProfile = props => {
   };
 
   const onChat = () => {
-
+    history.push('/chat');  
+    onGoToChat()
   };
 
   let connectButton = null;
