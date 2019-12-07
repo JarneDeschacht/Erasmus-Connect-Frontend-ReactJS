@@ -15,7 +15,7 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { watchAuth, watchStudent,watchCountries, watchChat } from './store/sagas/index';
 
-const composeEnhancers = compose;
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducers = combineReducers({
     auth: authReducer,

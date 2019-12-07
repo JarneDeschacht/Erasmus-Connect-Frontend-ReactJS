@@ -14,14 +14,3 @@
 .Toolbar nav {
     width: 75%;
 }
-
-@media (max-width: 576px) {
-    .Toolbar {
-        bottom: 0;
-        left: 0;
-    }
-    .Toolbar nav {
-        width: 100%;
-    }
-}
-

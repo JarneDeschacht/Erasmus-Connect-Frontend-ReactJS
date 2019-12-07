@@ -28,6 +28,13 @@ const Profile = props => {
   );
   const onFetchConnections = userId => dispatch(actions.getConnections(userId));
 
+  const isNotification = useSelector(state => state.student.isNotification);
+  const onGetNotificationStatus = useCallback((userId) => dispatch(actions.getNotificationStatus(userId)), [dispatch]);
+
+  useEffect(() => {
+    onGetNotificationStatus(userId);
+  }, [onGetNotificationStatus, userId]);
+
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
@@ -58,6 +65,13 @@ const Profile = props => {
   useEffect(() => {
     onFetchProfile();
   }, [onFetchProfile]);
+
+  let notificationBubble = null;
+  if (isNotification) {
+    notificationBubble = (<div className={classes.NotificationBubble}></div>)
+    console.log(isNotification);
+    
+  }
 
   let content = <Spinner />;
 
@@ -158,14 +172,16 @@ const Profile = props => {
               <h2>{profile.homeUniversity.name || "-----"}</h2>
             </div>
             <div>
-              <Button
-                clicked={() => {
-                  openConnectionsModal();
-                }}
-              >
-                My friends
+              <div style={{position: 'relative'}}>
+                {notificationBubble}
+                <Button
+                  clicked={() => {
+                    openConnectionsModal();
+                  }} maxWidth>
+                  My connections
               </Button>
-              <NavLink className={classes.NavLink} exact to="/edit-profile"><Button>Edit Profile</Button></NavLink>
+              </div>
+              <NavLink className={classes.NavLink} exact to="/edit-profile"><Button maxWidth>Edit Profile</Button></NavLink>
 
             </div>
           </div>
@@ -183,8 +199,8 @@ const Profile = props => {
               <h2>{profile.erasmusUniversity.name || "-----"}</h2>
             </div>
             <div>
-              <Button>Social profiles</Button>
-              <NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button>Edit Erasmus</Button></NavLink>
+              <Button maxWidth>Social profiles</Button>
+              <NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button maxWidth>Edit Erasmus</Button></NavLink>
             </div>
           </div>
         </div>

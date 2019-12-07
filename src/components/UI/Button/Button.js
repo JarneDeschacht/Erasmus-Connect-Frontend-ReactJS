@@ -9,6 +9,9 @@ const button = props => {
     if (props.smallButton) {
         styles.push(classes.SmallButton);
     }
+    if (props.maxWidth) {
+        styles.push(classes.MaxWidth);
+    }
     return (
         <button
             className={styles.join(' ')}
