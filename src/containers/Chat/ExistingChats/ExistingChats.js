@@ -8,12 +8,14 @@ const ExistingChats = props => {
     const dispatch = useDispatch();
     const userId = localStorage.getItem('userId');
     const connections = useSelector(state => state.student.connections);
-    // const chatLoading = useSelector(state => state.chat.loading) 
+    // const messages = useSelector(state => state.chat.messages)
+
 
     const onFetchConnections = useCallback((userId) => dispatch(actions.getConnections(userId)), [dispatch])
     const onSelectChat = useCallback((connectionId) => dispatch(actions.selectChat(connectionId)), [dispatch])
     const onFetchLastMessageOfConversation = useCallback((connection_ids) => dispatch(actions.getLastMessageOfConversation(connection_ids)), [dispatch])
 
+    console.log(connections)
 
     useEffect(() => {
         onFetchConnections(userId)
@@ -30,7 +32,7 @@ const ExistingChats = props => {
         onFetchLastMessageOfConversation(connection_ids)
 
     }, [connections, onFetchLastMessageOfConversation])
-
+  
 
     //loadin the first connection as default
     useEffect(() => {
@@ -44,11 +46,10 @@ const ExistingChats = props => {
     }
 
     let connectionList = null;
+   
     if (connections) {
+        connections.connections.sort((a, b) => a.lastMessageDate < b.lastMessageDate ? 1: -1)
         connectionList = connections.connections.map(con => {
-
-
-            // console.log(chatLoading)
             return (
                 <ChatConnection
                     key={con.connectionId}
@@ -56,6 +57,7 @@ const ExistingChats = props => {
                     userId={con.userId}
                     imageUrl={con.imageUrl}
                     connectionId={con.connectionId}
+                    lastMessage={con.lastMessage}
                     clicked={() => clickedHandler({
                         connectionId: con.connectionId,
                         firstName: con.firstName,
