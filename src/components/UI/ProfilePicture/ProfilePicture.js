@@ -5,7 +5,8 @@ import ProfilePicture from '../../../assets/images/default.png';
 const profilePicture = props => {
 
 
-    let imgClass = props.styleType?classes[props.styleType]: classes.ProfilePicture
+    let imgClass = props.styleType === 'ChatHead'?classes[props.styleType]: classes.ProfilePicture;
+    imgClass = props.styleType === 'Profile'?classes[props.styleType]: classes.ProfilePicture;
     if (window.location.pathname === '/students') {
         imgClass = classes.ProfilePictureSearch;
     }

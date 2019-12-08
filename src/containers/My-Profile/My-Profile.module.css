@@ -1,14 +1,15 @@
 .Profile{
     width: 75%;
     margin: 6% auto;
+    text-align: center;
 }
 .ProfileColumns{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 5%;
+    grid-template-columns: 1fr;
 }
 .Title{
-    font-size: 3rem;
+    font-size: 2.5rem;
+    width: 100%;
     text-align: center;
 }
 .GoBack{
@@ -34,6 +35,29 @@
     position: absolute;
     top: -9.5px;
     right: -9.5px;
-    /* right: 110px; */
     margin: 0 !important;
+}
+
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+    .ProfileColumns{
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 5%; 
+    }
+    .Title{
+        font-size: 3rem;
+    }
+    .Profile{
+        text-align: left;
+    }
+}
+
+@media (min-width: 1200px) {
 }

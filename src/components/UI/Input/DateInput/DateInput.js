@@ -1,31 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import classes from './DateInput.module.css';
-
-function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-        width,
-        height
-    };
-}
 
 const DateInput = props => {
 
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
     let placeholders = ['Day', 'Month', 'Year']
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    if(windowDimensions.width < 576) {
-        placeholders = ['dd', 'mm', 'yyyy']
-    }
 
     return (
         <div className={classes.DateInput}>

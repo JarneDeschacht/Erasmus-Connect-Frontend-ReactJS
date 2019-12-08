@@ -1,8 +1,22 @@
 .Map:first-child{
-    height: 15rem;
-    width: 20rem;
+    height: 11rem;
+    width: 16rem;
+    margin: 0 auto;
 }
 .Map:first-child div {
-    max-height: 15rem !important;
-    max-width: 20rem !important;
+    max-height: 11rem !important;
+    max-width: 16rem !important;
+}
+
+
+@media (min-width: 576px) {
+    .Map:first-child{
+        height: 15rem;
+        width: 20rem;
+        margin: auto;
+    }
+    .Map:first-child div {
+        max-height: 15rem !important;
+        max-width: 20rem !important;
+    }
 }

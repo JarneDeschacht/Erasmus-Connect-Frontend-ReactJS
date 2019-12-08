@@ -11,6 +11,7 @@ import {
 } from "../../shared/utility";
 import { giveCustomErrorMessage } from "../../shared/utility";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import FontAwesome from 'react-fontawesome';
 
 const Register = props => {
   const [registerForm, setRegisterForm] = useState({
@@ -286,7 +287,6 @@ const Register = props => {
       <form>
         <div className={classes.RegisterContainer}>{formInputs}</div>
         <div className={classes.ButtonRow}>
-          <span>{/* checkbox to accept terms of use and coockies */}</span>
           <Button
             clicked={event => onSubmit(event)}
             disabled={!allControlsAreValid}
@@ -302,7 +302,7 @@ const Register = props => {
       <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
       {errorMessage}
       {regForm}
-      <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
+      <h2 onClick={() => setShouldRedirect(true)}><FontAwesome name="fas fa-arrow-circle-left" size="2x" /></h2>
     </div>
   );
 };

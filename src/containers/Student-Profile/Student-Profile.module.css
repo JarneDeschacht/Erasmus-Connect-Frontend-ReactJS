@@ -5,9 +5,7 @@
 .ProfileColumns{
     margin-top: 5%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    
-    column-gap: 5%;
+    grid-template-columns: 1fr;
 }
 .Title{
     font-size: 3rem;

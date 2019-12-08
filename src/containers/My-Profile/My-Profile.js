@@ -38,7 +38,7 @@ const Profile = props => {
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    if (!isNavbarVisible) {
+    if (isNavbarVisible) {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
@@ -145,7 +145,7 @@ const Profile = props => {
         <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
         <div className={classes.ProfileColumns}>
           <div>
-            <ProfilePicture imageUrl={profile.imageUrl} />
+            <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} />
             <h2>
               {profile.firstName} {profile.lastName}
             </h2>

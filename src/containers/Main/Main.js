@@ -11,7 +11,7 @@ const Main = () => {
 
     const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
     const isAuthenticated = useSelector(state => state.auth.idToken !== null);
-    const isNotification = useSelector(state => state.student.isNotification); 
+    const isNotification = useSelector(state => state.student.isNotification);
     const onNavbarDisplaySwitch = useCallback(() => dispatch(actions.navbarSwitchDisplay()), [dispatch]);
     const onGetNotificationStatus = useCallback((userId) => dispatch(actions.getNotificationStatus(userId)), [dispatch]);
 
@@ -30,14 +30,16 @@ const Main = () => {
 
     let content = (
         <div className={classes.FrontPage}>
-            <h1><span>ESN</span>PARTNER</h1>
-            <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
+            <div className={classes.Brand}>
+                <h1><span>ESN</span>PARTNER</h1>
+                <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
+            </div>
             <header className={classes.BottomToolBar}>
                 <nav>
                     <ul className={classes.NavigationItems}>
+                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
                         <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
                         <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
-                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
                     </ul>
                 </nav>
             </header>
@@ -52,7 +54,7 @@ const Main = () => {
     if (isAuthenticated) {
         content = (
             <div className={classes.Links}>
-                <div className={classes.Brand}>
+                <div className={[classes.Brand,classes.BrandLoggedIn].join(' ')}>
                     <h1><span>ESN</span>PARTNER</h1>
                     <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
                 </div>

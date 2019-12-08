@@ -4,9 +4,39 @@ import apiKey from '../../../shared/GoogleApiKey';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 import axios from 'axios';
 
+function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+        width,
+        height
+    };
+}
+
 const MapContainer = (props) => {
 
     const [location, setLocation] = useState(null);
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const mapStyles = {
+        borderRadius: '15px',
+        height: '11rem',
+        width: '16rem',
+        display: 'block',
+    };
+
+    if (windowDimensions.width >= 576) {
+        mapStyles.height = '15rem';
+        mapStyles.width = '20rem';
+    }
 
     const fetchGeoCoding = address => {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}&language=en`).then(
@@ -24,12 +54,7 @@ const MapContainer = (props) => {
         fetchGeoCoding(props.address);
     }, [props.address])
 
-    const mapStyles = {
-        borderRadius: '15px',
-        height: '15rem',
-        width: '20rem',
-        display: 'block',
-    };
+
 
     return location ? <div className={classes.Map}>
         <Map

@@ -122,7 +122,6 @@ const StudentProfile = props => {
           </div>
           <div>
             {connectButton}
-            <Button>Edit studentProfile</Button>
           </div>
         </div>
         <div>
@@ -139,7 +138,6 @@ const StudentProfile = props => {
             <h2>{studentProfile.erasmusUniversity.name || '-----'}</h2>
           </div>
           <div>
-            <Button>Manage photos</Button>
             <Button>Social profiles</Button>
           </div>
         </div>

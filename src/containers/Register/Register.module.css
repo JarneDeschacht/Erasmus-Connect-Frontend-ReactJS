@@ -1,9 +1,10 @@
 .Register{
-    width: 55%;
+    width: 80%;
     margin: 4% auto;
 }
 .Register h1{
     margin-bottom: 5%;
+    font-size: 1.5rem;
 }
 .Register a,.Register h2{
     cursor: pointer;
@@ -16,13 +17,12 @@
     font-weight: bold;
 }
 .Register h2{
-    margin: 0;
+    margin-top: 5%;
 }
 
 .RegisterContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 25px;
+    grid-template-columns: 1fr;
 }
 
 .ErrorMessage{
@@ -36,26 +36,45 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 576px) {
     .Register{
-        width: 90%;
-        margin-top: 5vh;
+        width: 65%;
     }
     .Register h1{
-        font-size: 2em;
-    }
-
-    .RegisterContainer{
-        grid-column-gap: 10px;
+        font-size: 2rem;
     }
 }
 
-@media (min-width: 576px) {}
+@media (min-width: 768px) {
+    .RegisterContainer{
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 25px;
+    }
+    .Register{
+        width: 75%;
+    }
+    .ButtonRow{
+        flex-direction: row-reverse;
+    }
+    .Register h2{
+        margin-top: 0;
+    }
+}
 
-@media (min-width: 768px) {}
+@media (min-width: 992px) {
+    .Register{
+        width: 70%;
+    }
+    .Register h1{
+        font-size: 2.5rem;
+    }
+}
 
-@media (min-width: 992px) {}
-
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    .Register{
+        width: 60%;
+    }
+}
