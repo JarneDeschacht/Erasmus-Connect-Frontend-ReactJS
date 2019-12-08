@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { checkValidity, updateObject } from "../../../shared/utility";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
@@ -45,6 +45,21 @@ const SetNewPassword = props => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [allControlsAreValid, setAllControlsAreValid] = useState(false);
 
+  const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+
+  const onNavbarDisplaySwitch = useCallback(
+    () => dispatch(actions.navbarSwitchDisplay()),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (isNavbarVisible) {
+      onNavbarDisplaySwitch();
+    }
+  }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
+
+
   const formElementsArray = [];
   for (let key in newPasswordForm) {
     formElementsArray.push({
@@ -52,6 +67,7 @@ const SetNewPassword = props => {
       config: newPasswordForm[key]
     });
   }
+
 
   const inputChangedHandler = (event, controlName) => {
     let valid = true;
@@ -138,12 +154,14 @@ const SetNewPassword = props => {
       {redirect}
       <form className={classes.SetNewPasswordForm}>
         {formInputs}
-        <Button
-          clicked={event => onSubmit(event)}
-          disabled={!allControlsAreValid}
-        >
-          change passwords
+        <div className={classes.ButtonReset}>
+          <Button
+            clicked={event => onSubmit(event)}
+            disabled={!allControlsAreValid}
+          >
+            change passwords
         </Button>
+        </div>
       </form>
     </div>
   );

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { Redirect, NavLink } from 'react-router-dom';
 import * as actions from '../../store/actions/index';
+import FontAwesome from 'react-fontawesome/lib/index'
+
 
 const Login = props => {
     const [loginForm, setLoginForm] = useState({
@@ -93,6 +95,7 @@ const Login = props => {
         const extraErr = el.id === 'password' ? ' (min 6 chars)' : '';
         return (
             <Input
+                label={el.config.elementConfig.placeholder}
                 key={el.id}
                 invalid={!el.config.valid}
                 elementType={el.config.elementType}
@@ -107,15 +110,12 @@ const Login = props => {
     });
 
     let form = (
-        <form>
+        <form >
             {formInputs}
-            <div>
-                {/* <p
+            <div className={classes.FormControls}>
+                <NavLink to="/forgotPassword"
                     className={classes.ForgotPassword}
-
-                >forgot password?</p> */}
-
-                <NavLink to="/forgotPassword" exact>forgot password</NavLink>
+                    exact>forgot password</NavLink>
                 <Button
                     clicked={(event) => onSubmit(event)}
                 // disabled={false}
@@ -140,8 +140,13 @@ const Login = props => {
                 <h1>WELCOME BACK, YOUR ERASMUS PARTNERS HAVE BEEN WAITING FOR YOU</h1>
                 {redirect}
                 {form}
-                <NavLink to="/register" exact>Create a new account</NavLink>
-                <h2 onClick={() => setShouldRedirect(true)}>Go Back</h2>
+                <NavLink to="/register" className={classes.CreateNew} exact>Create a new account</NavLink>
+                <h2 onClick={() => setShouldRedirect(true)}>
+                    <FontAwesome
+                        name='fas fa-arrow-circle-left'
+                        size='2x'
+                    />
+                </h2>
             </div>
         </div>
     );

@@ -9,24 +9,6 @@
 }
 
 
-.Conversation::-webkit-scrollbar {
-    width: 10px;
-}
-
-.Conversation::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 5px;
-}
-
-.Conversation::-webkit-scrollbar-thumb {
-    background: rgb(31,124,241);
-    border-radius: 5px;
-}
-
-.Conversation::-webkit-scrollbar-thumb:hover {
-    background: rgb(31,124,241);
-}
-
 @media (min-width: 576px) {}
 
 @media (min-width: 768px) {
