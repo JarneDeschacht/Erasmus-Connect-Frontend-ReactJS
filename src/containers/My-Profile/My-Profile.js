@@ -38,7 +38,7 @@ const Profile = props => {
   const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    if (isNavbarVisible) {
+    if (!isNavbarVisible) {
       onNavbarDisplaySwitch();
     }
   }, [onNavbarDisplaySwitch, isNavbarVisible]);
@@ -68,9 +68,7 @@ const Profile = props => {
 
   let notificationBubble = null;
   if (isNotification) {
-    notificationBubble = (<div className={classes.NotificationBubble}></div>)
-    console.log(isNotification);
-    
+    notificationBubble = (<div className={classes.NotificationBubble}></div>)    
   }
 
   let content = <Spinner />;

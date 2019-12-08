@@ -1,21 +1,14 @@
 .Login {
-    width: 90%;
+    width: 85%;
     margin: 4% auto;
     display: grid;
     justify-content: center;
     align-items: center;
 }
 
-.Login>div {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
 .Login h1 {
     margin-bottom: 10%;
+    font-size: 1.2em !important;
 }
 
 .ForgotPassword {
@@ -24,15 +17,27 @@
 }
 
 .Login form {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
-.Login form div:last-of-type {
+.CreateNew{
+    margin-top: 15px !important;
+    font-size: 1.1em !important;
+}
+
+.FormControls {
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column-reverse;
     justify-content: space-between;
+}
+
+.ForgotPassword {
+    font-size: 1em !important;
+    font-weight: normal !important;
+    margin-top: 0px !important;
 }
 
 .ErrorMessage {
@@ -46,37 +51,27 @@
     display: block;
     text-align: center;
     margin-top: 7%;
-    font-size: 2rem;
     text-decoration: none;
     color: white;
     font-weight: bold;
 }
 
-@media (max-width: 576px) {
-    .Login {
-        margin-top: 6vh;
-    }
-    .Login h1 {
-        font-size: 2em;
-    }
-    .Login form>div:last-of-type {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-    .Login form>div:last-of-type a {
-        font-size: 1.5em;
-        margin-top: 0;
-    }
-}
-
 @media (min-width: 576px) {
     .Login form {
-        width: 30%;
+        width: 45%;
+    }
+
+    .Login h1{
+        font-size: 2em !important;
     }
 }
 
 @media (min-width: 768px) {}
 
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+    .Login h1{
+        font-size: 3em !important;
+    }
+}
 
 @media (min-width: 1200px) {}

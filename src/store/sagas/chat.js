@@ -36,7 +36,7 @@ export function* sendMessageSaga(action) {
 export function* getLastMessageOfConversationSaga(action) {
     yield put(actions.getLastMessageOfConversationStart())
     try {
-        const response = yield axiosCustom.get(`/getLastMessageOfConversationSaga/${JSON.stringify(action.connection_ids)}`)
+        const response = yield axiosCustom.get(`/getLastMessageOfConversation/${JSON.stringify(action.connection_ids)}`)
         yield put(actions.getLastMessageOfConversationSuccess(response.data))
     } catch (err) {
         yield put(actions.getLastMessageOfConversationFail())

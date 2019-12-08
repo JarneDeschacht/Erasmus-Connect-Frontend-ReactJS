@@ -8,6 +8,8 @@
         border-radius: 10px;
         width:  70%;
         position: relative;
+    
+        
     }
 
     .Right{
@@ -18,6 +20,8 @@
         margin-top: 2px;
         margin-left: 5px;
     }
+
+    
 @media (min-width: 576px) {
     .Content{
         width: 80%;

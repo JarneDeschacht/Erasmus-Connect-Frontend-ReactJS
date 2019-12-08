@@ -86,8 +86,16 @@ export const getLastMessageOfConversationSuccess = (messages) => {
 }
 
 export const newMessage = (message) => {
-    return{
+    return {
         type: actionTypes.NEW_MESSAGE,
         message: message
+    }
+}
+
+
+export const goToChat = (selectedUserId) => {
+    return {
+        type: actionTypes.GO_TO_CHAT,
+        userId: selectedUserId
     }
 }

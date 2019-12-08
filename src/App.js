@@ -37,6 +37,7 @@ const App = props => {
       <Route path="/register" component={Register} />
       <Route path="/forgotPassword" exact component={ForgotPassword} />
       <Route path="/forgotPassword/:id" component={SetNewPassword} />
+      <Route path="/register-erasmus" component={RegisterErasmus} />
       <Route path="/" exact component={Main} />
       <Redirect to="/" />
     </Switch>
@@ -50,7 +51,7 @@ const App = props => {
         <Route path='/edit-profile' component={EditProfile} />
         <Route path='/edit-erasmus' component={EditErasmus} />
         <Route path="/logout" component={Logout} />
-        <Route path="/register-erasmus" component={RegisterErasmus} />
+        {/* <Route path="/register-erasmus" component={RegisterErasmus} /> */}
         <Route path="/students" exact component={Students} />
         <Route path="/chat" exact component={Chat} />
         <Route

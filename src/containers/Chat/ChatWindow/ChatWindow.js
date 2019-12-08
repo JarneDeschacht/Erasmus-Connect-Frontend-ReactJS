@@ -36,7 +36,7 @@ const ChatWindow = props => {
 
     useEffect(()=> {
         var lastMessage = document.getElementById("last");
-        console.log(lastMessage)
+      
         if(lastMessage){
             // lastMessage.scrollTop = lastMessage.scrollHeight;
             lastMessage.scrollIntoView()

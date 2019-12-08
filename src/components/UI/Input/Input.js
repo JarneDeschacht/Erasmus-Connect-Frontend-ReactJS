@@ -26,7 +26,7 @@ const input = props => {
         }
     }
 
-    console.log(props);
+  
     switch (props.elementType) {
         case ('input'):
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>

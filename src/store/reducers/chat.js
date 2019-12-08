@@ -70,11 +70,14 @@ const newMessage = (state, action) => {
         sendDate: action.message.sendDate,
         sender: action.message.sender
     }
-
-
-
      return updateObject(state, {
         messages: messages
+    })
+}
+
+const goToChat =(state, action) => {
+    return updateObject(state, {
+        selectedConnection: action.userId
     })
 }
 
@@ -89,6 +92,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_SUCCESS: return getLastMessageSuccess(state, action);
         case actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_FAIL: return getLastMessageFail(state, action);
         case actionTypes.NEW_MESSAGE: return newMessage(state, action);
+        case actionTypes.GO_TO_CHAT: return goToChat(state, action);
         default: return state;
     }
 }

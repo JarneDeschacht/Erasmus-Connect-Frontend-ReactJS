@@ -81,7 +81,7 @@ const SendMessage = props => {
 
 
     let formInputs = formElementsArray.map(el => {
-        console.log(el)
+      
         return (
             <Input
                 key={el.id}
@@ -109,9 +109,8 @@ const SendMessage = props => {
                         disabled={!sendMessageForm.message.valid}
                     >
                         <FontAwesome 
-                        icon='fas fa-paper-plane'
                         name='fas fa-paper-plane'
-                        className= 'fas fa-paper-plane' />
+                        />
                        
                </Button>
                 </div>

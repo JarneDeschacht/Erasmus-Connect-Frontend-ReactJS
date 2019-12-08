@@ -11,7 +11,7 @@ const Message = props => {
 
     const date = new Date(props.date);
 
-    const formattedDate = `${date.getHours()}:${date.getMinutes()}`
+    const formattedDate = `${date.getHours()}:${(date.getMinutes()<10?'0':'') + date.getMinutes()}`
 
     if (props.sender.toString() === userId.toString()) {
         messageStyle.push(classes.Right)

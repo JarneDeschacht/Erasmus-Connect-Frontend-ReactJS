@@ -1,11 +1,13 @@
 .ExistingChats {
-    width: 50px;
+    width: 55px;
     height: 70vh;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-
+    padding-right: 5px;
+    overflow-y: scroll;
 }
+
 
 @media (min-width: 576px) {}
 

@@ -1,6 +1,6 @@
 // import React, { useState } from './node_modules/react';
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
@@ -8,6 +8,7 @@ import { updateObject, checkValidity } from "../../../shared/utility";
 import * as actions from "../../../store/actions";
 import classes from "./ForgotPassword.module.css";
 import { Redirect } from "react-router-dom";
+import FontAwesome from "react-fontawesome"
 
 
 const Forgotpassword = props => {
@@ -34,6 +35,20 @@ const Forgotpassword = props => {
     state => state.auth.confirmationMessage
   );
   const [buttonPressed, setButtonPressed] = useState(false);
+  const isNavbarVisible = useSelector(state => state.navbar.showNavbar);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  const onNavbarDisplaySwitch = useCallback(
+    () => dispatch(actions.navbarSwitchDisplay()),
+    [dispatch]
+  );
+
+  useEffect(() => {
+    if (isNavbarVisible) {
+      onNavbarDisplaySwitch();
+    }
+  }, [onNavbarDisplaySwitch, isNavbarVisible]);
+
 
   const onSubmit = event => {
     setButtonPressed(true);
@@ -66,6 +81,7 @@ const Forgotpassword = props => {
   let formInputs = formElementsArray.map(el => {
     return (
       <Input
+        label={el.config.elementConfig.placeholder}
         key={el.id}
         invalid={!el.config.valid}
         elementType={el.config.elementType}
@@ -81,20 +97,35 @@ const Forgotpassword = props => {
   });
 
   let form = (
-    <form>
+    <form className={classes.ForgotPasswordForm}>
       {formInputs}
-      <Button
-        clicked={event => onSubmit(event)}
-        disabled={!forgotPasswordForm.email.valid}
-      >
-        Send email
+      <div className={classes.FormControls}>
+        <Button
+          clicked={event => onSubmit(event)}
+          disabled={!forgotPasswordForm.email.valid}
+        >
+          Send email
       </Button>
+        <h2 onClick={() => setShouldRedirect(true)}>
+          
+          <FontAwesome
+            name='fas fa-arrow-circle-left'
+            size='2x'
+            
+          />
+        </h2>
+      </div>
     </form>
   );
 
   let redirect = null;
   if (confirmationMessage && buttonPressed) {
     redirect = <Redirect to="/" />;
+  }
+
+  let goBack = null;
+  if (shouldRedirect) {
+    goBack = <Redirect to="/login" />
   }
 
   let topText = (
@@ -110,11 +141,11 @@ const Forgotpassword = props => {
   return (
     <div className={classes.ForgotPasswordContainer}>
       <h1>enter your email address</h1>
-
       {topText}
-
       {redirect}
+      {goBack}
       {form}
+
     </div>
   );
 };

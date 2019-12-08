@@ -42,7 +42,7 @@
 .Container {
     margin-top: 10px;
     margin-bottom: 10px;
-    border: white solid 2px;
+   border: none;
     border-radius: 10px;
     box-sizing: border-box;
     align-items: center;
@@ -52,6 +52,17 @@
 
 .ContentContainer {
     display: none;
+    max-width: 100%;
+   
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.LastMessage, .UserName{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .PictureContainer {
@@ -72,6 +83,7 @@
     .Container {
         display: grid;
         grid-template-columns: 1fr 10fr;
+        border: white solid 2px;
     }
     .ContentContainer {
         display: block;
