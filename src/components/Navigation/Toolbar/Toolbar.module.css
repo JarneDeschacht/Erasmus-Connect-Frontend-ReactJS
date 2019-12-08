@@ -11,6 +11,49 @@
     background-color: transparent;
 }
 
-.Toolbar nav {
+.Nav{
+    margin: 0 auto;
     width: 75%;
+    height: 100%;
+    text-align: center;
+}
+
+.Container {
+	max-width: 130rem;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.MenuToggle {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	font-size: 2rem;
+	cursor: pointer;
+	z-index: 1000;
+	display: none;
+}
+.Overlay{
+    background: linear-gradient(rgb(0,174,239),rgb(67,64,243)) no-repeat center center fixed;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .Container{
+        display: none;
+    }
+    .MenuToggle{
+        display: block;
+    }
+    .Overlay.MenuOpen,
+	.Nav.MenuOpen {
+		display: flex;
+        opacity: 1;
+	}
 }

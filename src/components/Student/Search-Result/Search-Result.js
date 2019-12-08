@@ -8,8 +8,8 @@ const SearchResult = props => {
             <ProfilePicture imageUrl={props.student.imageUrl} />
             <div>
                 <h2 className={classes.Title}>{props.student.name}</h2>
-                <h3>{props.student.school}</h3>
-                <small>{props.student.location}</small>
+                <h3 className={classes.SubTitle}>{props.student.school}</h3>
+                <small className={classes.Small}>{props.student.location}</small>
             </div>
         </div>
     );

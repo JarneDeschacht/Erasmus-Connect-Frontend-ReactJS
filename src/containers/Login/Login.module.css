@@ -7,8 +7,8 @@
 }
 
 .Login h1 {
-    margin-bottom: 10%;
-    font-size: 1.2em !important;
+    margin-bottom: 5%;
+    font-size: 1.5em !important;
 }
 
 .ForgotPassword {
@@ -22,8 +22,8 @@
 }
 
 .CreateNew{
-    margin-top: 15px !important;
-    font-size: 1.1em !important;
+    margin-top: 3% !important;
+    font-size: 1.2em !important;
 }
 
 .FormControls {
@@ -58,11 +58,11 @@
 
 @media (min-width: 576px) {
     .Login form {
-        width: 45%;
+        max-width: 45%;
     }
 
     .Login h1{
-        font-size: 2em !important;
+        font-size: 2.5em !important;
     }
 }
 
@@ -71,7 +71,22 @@
 @media (min-width: 992px) {
     .Login h1{
         font-size: 3em !important;
+        padding: 0 5%;
+    }
+    .Login form{
+        max-width: 35%;
+    }
+    .CreateNew{
+        margin-top: 5% !important;
+        font-size: 1.5em !important;
     }
 }
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    .Login form{
+        max-width: 25%;
+    }
+    .Login h1{
+        padding: 0 20%;
+    }
+}

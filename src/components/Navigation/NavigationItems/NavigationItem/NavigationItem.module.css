@@ -1,6 +1,6 @@
 .NavigationItem, .GoBack{
     height: 100%;
-    margin:0 3%;
+    margin: 3%;
     box-sizing: border-box;
     display: block;
 }
@@ -44,8 +44,17 @@
     left: 0; 
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     .NavigationItem a {
       font-size: 3rem;
+    }
+    .GoBack{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+    }
+    .NavigationItem, .GoBack{
+      margin: 4.5% 3%;
   }
   }

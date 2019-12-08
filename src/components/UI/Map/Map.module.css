@@ -13,7 +13,7 @@
     .Map:first-child{
         height: 15rem;
         width: 20rem;
-        margin: auto;
+        margin-left: 0;
     }
     .Map:first-child div {
         max-height: 15rem !important;

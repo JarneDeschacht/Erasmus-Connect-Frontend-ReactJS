@@ -1,21 +1,58 @@
 .Students{
     width: 75%;
     margin: 6% auto;
+    margin-top: 8%;
 }
 .SearchResults{
     margin: 5% 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5%;
-    row-gap: 50px;
+    grid-template-columns: 1fr;
+    row-gap: 25px;
 }
 .Header{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr;
 }
 .Header h1 {
-    text-align: left;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0 !important;
 }
 .Header Input {
     margin-top: 10%;
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+    .SearchResults{
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5%;
+        row-gap: 50px;
+    }
+    .Header{
+        grid-template-columns: 2fr 1fr;
+    }
+    .Header h1 {
+        text-align: left;
+        font-size: 2.25rem;
+    }
+    .Students{
+        margin-top: 12%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Header h1 {
+        font-size: 3rem;
+    }
+    .Students{
+        margin-top: 8%;
+    }
 }

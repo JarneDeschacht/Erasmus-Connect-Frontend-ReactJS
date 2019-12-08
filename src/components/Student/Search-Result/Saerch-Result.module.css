@@ -1,6 +1,6 @@
 .SearchResult{
     display: grid;
-    grid-template-columns: 2fr 8fr;
+    grid-template-columns: 1fr 3fr;
     border-radius: 15px;
     text-align: center;
     background-color: white;
@@ -8,8 +8,8 @@
     cursor: pointer;
 }
 .SearchResult img{
-    width: 180px;
-    height: 180px;
+    width: 125%;
+    height: 100%;
 }
 .SearchResult h3{
     margin: 5% 0;
@@ -21,6 +21,57 @@
     padding-bottom: 5%;
 }
 .Title{
-    font-size: 2.3rem;
+    font-size: 1.25rem;
     margin-bottom: 5px;
+}
+.SubTitle{
+    font-size: .90rem;
+}
+.Small{
+    font-size: .75rem;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+    .Title{
+        font-size: 2rem;
+    }
+    .SubTitle{
+        font-size: 1.5rem;
+    }
+    .Small{
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .SearchResult{
+        grid-template-columns: 1fr 3fr;
+    }
+    .Title{
+        font-size: 1.5rem;
+    }
+    .SubTitle{
+        font-size: 1.2rem;
+    }
+    .Small{
+        font-size: .9rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .SearchResult{
+        grid-template-columns: 1fr 3fr;
+    }
+    .Title{
+        font-size: 2rem;
+    }
+    .SubTitle{
+        font-size: 1.45rem;
+    }
+    .Small{
+        font-size: 1.2rem;
+    }
 }

@@ -63,7 +63,7 @@
     padding: 0;
     list-style: none;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: center;
     width: 100%;
     height: 100%;
@@ -71,9 +71,10 @@
 
 .NavigationItem {
     height: 100%;
-    margin: 0 5%;
+    width: 100%;
     box-sizing: border-box;
     display: block;
+    text-align: center;
 }
 
 .NavigationItem a {
@@ -117,8 +118,8 @@
     }
     .LinkItems {
         bottom: 1em;
-        justify-content: space-around;
         flex-direction: row;
+        justify-content: space-around;
     }
     .LinkItems a, .LinkItems>div {
         margin: 0.2em 2.5%;
@@ -140,11 +141,14 @@
     }
     .BottomToolBar nav ul {
         display: flex;
-        flex-wrap: wrap;
         flex-direction: row;
     }
     .BrandLoggedIn{
         width: 80%;
+    }
+    .NavigationItems{
+        width: 75%;
+        margin:0 auto;
     }
 }
 
