@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './Toolbar.module.css';
+import {withRouter} from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 
 function getWindowDimensions() {
@@ -10,7 +11,7 @@ function getWindowDimensions() {
     };
 }
 
-const Toolbar = () => {
+const Toolbar = props => {
 
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
@@ -24,16 +25,21 @@ const Toolbar = () => {
     }, []);
 
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const overlay = <div className={[classes.Overlay,menuOpen ? classes.MenuOpen : null].join(' ')}></div>
-    const nav = (
-        <nav className={[classes.Nav,menuOpen ? classes.MenuOpen : null].join(' ')}>
-            <NavigationItems />
-        </nav>)
-
     const openClickHandler = () => {
         setMenuOpen(!menuOpen);
     }
+
+    const back = <FontAwesome onClick={() => {
+        props.history.goBack();
+        setMenuOpen(false);
+    }} className={classes.BackMobile} name="fas fa-arrow-circle-left" size="2x" />
+    const overlay = <div className={[classes.Overlay,menuOpen ? classes.MenuOpen : null].join(' ')}></div>
+    const nav = (
+        <nav className={[classes.Nav,menuOpen ? classes.MenuOpen : null].join(' ')}>
+            <NavigationItems itemClicked={openClickHandler} />
+        </nav>)
+
+    
 
     const open = (
         <div className={classes.MenuToggle} onClick={openClickHandler}>
@@ -48,6 +54,7 @@ const Toolbar = () => {
 
     return (
         <header className={classes.Toolbar}>
+            {back}
             {open}
             {overlay}
             {container}
@@ -55,4 +62,4 @@ const Toolbar = () => {
     );
 }
 
-export default Toolbar;
+export default withRouter(Toolbar);

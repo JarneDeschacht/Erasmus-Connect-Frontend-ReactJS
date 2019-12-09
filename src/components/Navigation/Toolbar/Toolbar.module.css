@@ -41,6 +41,16 @@
     top: 0;
     bottom: 0;
     opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+}
+.BackMobile{
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1000;
     display: none;
 }
 
@@ -48,12 +58,11 @@
     .Container{
         display: none;
     }
-    .MenuToggle{
+    .MenuToggle,.BackMobile{
         display: block;
     }
-    .Overlay.MenuOpen,
-	.Nav.MenuOpen {
-		display: flex;
+	.Nav.MenuOpen,.Overlay.MenuOpen {
+        visibility: visible;
         opacity: 1;
-	}
+    }
 }

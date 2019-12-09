@@ -17,6 +17,7 @@
     display: inline-block;
     padding: 15px 20px;
     position: relative;
+    font-weight: 900;
 }
 .GoBack{
   margin-left: 0;
@@ -55,6 +56,6 @@
       cursor: pointer;
     }
     .NavigationItem, .GoBack{
-      margin: 4.5% 3%;
+      margin: 5.5% 3%;
   }
   }
