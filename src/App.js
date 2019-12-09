@@ -51,7 +51,7 @@ const App = props => {
         <Route path='/edit-profile' component={EditProfile} />
         <Route path='/edit-erasmus' component={EditErasmus} />
         <Route path="/logout" component={Logout} />
-        {/* <Route path="/register-erasmus" component={RegisterErasmus} /> */}
+        <Route path="/register-erasmus" component={RegisterErasmus} />
         <Route path="/students" exact component={Students} />
         <Route path="/chat" exact component={Chat} />
         <Route
