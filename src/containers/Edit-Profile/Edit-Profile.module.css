@@ -1,16 +1,20 @@
-.EditProfile{
-    width: 75%;
+.EditProfile {
+    width: 100%;
     margin: 0 auto;
     margin-top: 10%;
 }
-.EditProfile form{
-    width: 65%;
+
+.EditProfile form {
+    width: 90%;
     margin: 0 auto;
+    margin-top: 75px;
 }
-.EditProfile h1{
+
+.EditProfile h1 {
     margin-bottom: 5%;
 }
-.EditProfile a,.EditProfile h2{
+
+.EditProfile a, .EditProfile h2 {
     cursor: pointer;
     display: block;
     text-align: center;
@@ -20,23 +24,53 @@
     color: white;
     font-weight: bold;
 }
-.EditProfile h2{
+
+.EditProfile h2 {
     margin: 0;
 }
 
-.EditProfileContainer{
+
+.EditProfileContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: 1fr;
     grid-column-gap: 25px;
+    margin-top: 30px;
 }
-.ErrorMessage{
+
+.ErrorMessage {
     text-align: center;
     color: red;
     font-size: 2.5rem;
 }
-.ButtonRow{
+
+.ButtonRow {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    .EditProfileContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .EditProfile textarea{
+         width: calc(200% + 25px);
+    }
+
+    .EditProfile form {
+        width: 60%;
+        margin: 0 auto;
+        margin-top: 75px;
+    }
+
+    
+}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}
