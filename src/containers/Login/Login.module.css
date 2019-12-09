@@ -66,8 +66,11 @@
     }
 }
 
-@media (min-width: 768px) {}
-
+@media (min-width: 768px) {
+    .Login {
+        max-width: 1000px;
+    }
+}
 @media (min-width: 992px) {
     .Login h1{
         font-size: 3em !important;

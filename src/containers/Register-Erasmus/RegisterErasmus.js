@@ -25,7 +25,7 @@ const RegisterErasmus = props => {
     );
 
     useEffect(() => {
-        if (!isNavbarVisible) {
+        if (isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
     }, [onNavbarDisplaySwitch, isNavbarVisible]);
@@ -45,20 +45,8 @@ const RegisterErasmus = props => {
     }, [onFetchCountries]);
 
     const [registerForm, setRegisterForm] = useState({
+        //index 0 - h2 - home
         homeCourse: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "Course"
-            },
-            value: "",
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        erasmusCourse: {
             elementType: "input",
             elementConfig: {
                 type: "text",
@@ -81,30 +69,7 @@ const RegisterErasmus = props => {
             valid: true,
             touched: false
         },
-        erasmusCountry: {
-            elementType: "select",
-            value: "",
-            elementConfig: {
-                placeholder: "Country"
-            },
-            validation: {},
-            valid: true,
-            touched: false
-        },
         homeCityName: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "City"
-            },
-            value: "",
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        erasmusCityName: {
             elementType: "input",
             elementConfig: {
                 type: "text",
@@ -122,6 +87,43 @@ const RegisterErasmus = props => {
             elementConfig: {
                 type: "text",
                 placeholder: "University"
+            },
+            value: "",
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        },
+        //index 5 - h2 - erasmus
+        erasmusCourse: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "Course"
+            },
+            value: "",
+            validation: {
+                required: true
+            },
+            valid: false,
+            touched: false
+        },
+        erasmusCountry: {
+            elementType: "select",
+            value: "",
+            elementConfig: {
+                placeholder: "Country"
+            },
+            validation: {},
+            valid: true,
+            touched: false
+        },
+        erasmusCityName: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "City"
             },
             value: "",
             validation: {
@@ -148,6 +150,7 @@ const RegisterErasmus = props => {
     let [allControlsAreValid, setAllControlsAreValid] = useState(false);
     const [imagePreview, setImagePreview] = useState(null);
     const [image, setImage] = useState(null);
+
 
     const inputChangedHandler = (event, controlName) => {
         let enteredValue = event.target.value;
@@ -231,7 +234,7 @@ const RegisterErasmus = props => {
     const onSubmit = event => {
         event.preventDefault();
         const formData = new FormData();
-        if(image){
+        if (image) {
             formData.append('image', image[0]);
         }
         formData.append('homeCourse', registerForm.homeCourse.value);
@@ -246,12 +249,16 @@ const RegisterErasmus = props => {
         setShouldRedirect(true);
     }
 
-    formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
-    formInputs.unshift((<h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>));
+    
+    formInputs.splice(0, 0, <h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>)
+    formInputs.splice(5, 0,  <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
+
+    // formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
+    // formInputs.unshift((<h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>));
 
     regForm = (
         <form className={classes.Form}>
-            <div>
+            <div className= {classes.ImageUpload}>
                 <div className={classes.ImagePreview}>
                     {!imagePreview && <p>Please choose an image.</p>}
                     {imagePreview && (

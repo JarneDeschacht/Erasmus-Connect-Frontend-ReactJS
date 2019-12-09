@@ -1,43 +1,76 @@
-.RegisterErasmus{
+.RegisterErasmus {
     width: 70%;
     margin: 4% auto;
 }
-.Form{
+
+.Form {
     display: grid;
-    grid-template-columns: 2fr 5fr;
-    column-gap:5%;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 2fr 5fr; */
+    column-gap: 5%;
 }
-.RegisterErasmus h1{
+
+.RegisterErasmus h1 {
     margin-bottom: 5%;
 }
-.RegisterErasmusForm{
+
+.ImageUpload {
+    margin-bottom: 50px;
+}
+
+.RegisterErasmusForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: 1fr;
     column-gap: 25px;
 }
+
 .SubTitle {
     text-align: center;
     font-size: 2.3rem;
     margin-bottom: 15%;
 }
-.ImagePreview{
-    margin-top: 20%;
+
+.ImagePreview {
     display: block;
     width: 100%;
     text-align: center;
     font-size: 2rem;
 }
-.ButtonRow{
+
+.ButtonRow {
     display: flex;
     justify-content: flex-end;
 }
-.ButtonRow p{
+
+.ButtonRow p {
     margin-left: 3%;
     padding-top: 4.5%;
     cursor: pointer;
 }
-.ErrorMessage{
+
+.ErrorMessage {
     text-align: center;
     color: red;
     font-size: 2.5rem;
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    .RegisterErasmusForm {
+        grid-auto-flow: column;
+        grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 992px) {
+   
+}
+
+@media (min-width: 1200px) {
+    .Form {
+        grid-template-columns: 2fr 5fr;
+    }
 }
