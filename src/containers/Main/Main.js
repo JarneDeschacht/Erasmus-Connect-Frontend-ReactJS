@@ -31,7 +31,7 @@ const Main = () => {
     let content = (
         <div className={classes.FrontPage}>
             <div className={classes.Brand}>
-                <h1><span>ESN</span>PARTNER</h1>
+                <h1><span>ERASMUS</span>PARTNER</h1>
                 <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
             </div>
             <header className={classes.BottomToolBar}>
@@ -54,20 +54,20 @@ const Main = () => {
     if (isAuthenticated) {
         content = (
             <div className={classes.Links}>
-                <div className={[classes.Brand,classes.BrandLoggedIn].join(' ')}>
-                    <h1><span>ESN</span>PARTNER</h1>
+                <div className={[classes.Brand, classes.BrandLoggedIn].join(' ')}>
+                    <h1><span>ERASMUS</span>PARTNER</h1>
                     <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
                 </div>
                 <div className={classes.LinkItems}>
-                    <div>
-                        <div style={{ position: 'relative', margin: "0 !important" }}>
-                            {notificationBubble}
-                            <NavLink to="/my-profile" exact>My profile</NavLink>
-                        </div>
+
+                    <div style={{ position: 'relative', margin: "0 !important", width: '100%' }}>
+                        {notificationBubble}
+                        <NavLink className={classes} to="/my-profile" exact>My profile</NavLink>
                     </div>
-                    <NavLink to="/students" exact>Find student</NavLink>
-                    <NavLink to="/chat" exact>Chat</NavLink>
-                    <NavLink to="/logout" exact>Logout</NavLink>
+
+                    <NavLink className={classes} to="/students" exact>Find student</NavLink>
+                    <NavLink className={classes} to="/chat" exact>Chat</NavLink>
+                    <NavLink className={classes} to="/logout" exact>Logout</NavLink>
                 </div>
 
             </div>

@@ -9,8 +9,8 @@
     clear: both;
     display: block;
     width: 100%;
-    font-size: 6.7rem;
-    margin-bottom: -3vh;
+    font-size: 0.95em;
+    margin-bottom: -2vh;
 }
 
 .LinkItems {
@@ -24,8 +24,8 @@
     color: white;
     text-decoration: none;
     text-align: center;
-    margin: 5%;
-    font-size: 4rem;
+    margin: 3%;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -37,7 +37,7 @@
     border: 2px solid white;
     position: absolute;
     top: 0px;
-    right: 10%;
+    right: 6%;
     margin: 0 !important;
 }
 
@@ -82,7 +82,7 @@
     height: 100%;
     text-decoration: none;
     box-sizing: border-box;
-    font-size: 3.5rem;
+    font-size: 2rem;
     text-align: center;
     display: inline-block;
     padding: 15px 20px;
@@ -121,7 +121,8 @@
         text-align: center;
     }
     .LinkItems {
-        bottom: 1em;
+        position: absolute;
+        bottom: 10px;;
         flex-direction: row;
         justify-content: space-around;
     }
@@ -132,6 +133,7 @@
         max-width: 20%;
     }
     .Brand {
+        
         margin: 10% auto;
         display: grid;
         grid-template-columns: 1fr 2fr;
