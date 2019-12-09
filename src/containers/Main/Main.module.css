@@ -1,6 +1,6 @@
 .Brand {
     width: 70%;
-    margin: 10% auto;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
 }
@@ -89,6 +89,10 @@
     position: relative;
 }
 
+.SubText {
+    font-size: 1.2em;
+}
+
 .NavigationItem a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
@@ -128,13 +132,14 @@
         max-width: 20%;
     }
     .Brand {
+        margin: 10% auto;
         display: grid;
         grid-template-columns: 1fr 2fr;
         align-items: center;
         width: 70%;
     }
     .Brand h1.SubText {
-        font-size: 3em;
+        font-size: 2em;
     }
     .NavigationItem a {
         font-size: 3.5em;
@@ -154,4 +159,8 @@
 
 @media (min-width: 992px) {}
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+    .Brand h1.SubText {
+        font-size: 3.2em;
+    }
+}
