@@ -82,7 +82,7 @@ const StudentProfile = props => {
     connectButton = <Spinner />;
   } else {
     if (connectionStatus.exists) {
-      connectButton = <Button clicked={onChat}>Chat</Button>;
+      connectButton = <Button maxWidth clicked={onChat}>Chat</Button>;
     } else if (connectionStatus.requestReceived) {
       connectButton = (
         <Aux>
@@ -96,7 +96,7 @@ const StudentProfile = props => {
     } else if (connectionStatus.requestSent) {
       connectButton = <Button noPointer>Request Sent</Button>;
     } else {
-      connectButton = <Button clicked={onConnectionClick}>Connect</Button>;
+      connectButton = <Button clicked={onConnectionClick} maxWidth>Connect</Button>;
     }
   }
 
@@ -105,7 +105,7 @@ const StudentProfile = props => {
     studentContent = (
       <div className={classes.ProfileColumns}>
         <div>
-          <ProfilePicture imageUrl={studentProfile.imageUrl} />
+          <ProfilePicture styleType="Profile" imageUrl={studentProfile.imageUrl} />
           <h2>{studentProfile.firstName} {studentProfile.lastName}</h2>
           <div>
             <h4>Bio</h4>
@@ -147,7 +147,7 @@ const StudentProfile = props => {
             <h2>{studentProfile.erasmusUniversity.name || '-----'}</h2>
           </div>
           <div>
-            <Button>Social profiles</Button>
+            <Button maxWidth >Social profiles</Button>
           </div>
         </div>
       </div>

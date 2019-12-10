@@ -1,26 +1,11 @@
 .Profile{
     width: 75%;
-    margin: 8% auto;
+    margin: 13% auto;
     text-align: center;
 }
 .ProfileColumns{
     display: grid;
     grid-template-columns: 1fr;
-}
-.Title{
-    font-size: 2.5rem;
-    width: 100%;
-    text-align: center;
-}
-.GoBack{
-    color:white;
-    text-decoration: none;
-    font-size: 1.5rem;
-}
-.Hr{
-    border: 0;
-    height: 0;
-    border-top: 1px solid white;
 }
 .NavLink{
     text-decoration: none;
@@ -49,15 +34,16 @@
 @media (min-width: 992px) {
     .ProfileColumns{
         grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 5%; 
-    }
-    .Title{
-        font-size: 3rem;
+        column-gap: 10%; 
     }
     .Profile{
         text-align: left;
+        margin-top: 15%;
     }
 }
 
 @media (min-width: 1200px) {
+    .Profile{
+        margin-top: 9%;
+    }
 }

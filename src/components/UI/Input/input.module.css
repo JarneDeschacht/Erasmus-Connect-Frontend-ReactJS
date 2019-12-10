@@ -24,10 +24,24 @@
     color: red;
 }
 .ValidationError {
-    padding-left: 1%;
+    padding-left: 4%;
     color: red;
+    text-shadow: .1px 0 0 currentColor;
     margin-top: -3%;
+    font-weight: bolder;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in both;
 } 
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translate3d(0,-20%,0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
 .Label{
     font-weight: bold;
     display: block;

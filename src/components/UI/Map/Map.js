@@ -34,9 +34,22 @@ const MapContainer = (props) => {
     };
 
     if (windowDimensions.width >= 576) {
-        mapStyles.height = '15rem';
-        mapStyles.width = '20rem';
+        if (windowDimensions.width >= 992) {
+            if (windowDimensions.width >= 1200) {
+                mapStyles.height = '15rem';
+                mapStyles.width = '20rem';
+            } else {
+                mapStyles.height = '8rem';
+                mapStyles.width = '12rem';
+            }
+        }
+        else {
+            mapStyles.height = '15rem';
+            mapStyles.width = '20rem';
+        }
     }
+
+
 
     const fetchGeoCoding = address => {
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}&language=en`).then(
