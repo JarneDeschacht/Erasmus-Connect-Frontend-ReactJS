@@ -15,8 +15,6 @@
 
 }
 
-
-
 .EditProfile a, .EditProfile h2 {
     cursor: pointer;
     display: block;
@@ -31,7 +29,6 @@
 .EditProfile h2 {
     margin: 0;
 }
-
 
 .EditProfileContainer {
     display: grid;

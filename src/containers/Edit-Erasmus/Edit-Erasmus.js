@@ -44,32 +44,9 @@ const EditErasmus = () => {
             valid: true,
             touched: true
         },
-        erasmusCourse: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "Course"
-            },
-            value: profile.erasmusCourse,
-            validation: {
-                required: true
-            },
-            valid: true,
-            touched: true
-        },
         homeCountry: {
             elementType: "select",
             value: profile.homeUniversity.city.country.id,
-            elementConfig: {
-                placeholder: "Country"
-            },
-            validation: {},
-            valid: true,
-            touched: true
-        },
-        erasmusCountry: {
-            elementType: "select",
-            value: profile.erasmusUniversity.city.country.id,
             elementConfig: {
                 placeholder: "Country"
             },
@@ -90,19 +67,6 @@ const EditErasmus = () => {
             valid: true,
             touched: true
         },
-        erasmusCityName: {
-            elementType: "input",
-            elementConfig: {
-                type: "text",
-                placeholder: "City"
-            },
-            value: profile.erasmusUniversity.city.name,
-            validation: {
-                required: true
-            },
-            valid: true,
-            touched: true
-        },
         homeUniversityName: {
             elementType: "input",
             elementConfig: {
@@ -110,6 +74,42 @@ const EditErasmus = () => {
                 placeholder: "University"
             },
             value: profile.homeUniversity.name,
+            validation: {
+                required: true
+            },
+            valid: true,
+            touched: true
+        },
+        erasmusCourse: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "Course"
+            },
+            value: profile.erasmusCourse,
+            validation: {
+                required: true
+            },
+            valid: true,
+            touched: true
+        },
+        erasmusCountry: {
+            elementType: "select",
+            value: profile.erasmusUniversity.city.country.id,
+            elementConfig: {
+                placeholder: "Country"
+            },
+            validation: {},
+            valid: true,
+            touched: true
+        },
+        erasmusCityName: {
+            elementType: "input",
+            elementConfig: {
+                type: "text",
+                placeholder: "City"
+            },
+            value: profile.erasmusUniversity.city.name,
             validation: {
                 required: true
             },
@@ -219,8 +219,8 @@ const EditErasmus = () => {
         );
     });
 
-    formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
-    formInputs.unshift((<h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>));
+    formInputs.splice(0, 0, <h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>)
+    formInputs.splice(5, 0,  <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
 
     editForm = (
         <form className={classes.Form}>
