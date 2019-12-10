@@ -264,7 +264,7 @@ const Register = props => {
   } else {
     let formInputs = formElementsArray.map((el, index) => {
       let extraErr = el.id === "password" ? " (min 6 chars)" : "";
-      let errorMessage = "Please enter a valid " + el.id + extraErr;
+      let errorMessage = "Please enter a valid " + el.config.elementConfig.placeholder + extraErr;
       if (el.id === 'confirmPassword') {
         errorMessage = "Passwords are not the same!";
       }
@@ -304,7 +304,7 @@ const Register = props => {
       <h1>CREATE AN ACCOUNT AND MEET YOUR ERASMUS PARTNERS NOW</h1>
       {errorMessage}
       {regForm}
-      <h2 onClick={() => setShouldRedirect(true)}><FontAwesome name="fas fa-arrow-circle-left" size="2x" /></h2>
+      <h2 onClick={() => history.goBack()}><FontAwesome name="fas fa-arrow-circle-left" size="2x" /></h2>
     </div>
   );
 };

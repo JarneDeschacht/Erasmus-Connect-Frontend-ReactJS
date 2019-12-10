@@ -1,8 +1,8 @@
 .NavigationItem, .GoBack{
     height: 100%;
-    margin: 3%;
+    margin: 1.5% 3%;
     box-sizing: border-box;
-    display: block;
+    display: block; 
 }
 .NavigationItem:last-of-type{
   margin-right: 0;
