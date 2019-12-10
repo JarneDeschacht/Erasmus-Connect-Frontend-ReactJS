@@ -1,23 +1,29 @@
 .EditErasmus{
-    width: 75%;
+    width: 95%;
     margin: 0 auto;
     margin-top: 8%;
 }
-.EditErasmus form{
+/* .EditErasmus form{
     width: 65%;
-    margin: 0 auto;
-}
+    
+} */
 .EditErasmus h1{
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
 }
+
+
+
 .EditErasmusForm{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 95%;
+    margin: 0px auto;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     column-gap: 25px;
 }
 .ButtonRow{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .ButtonRow p{
     margin-left: 3%;
@@ -33,4 +39,40 @@
     text-align: center;
     color: red;
     font-size: 2.5rem;
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    /* .RegisterErasmusForm {
+        grid-auto-flow: column;
+        grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    } */
+
+    .EditErasmusForm{
+        grid-auto-flow: column;
+        grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ButtonRow{
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 992px) {
+    .EditErasmusForm{
+        max-width: 80%;
+    }
+    .ButtonRow{
+        max-width: 80%;
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 1200px) {
+    .EditErasmusForm{
+        max-width: 60%;
+    }
 }

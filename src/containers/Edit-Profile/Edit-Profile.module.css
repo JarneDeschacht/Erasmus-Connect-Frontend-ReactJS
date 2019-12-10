@@ -12,6 +12,7 @@
 
 .EditProfile h1 {
     margin-bottom: 5%;
+
 }
 
 .EditProfile a, .EditProfile h2 {
@@ -28,7 +29,6 @@
 .EditProfile h2 {
     margin: 0;
 }
-
 
 .EditProfileContainer {
     display: grid;
