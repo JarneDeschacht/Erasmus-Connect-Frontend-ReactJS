@@ -15,7 +15,7 @@ const ExistingChats = props => {
     const onSelectChat = useCallback((connectionId) => dispatch(actions.selectChat(connectionId)), [dispatch])
     const onFetchLastMessageOfConversation = useCallback((connection_ids) => dispatch(actions.getLastMessageOfConversation(connection_ids)), [dispatch])
 
-    console.log(connections)
+
 
     useEffect(() => {
         onFetchConnections(userId)
@@ -48,7 +48,8 @@ const ExistingChats = props => {
     let connectionList = null;
    
     if (connections) {
-        connections.connections.sort((a, b) => a.lastMessageDate < b.lastMessageDate ? 1: -1)
+        console.log(connections.connections)
+        connections.connections.sort((a, b) => a.lastMessageDate < b.lastMessageDate ? 1: -1 || a.connectionId > b.connectionId? 1: -1)
         connectionList = connections.connections.map(con => {
             return (
                 <ChatConnection

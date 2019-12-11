@@ -50,7 +50,8 @@ const RegisterErasmus = props => {
             elementType: "input",
             elementConfig: {
                 type: "text",
-                placeholder: "Course"
+                placeholder: "Course",
+                autoFocus: 'focus'
             },
             value: "",
             validation: {

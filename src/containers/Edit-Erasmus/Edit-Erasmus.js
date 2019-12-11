@@ -35,7 +35,8 @@ const EditErasmus = () => {
             elementType: "input",
             elementConfig: {
                 type: "text",
-                placeholder: "Course"
+                placeholder: "Course",
+                autoFocus: 'focus'
             },
             value: profile.homeCourse,
             validation: {
