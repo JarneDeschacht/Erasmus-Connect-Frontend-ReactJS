@@ -93,6 +93,7 @@ const Students = props => {
             </div>);
     }
     return (
+
         <div className={classes.Students}>
             <div className={classes.Header}>
                 <h1>Search results</h1>
@@ -110,6 +111,7 @@ const Students = props => {
             {
                 results
             }
+
         </div>
     )
 }

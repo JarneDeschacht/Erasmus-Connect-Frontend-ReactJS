@@ -62,12 +62,12 @@ const Main = () => {
 
                     <div style={{ position: 'relative', margin: "0 !important", width: '100%' }}>
                         {notificationBubble}
-                        <NavLink className={classes} to="/my-profile" exact>My profile</NavLink>
+                        <NavLink  to="/my-profile" exact>My profile</NavLink>
                     </div>
 
-                    <NavLink className={classes} to="/students" exact>Find student</NavLink>
-                    <NavLink className={classes} to="/chat" exact>Chat</NavLink>
-                    <NavLink className={classes} to="/logout" exact>Logout</NavLink>
+                    <NavLink  to="/students" exact>Find student</NavLink>
+                    <NavLink  to="/chat" exact>Chat</NavLink>
+                    <NavLink  to="/logout" exact>Logout</NavLink>
                 </div>
 
             </div>

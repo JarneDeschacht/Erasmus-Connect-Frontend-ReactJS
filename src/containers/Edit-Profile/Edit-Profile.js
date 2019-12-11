@@ -40,7 +40,8 @@ const EditProfile = () => {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "First Name"
+        placeholder: "First Name",
+        autoFocus: 'focus'
       },
       value: profile.firstName,
       validation: {

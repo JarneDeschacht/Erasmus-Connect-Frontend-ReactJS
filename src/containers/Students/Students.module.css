@@ -1,13 +1,21 @@
 .Students{
     width: 75%;
-    margin: 6% auto;
-    margin-top: 8%;
+    margin: 35px auto;
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;  
+}
+.Students .Header h1{
+    font-size: 1.8em;
 }
 .SearchResults{
-    margin: 5% 0;
+    margin-top: 25px;
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 25px;
+    overflow-y: scroll;
+    max-height: calc(100vh - 220px);
 }
 .Header{
     display: grid;
@@ -19,11 +27,14 @@
     margin-bottom: 0 !important;
 }
 .Header Input {
-    margin-top: 10%;
+    margin-top: 25px;
 }
 
 @media (min-width: 576px) {
+    .SearchResults{
 
+        max-height: calc(100vh - 200px - 35px);
+    }
 }
 
 @media (min-width: 768px) {
@@ -33,7 +44,7 @@
 @media (min-width: 992px) {
     .SearchResults{
         grid-template-columns: 1fr 1fr;
-        column-gap: 5%;
+        column-gap: 25px;
         row-gap: 50px;
     }
     .Header{

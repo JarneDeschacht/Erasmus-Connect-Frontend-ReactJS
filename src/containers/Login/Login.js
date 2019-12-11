@@ -17,6 +17,7 @@ const Login = props => {
             elementConfig: {
                 type: 'email',
                 placeholder: 'E-mail',
+                autoFocus: 'focus'
             },
             value: '',
             validation: {

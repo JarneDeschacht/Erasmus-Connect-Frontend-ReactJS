@@ -12,7 +12,6 @@ const input = props => {
         inputClasses.push(classes[props.styleType])
     }
 
-    
 
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
@@ -29,6 +28,7 @@ const input = props => {
   
     switch (props.elementType) {
         case ('input'):
+            
             label = <label htmlFor={props.id} className={classes.Label}>{props.label}</label>
             inputElement = <input
                 ref={props.inputRef}
@@ -37,6 +37,8 @@ const input = props => {
                 {...props.elementConfig}
                 onChange={props.changed}
                 value={props.value}
+               
+            
             />;
             break;
         case 'textarea':
