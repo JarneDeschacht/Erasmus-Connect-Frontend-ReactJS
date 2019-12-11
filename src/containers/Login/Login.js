@@ -21,7 +21,7 @@ const Login = props => {
             },
             value: '',
             validation: {
-                required: true,
+                required: true
             },
             valid: false,
             touched: false

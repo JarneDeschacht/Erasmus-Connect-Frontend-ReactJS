@@ -13,7 +13,30 @@
     .Map:first-child{
         height: 15rem;
         width: 20rem;
-        /* margin-left: 0; */
+    }
+    .Map:first-child div {
+        max-height: 15rem !important;
+        max-width: 20rem !important;
+    }
+}
+@media (min-width: 992px){
+    .Map:first-child{
+        margin-left: 0;
+    }
+    .Map:first-child{
+        height: 8rem;
+        width: 12rem;
+
+    }
+    .Map:first-child div {
+        max-height: 8rem !important;
+        max-width: 12rem !important;
+    }
+}
+@media(min-width:1200px){
+    .Map:first-child{
+        height: 15rem;
+        width: 20rem;
     }
     .Map:first-child div {
         max-height: 15rem !important;

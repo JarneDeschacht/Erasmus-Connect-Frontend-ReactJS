@@ -1,9 +1,9 @@
 .StudentProfile{
     width: 75%;
-    margin: 6% auto;
+    margin: 13% auto;
+    text-align: center;
 }
 .ProfileColumns{
-    margin-top: 5%;
     display: grid;
     grid-template-columns: 1fr;
 }
@@ -28,4 +28,28 @@
 }
 .ButtonGroup button{
     margin-top: 0.5em;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+    .ProfileColumns{
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 10%; 
+    }
+    .StudentProfile{
+        text-align: left;
+        margin-top: 15%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .StudentProfile{
+        margin-top: 9%;
+    }
 }

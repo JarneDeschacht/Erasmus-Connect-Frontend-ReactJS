@@ -140,7 +140,6 @@ const Profile = props => {
           open={openModal}
           onClose={() => closeConnectionsModal()}
         >{modalContent}</Modal>
-        <h2 className={classes.Title}>Welcome back {profile.firstName}</h2>
         <div className={classes.ProfileColumns}>
           <div>
             <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} />
