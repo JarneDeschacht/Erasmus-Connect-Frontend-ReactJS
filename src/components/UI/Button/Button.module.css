@@ -1,28 +1,26 @@
 .Button {
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: rgb(34,118,241);
     border-radius: 10px;
     display: block;
     border: 2px solid white;
     padding: 5px 15px;
     font-size: 1.5rem;
-    font-weight: 00;
+    font-weight: bolder;
     margin: 2% 1%;
     margin-right: 0;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.Button:hover {
-    background-color: white;
-    color: rgb(0, 174, 239);
+.Button:hover:enabled{
+    background-color: transparent;
+    color: white;
 }
 
 .Button:disabled {
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.699);
+    opacity: 0.5;
     cursor: not-allowed;
-    color: rgba(255, 255, 255, 0.699);
 }
 
 .NoPointer {

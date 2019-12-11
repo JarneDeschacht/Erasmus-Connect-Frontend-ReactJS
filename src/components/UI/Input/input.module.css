@@ -1,7 +1,7 @@
 .Input{
     width: 100%;
     border-radius: 11px;
-    color: rgb(0,174,239);
+    color: rgb(34,118,241);
     border: 2px solid transparent;
     padding: 6.5px 10px;
     box-sizing: border-box;
@@ -51,7 +51,7 @@
         color: #ccc;
 }
 .Select option {
-    color: rgb(0,174,239);
+    color: rgb(67,65,243);
 }
 .DateError{
     margin-top: 1%;
