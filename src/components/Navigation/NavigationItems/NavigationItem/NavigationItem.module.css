@@ -23,7 +23,7 @@
   margin-left: 0;
   margin-right: auto;
   cursor: pointer;
-  padding: 15px 0;
+  padding: 0;
 }
 .NavigationItem a:last-of-type{
   padding: 15px 0;
