@@ -50,8 +50,8 @@ const StudentProfile = props => {
   const studentProfile = useSelector(state => state.student.profile);
   const userId = localStorage.getItem("userId");
   let history = useHistory()
-  
-  
+
+
 
 
   useEffect(() => {
@@ -73,7 +73,7 @@ const StudentProfile = props => {
   };
 
   const onChat = () => {
-    history.push('/chat');  
+    history.push('/chat');
     onGoToChat()
   };
 
@@ -86,7 +86,7 @@ const StudentProfile = props => {
     } else if (connectionStatus.requestReceived) {
       connectButton = (
         <Aux>
-          <p style={{margin: '0'}}>Incoming request:</p>
+          <p style={{ margin: '0' }}>Incoming request:</p>
           <div className={classes.ButtonGroup}>
             <Button clicked={onAcceptConnection}>Accept</Button>
             <Button clicked={onRefuseConnection}>Refuse</Button>
@@ -105,48 +105,54 @@ const StudentProfile = props => {
     studentContent = (
       <div className={classes.ProfileColumns}>
         <div>
-          <ProfilePicture styleType="Profile" imageUrl={studentProfile.imageUrl} />
-          <h2>{studentProfile.firstName} {studentProfile.lastName}</h2>
-          <div>
+          <div className={classes.Row}>
+            <ProfilePicture styleType="Profile" imageUrl={studentProfile.imageUrl} />
+            <h2 className={classes.Name}>{studentProfile.firstName} {studentProfile.lastName}</h2>
+          </div>
+          <div className={classes.Row}>
             <h4>Bio</h4>
             <p>{studentProfile.bio}</p>
           </div>
-          <div>
+          <div className={classes.Row}>
             <h4>Course</h4>
             <p>{studentProfile.erasmusCourse || '-----'}</p>
           </div>
         </div>
         <div>
-          <div>
-            <h4>Home City: {studentProfile.homeUniversity.city.name || ''}</h4>
-            <Map address={studentProfile.homeUniversity.city.name + '+' + studentProfile.homeUniversity.city.country.name} />
+          <div className={classes.Row}>
+            <div>
+              <h4>Home City: {studentProfile.homeUniversity.city.name || ''}</h4>
+              <Map address={studentProfile.homeUniversity.city.name + '+' + studentProfile.homeUniversity.city.country.name} />
+            </div>
+            <div>
+              <h4>Home Country</h4>
+              <h2>{studentProfile.homeUniversity.city.country.name || '-----'}</h2>
+            </div>
           </div>
-          <div>
-            <h4>Home Country</h4>
-            <h2>{studentProfile.homeUniversity.city.country.name || '-----'}</h2>
-          </div>
-          <div>
+          <div className={classes.Row}>
             <h4>Home University</h4>
             <h2>{studentProfile.homeUniversity.name || '-----'}</h2>
           </div>
-          <div>
+          <div className={classes.Row}>
             {connectButton}
           </div>
         </div>
         <div>
-          <div>
-            <h4>Erasmus City: {studentProfile.erasmusUniversity.city.name || ''}</h4>
-            <Map address={studentProfile.erasmusUniversity.city.name + '+' + studentProfile.erasmusUniversity.city.country.name} />
+          <div className={classes.Row}>
+            <div>
+              <h4>Erasmus City: {studentProfile.erasmusUniversity.city.name || ''}</h4>
+              <Map address={studentProfile.erasmusUniversity.city.name + '+' + studentProfile.erasmusUniversity.city.country.name} />
+            </div>
+            <div>
+              <h4>Erasmus Country</h4>
+              <h2>{studentProfile.erasmusUniversity.city.country.name || '-----'}</h2>
+            </div>
           </div>
-          <div>
-            <h4>Erasmus Country</h4>
-            <h2>{studentProfile.erasmusUniversity.city.country.name || '-----'}</h2>
-          </div>
-          <div>
+          <div className={classes.Row}>
             <h4>Erasmus University</h4>
             <h2>{studentProfile.erasmusUniversity.name || '-----'}</h2>
           </div>
-          <div>
+          <div className={classes.Row}>
             <Button maxWidth >Social profiles</Button>
           </div>
         </div>

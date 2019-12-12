@@ -24,6 +24,7 @@
   margin-right: auto;
   cursor: pointer;
   padding: 0;
+  padding-bottom: 5px;
 }
 .NavigationItem a:last-of-type{
   padding: 15px 0;

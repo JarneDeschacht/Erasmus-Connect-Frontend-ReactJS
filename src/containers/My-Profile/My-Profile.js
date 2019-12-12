@@ -68,7 +68,7 @@ const Profile = props => {
 
   let notificationBubble = null;
   if (isNotification) {
-    notificationBubble = (<div className={classes.NotificationBubble}></div>)    
+    notificationBubble = (<div className={classes.NotificationBubble}></div>)
   }
 
   let content = <Spinner />;
@@ -142,34 +142,38 @@ const Profile = props => {
         >{modalContent}</Modal>
         <div className={classes.ProfileColumns}>
           <div>
-            <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} />
-            <h2>
-              {profile.firstName} {profile.lastName}
-            </h2>
-            <div>
+            <div className={classes.Row}>
+              <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} />
+              <h2 className={classes.Name}>
+                {profile.firstName} {profile.lastName}
+              </h2>
+            </div>
+            <div className={classes.Row}>
               <h4>Bio</h4>
               <p>{profile.bio}</p>
             </div>
-            <div>
+            <div className={classes.Row}>
               <h4>Course</h4>
               <p>{profile.erasmusCourse || "-----"}</p>
             </div>
           </div>
           <div>
-            <div>
-              <h4>Home City: {profile.homeUniversity.city.name || ""}</h4>
-              <Map address={profile.homeUniversity.city.name + '+' + profile.homeUniversity.city.country.name} />
+            <div className={classes.Row}>
+              <div>
+                <h4>Home City: {profile.homeUniversity.city.name || ""}</h4>
+                <Map address={profile.homeUniversity.city.name + '+' + profile.homeUniversity.city.country.name} />
+              </div>
+              <div>
+                <h4>Home Country</h4>
+                <h2>{profile.homeUniversity.city.country.name || "-----"}</h2>
+              </div>
             </div>
-            <div>
-              <h4>Home Country</h4>
-              <h2>{profile.homeUniversity.city.country.name || "-----"}</h2>
-            </div>
-            <div>
+            <div className={classes.Row}>
               <h4>Home University</h4>
               <h2>{profile.homeUniversity.name || "-----"}</h2>
             </div>
-            <div>
-              <div style={{position: 'relative'}}>
+            <div className={classes.Row}>
+              <div style={{ position: 'relative' }}>
                 {notificationBubble}
                 <Button
                   clicked={() => {
@@ -179,23 +183,24 @@ const Profile = props => {
               </Button>
               </div>
               <NavLink className={classes.NavLink} exact to="/edit-profile"><Button maxWidth>Edit Profile</Button></NavLink>
-
             </div>
           </div>
           <div>
-            <div>
-              <h4>Erasmus City: {profile.erasmusUniversity.city.name || ""}</h4>
-              <Map address={profile.erasmusUniversity.city.name + '+' + profile.erasmusUniversity.city.country.name} />
+            <div className={classes.Row}>
+              <div>
+                <h4>Erasmus City: {profile.erasmusUniversity.city.name || ""}</h4>
+                <Map address={profile.erasmusUniversity.city.name + '+' + profile.erasmusUniversity.city.country.name} />
+              </div>
+              <div>
+                <h4>Erasmus Country</h4>
+                <h2>{profile.erasmusUniversity.city.country.name || "-----"}</h2>
+              </div>
             </div>
-            <div>
-              <h4>Erasmus Country</h4>
-              <h2>{profile.erasmusUniversity.city.country.name || "-----"}</h2>
-            </div>
-            <div>
+            <div className={classes.Row}>
               <h4>Erasmus University</h4>
               <h2>{profile.erasmusUniversity.name || "-----"}</h2>
             </div>
-            <div>
+            <div className={classes.Row}>
               <Button maxWidth>Social profiles</Button>
               <NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button maxWidth>Edit Erasmus</Button></NavLink>
             </div>
