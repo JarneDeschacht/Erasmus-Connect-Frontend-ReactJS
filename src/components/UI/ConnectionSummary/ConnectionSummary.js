@@ -23,8 +23,6 @@ const ConnectionSummary = props => {
   }
 
   const routeToChat = () => {
-    console.log(props)
-    console.log(connections)
     const connectToId = props.userId;
 
     connections.forEach(element => {

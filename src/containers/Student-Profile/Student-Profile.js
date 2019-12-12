@@ -19,6 +19,8 @@ const StudentProfile = props => {
     dispatch(actions.acceptConnection(userId, connectToId));
   const onRefuse = (userId, connectToId) =>
     dispatch(actions.refuseConnection(userId, connectToId));
+  const onFetchConnections = useCallback((userId) => dispatch(actions.getConnections(userId)), [dispatch])
+  const connections = useSelector(state => state.student.connections);
 
   const onLoad = useCallback(
     (userId, connectToId) =>
@@ -36,7 +38,8 @@ const StudentProfile = props => {
   );
 
   let selectedUserId = props.match.params.id
-  const onGoToChat = () => dispatch(actions.goToChat(selectedUserId))
+  const onGoToChat = (connectionInfo) => dispatch(actions.routeToChat(connectionInfo))
+
 
   const connectionStatus = {
     exists: useSelector(state => state.student.connectionExists),
@@ -50,7 +53,10 @@ const StudentProfile = props => {
   const studentProfile = useSelector(state => state.student.profile);
   const userId = localStorage.getItem("userId");
   let history = useHistory()
-  
+
+  useEffect(() => {
+    onFetchConnections(userId)
+  }, [onFetchConnections, userId])
 
   useEffect(() => {
     clearProfile();
@@ -71,8 +77,13 @@ const StudentProfile = props => {
   };
 
   const onChat = () => {
+    connections.connections.forEach(element => {
+      if(selectedUserId.toString() === element.userId.toString()){
+          onGoToChat(element);
+      }
+    });
+
     history.push('/chat');
-    onGoToChat()
   };
 
   let connectButton = null;
