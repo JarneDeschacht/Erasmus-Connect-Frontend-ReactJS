@@ -286,3 +286,10 @@ export const getNotificationStatusFail = (error) => {
         error: error
     }
 }
+
+export const routeToChat = (connectionInfo) => {
+    return{
+        type: actionTypes.ROUTE_TO_CHAT,
+        connectionInfo: connectionInfo
+    }
+}

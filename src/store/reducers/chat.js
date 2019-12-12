@@ -81,6 +81,12 @@ const goToChat =(state, action) => {
     })
 }
 
+const routeToChat = (state, action) => {
+    return updateObject(state,{
+        selectedConnection: action.connectionInfo,
+    })
+}
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -93,6 +99,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_LAST_MESSAGE_OF_CONVERSATION_FAIL: return getLastMessageFail(state, action);
         case actionTypes.NEW_MESSAGE: return newMessage(state, action);
         case actionTypes.GO_TO_CHAT: return goToChat(state, action);
+        case actionTypes.ROUTE_TO_CHAT: return routeToChat(state, action)
         default: return state;
     }
 }

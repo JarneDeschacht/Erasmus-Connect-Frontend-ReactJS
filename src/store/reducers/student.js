@@ -285,6 +285,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_NOTIFICATION_STATUS_START: return getNotificationStatusStart(state, action);
         case actionTypes.GET_NOTIFICATION_STATUS_SUCCESS: return getNotificationStatusSuccess(state, action);
         case actionTypes.GET_NOTIFICATION_STATUS_FAIL: return getNotificationStatusFail(state, action);
+        
         default: return state;
     }
 };

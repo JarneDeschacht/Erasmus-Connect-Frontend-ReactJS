@@ -70,7 +70,8 @@ export {
     getNotificationStatus,
     getNotificationStatusStart,
     getNotificationStatusSuccess,
-    getNotificationStatusFail
+    getNotificationStatusFail,
+    routeToChat
 } from './student';
 export {
     fetchCountries,

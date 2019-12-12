@@ -102,3 +102,5 @@ export const NEW_MESSAGE = 'NEW_MESSAGE';
 
 export const GO_TO_CHAT = 'GO_TO_CHAT';
 
+export const ROUTE_TO_CHAT = 'ROUTE_TO_CHAT';
+

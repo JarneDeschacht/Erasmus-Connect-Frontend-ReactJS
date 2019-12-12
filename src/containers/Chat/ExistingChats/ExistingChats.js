@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classes from './ExistingChats.module.css'
 import * as actions from '../../../store/actions/index'
@@ -8,14 +8,11 @@ const ExistingChats = props => {
     const dispatch = useDispatch();
     const userId = localStorage.getItem('userId');
     const connections = useSelector(state => state.student.connections);
-    // const messages = useSelector(state => state.chat.messages)
-
+    const selectedChatFromRoute = useSelector(state =>state.chat.selectedConnection)
 
     const onFetchConnections = useCallback((userId) => dispatch(actions.getConnections(userId)), [dispatch])
     const onSelectChat = useCallback((connectionId) => dispatch(actions.selectChat(connectionId)), [dispatch])
     const onFetchLastMessageOfConversation = useCallback((connection_ids) => dispatch(actions.getLastMessageOfConversation(connection_ids)), [dispatch])
-
-
 
     useEffect(() => {
         onFetchConnections(userId)
@@ -37,7 +34,14 @@ const ExistingChats = props => {
     //loadin the first connection as default
     useEffect(() => {
         if (connections) {
-            onSelectChat(connections.connections[0])
+            console.log(selectedChatFromRoute)
+            if(selectedChatFromRoute){
+                onSelectChat(selectedChatFromRoute)
+            }
+            else{
+                onSelectChat(connections.connections[0])
+            }
+            
         }
     }, [connections, onSelectChat])
 

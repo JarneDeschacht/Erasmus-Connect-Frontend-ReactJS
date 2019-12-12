@@ -51,8 +51,6 @@ const StudentProfile = props => {
   const userId = localStorage.getItem("userId");
   let history = useHistory()
   
-  
-
 
   useEffect(() => {
     clearProfile();
