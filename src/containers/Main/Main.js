@@ -30,22 +30,11 @@ const Main = () => {
 
 
     let content = (
-        <div className={classes.FrontPage}>
-            <div className={classes.Brand}>
-            <img className={classes.Logo} src={logo} alt="logo erasmus connect" />
-                {/* <h1><span>ERASMUS</span>PARTNER</h1> */}
-                <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
-            </div>
-            <header className={classes.BottomToolBar}>
-                <nav>
-                    <ul className={classes.NavigationItems}>
-                        <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
-                        <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
-                        <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
-                    </ul>
-                </nav>
-            </header>
-        </div>
+        <ul className={classes.NavigationItems}>
+            <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
+            <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
+            <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
+        </ul>
     );
 
     let notificationBubble = null;
@@ -55,32 +44,31 @@ const Main = () => {
 
     if (isAuthenticated) {
         content = (
-            <div className={classes.Links}>
-                <div className={[classes.Brand, classes.BrandLoggedIn].join(' ')}>
-                    <img className={classes.Logo} src={logo} alt="logo erasmus connect" />
-
-                    {/* <h1><span>ERASMUS</span>PARTNER</h1> */}
-                    <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
-                </div>
-                <div className={classes.LinkItems}>
-
-                    <div style={{ position: 'relative', margin: "0 !important", width: '100%' }}>
-                        {notificationBubble}
-                        <NavLink to="/my-profile" exact>My profile</NavLink>
-                    </div>
-
-                    <NavLink to="/students" exact>Find student</NavLink>
-                    <NavLink to="/chat" exact>Chat</NavLink>
-                    <NavLink to="/logout" exact>Logout</NavLink>
-                </div>
-
-            </div>
+            <ul className={classes.NavigationItems} style={{width:'75%'}}>
+                <li className={classes.NavigationItem}><div style={{ position: 'relative', margin: "0 !important", width: '100%' }}>
+                    {notificationBubble}
+                    <NavLink to="/my-profile" exact>My profile</NavLink>
+                </div></li>
+                <li className={classes.NavigationItem}><NavLink to="/students" exact>Find student</NavLink></li>
+                <li className={classes.NavigationItem}><NavLink to="/chat" exact>Chat</NavLink></li>
+                <li className={classes.NavigationItem}><NavLink to="/logout" exact>Logout</NavLink></li>
+            </ul>
         )
     }
 
     return (
         <div className={classes.Main}>
-            {content}
+            <div className={classes.FrontPage}>
+                <div className={classes.Brand}>
+                    <img className={classes.Logo} src={logo} alt="logo erasmus connect" />
+                    <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
+                </div>
+                <header className={classes.BottomToolBar}>
+                    <nav>
+                        {content}
+                    </nav>
+                </header>
+            </div>
         </div>
     );
 }

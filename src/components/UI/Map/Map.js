@@ -35,12 +35,12 @@ const MapContainer = (props) => {
 
     if (windowDimensions.width >= 576) {
         if (windowDimensions.width >= 992) {
-            if (windowDimensions.width >= 1200) {
+            if (windowDimensions.width >= 1550) {
                 mapStyles.height = '15rem';
                 mapStyles.width = '20rem';
             } else {
-                mapStyles.height = '8rem';
-                mapStyles.width = '12rem';
+                mapStyles.height = '12rem';
+                mapStyles.width = '17rem';
             }
         }
         else {

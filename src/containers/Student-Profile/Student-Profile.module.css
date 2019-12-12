@@ -16,6 +16,21 @@
     grid-template-columns: 1fr 10fr;
     align-items: center;
 }
+.Row{
+    display: block;
+    margin: 1rem auto;
+}
+.Profile h2{
+    font-size: 1.75rem;
+    margin-top: 2.5%;
+}
+.Profile h4{
+    margin-bottom: 3%;
+}
+.Name{
+    text-align: center;
+    font-size: 1.5rem !important;
+}
 .GoBack{
     color:white;
     text-decoration: none;
@@ -40,16 +55,25 @@
 @media (min-width: 992px) {
     .ProfileColumns{
         grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 10%; 
+        column-gap: 5%; 
     }
     .StudentProfile{
         text-align: left;
         margin-top: 15%;
     }
+    .Row{
+        margin: 5rem auto;
+    }
 }
 
 @media (min-width: 1200px) {
     .StudentProfile{
-        margin-top: 9%;
+        margin-top: 4%;
+    }
+    .ProfileColumns{
+        column-gap: 12%; 
+    }
+    .Name{
+        font-size: 2rem !important;
     }
 }
