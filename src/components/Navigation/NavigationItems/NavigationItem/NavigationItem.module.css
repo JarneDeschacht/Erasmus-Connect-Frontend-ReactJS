@@ -29,7 +29,7 @@
 .NavigationItem a:last-of-type{
   padding: 15px 0;
 }
-.NavigationItem a:after,.GoBack:after {    
+.NavigationItem a:after {    
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -41,7 +41,7 @@
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
   }
-  .NavigationItem a:hover:after,.GoBack:hover:after{ 
+  .NavigationItem a:hover:after{ 
     width: 100%; 
     left: 0; 
   }

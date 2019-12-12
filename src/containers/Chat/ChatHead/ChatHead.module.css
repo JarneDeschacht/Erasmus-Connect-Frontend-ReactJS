@@ -1,9 +1,9 @@
 .ChatHead {
-    margin-top: 80px;
+    margin-top: 7%;
     /* margin-bottom: 35px;  */
     width: 90%;
     margin-left: 10%;
-    height: 15vh;
+    height: 12.5vh;
     display: grid;
     grid-template-columns: 1fr 3fr;
     box-sizing: border-box;
