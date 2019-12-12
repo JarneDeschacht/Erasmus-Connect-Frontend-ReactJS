@@ -5,6 +5,12 @@
     grid-template-columns: 1fr;
 }
 
+.Links{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .FrontPage h1 span, .Brand h1 span {
     clear: both;
     display: block;
@@ -26,7 +32,7 @@
     text-align: center;
     margin: 3%;
     font-size: 2rem;
-    font-weight: bold;
+ 
 }
 
 .NotificationBubble {
@@ -93,6 +99,11 @@
     font-size: 1.2em;
 }
 
+.Logo{
+    margin-top: 75px;
+    max-width: 100%;
+}
+
 .NavigationItem a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
@@ -121,8 +132,6 @@
         text-align: center;
     }
     .LinkItems {
-        position: absolute;
-        bottom: 10px;;
         flex-direction: row;
         justify-content: space-around;
     }
@@ -133,7 +142,6 @@
         max-width: 20%;
     }
     .Brand {
-        
         margin: 10% auto;
         display: grid;
         grid-template-columns: 1fr 2fr;

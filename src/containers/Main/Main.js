@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import classes from './Main.module.css';
 import * as actions from '../../store/actions';
+import logo from '../../assets/images/logo.png'
 
 const Main = () => {
 
@@ -31,7 +32,8 @@ const Main = () => {
     let content = (
         <div className={classes.FrontPage}>
             <div className={classes.Brand}>
-                <h1><span>ERASMUS</span>CONNECT</h1>
+            <img className={classes.Logo} src={logo} alt="logo erasmus connect" />
+                {/* <h1><span>ERASMUS</span>PARTNER</h1> */}
                 <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
             </div>
             <header className={classes.BottomToolBar}>
@@ -55,7 +57,9 @@ const Main = () => {
         content = (
             <div className={classes.Links}>
                 <div className={[classes.Brand, classes.BrandLoggedIn].join(' ')}>
-                    <h1><span>ERASMUS</span>CONNECT</h1>
+                    <img className={classes.Logo} src={logo} alt="logo erasmus connect" />
+
+                    {/* <h1><span>ERASMUS</span>PARTNER</h1> */}
                     <h1 className={classes.SubText}>Know your erasmus partners before departing</h1>
                 </div>
                 <div className={classes.LinkItems}>
