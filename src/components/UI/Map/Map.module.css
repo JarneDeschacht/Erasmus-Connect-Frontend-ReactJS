@@ -2,11 +2,11 @@
     height: 11rem;
     width: 16rem;
     margin: 0 auto;
+    position: relative;
 }
 .Map:first-child div {
     max-height: 11rem !important;
     max-width: 16rem !important;
-    position: relative !important;
 }
 
 
