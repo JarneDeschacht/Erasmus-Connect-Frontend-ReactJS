@@ -1,30 +1,37 @@
-.Profile{
+.Profile {
     width: 75%;
     margin: 8% auto;
     text-align: center;
 }
-.Profile h2{
+
+.Profile h2 {
     font-size: 1.75rem;
     margin-top: 2.5%;
 }
-.Profile h4{
+
+.Profile h4 {
     margin-bottom: 3%;
 }
-.ProfileColumns{
+
+.ProfileColumns {
     display: grid;
     grid-template-columns: 1fr;
 }
-.NavLink{
+
+.NavLink {
     text-decoration: none;
 }
-.Row{
+
+.Row {
     display: block;
     margin: 1rem auto;
 }
-.Name{
+
+.Name {
     text-align: center;
     font-size: 1.5rem !important;
 }
+
 .NotificationBubble {
     width: 15px;
     height: 15px;
@@ -37,36 +44,44 @@
     margin: 0 !important;
 }
 
+@media (min-width: 576px) {}
 
-@media (min-width: 576px) {
-}
-
-@media (min-width: 768px) {
-
-}
+@media (min-width: 768px) {}
 
 @media (min-width: 992px) {
-    .ProfileColumns{
+    .ProfileColumns {
         grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 5%; 
+        column-gap: 5%;
     }
-    .Profile{
+    .Profile {
         text-align: left;
         margin-top: 15%;
     }
-    .Row{
-        margin: 5rem auto;
+    .Row {
+        display: flex;
+        flex-direction: column;
+        margin: 3rem auto;
+    }
+    .Row div{
+        margin-top:25px;
+    }
+    .PersonalRow{
+        margin-bottom: 0px;
+    }
+
+    .PersonalInfoRow{
+        margin-top: 0px;
     }
 }
 
 @media (min-width: 1200px) {
-    .Profile{
+    .Profile {
         margin-top: 4%;
     }
-    .ProfileColumns{
-        column-gap: 12%; 
+    .ProfileColumns {
+        column-gap: 12%;
     }
-    .Name{
+    .Name {
         font-size: 2rem !important;
     }
 }

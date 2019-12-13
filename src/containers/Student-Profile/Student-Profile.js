@@ -114,24 +114,26 @@ const StudentProfile = props => {
   if (studentProfile) {
     studentContent = (
       <div className={classes.ProfileColumns}>
-        <div>
+        <div className={classes.FirstCol}>
           <div className={classes.Row}>
             <ProfilePicture styleType="Profile" imageUrl={studentProfile.imageUrl} />
             <h2 className={classes.Name}>{studentProfile.firstName} {studentProfile.lastName}</h2>
+            {connectButton}
           </div>
           <div className={classes.Row}>
             <h4>Bio</h4>
             <p>{studentProfile.bio}</p>
-          </div>
-          <div className={classes.Row}>
             <h4>Course</h4>
             <p>{studentProfile.erasmusCourse || '-----'}</p>
           </div>
+          {/* <div className={classes.Row}> */}
+           
+          {/* </div> */}
         </div>
         <div>
           <div className={classes.Row}>
             <div>
-              <h4>Home City: {studentProfile.homeUniversity.city.name || ''}</h4>
+              <h4 style={{marginTop:'0px'}}>Home City: {studentProfile.homeUniversity.city.name || ''}</h4>
               <Map address={studentProfile.homeUniversity.city.name + '+' + studentProfile.homeUniversity.city.country.name} />
             </div>
             <div>
@@ -143,14 +145,12 @@ const StudentProfile = props => {
             <h4>Home University</h4>
             <h2>{studentProfile.homeUniversity.name || '-----'}</h2>
           </div>
-          <div className={classes.Row}>
-            {connectButton}
-          </div>
+
         </div>
         <div>
           <div className={classes.Row}>
             <div>
-              <h4>Erasmus City: {studentProfile.erasmusUniversity.city.name || ''}</h4>
+              <h4 style={{marginTop:'0px'}}>Erasmus City: {studentProfile.erasmusUniversity.city.name || ''}</h4>
               <Map address={studentProfile.erasmusUniversity.city.name + '+' + studentProfile.erasmusUniversity.city.country.name} />
             </div>
             <div>
@@ -161,9 +161,6 @@ const StudentProfile = props => {
           <div className={classes.Row}>
             <h4>Erasmus University</h4>
             <h2>{studentProfile.erasmusUniversity.name || '-----'}</h2>
-          </div>
-          <div className={classes.Row}>
-            <Button maxWidth >Social profiles</Button>
           </div>
         </div>
       </div>

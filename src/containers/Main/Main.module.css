@@ -132,7 +132,7 @@
         flex-direction: row;
         width: 60%;
         margin: 0 auto;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 }
 
