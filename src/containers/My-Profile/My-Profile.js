@@ -204,7 +204,7 @@ const Profile = props => {
       </div>
     );
   }
-  return content;
+  return <div className={classes.ProfileContainer}>{content}</div>;
 };
 
 export default Profile;

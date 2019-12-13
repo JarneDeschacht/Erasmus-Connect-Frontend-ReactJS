@@ -1,6 +1,13 @@
+.ProfileContainer {
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+    margin-top: 10vh;
+}
+
 .Profile {
     width: 75%;
-    margin: 8% auto;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -30,6 +37,7 @@
 .Name {
     text-align: center;
     font-size: 1.5rem !important;
+    margin-bottom: 0px;
 }
 
 .NotificationBubble {
@@ -55,29 +63,25 @@
     }
     .Profile {
         text-align: left;
-        margin-top: 15%;
     }
     .Row {
         display: flex;
         flex-direction: column;
         margin: 3rem auto;
     }
-    .Row div{
-        margin-top:25px;
+    .Row div {
+        margin-top: 25px;
     }
-    .PersonalRow{
+    .PersonalRow {
         margin-bottom: 0px;
     }
-
-    .PersonalInfoRow{
+    .PersonalInfoRow {
         margin-top: 0px;
+        margin-bottom: 0px;
     }
 }
 
 @media (min-width: 1200px) {
-    .Profile {
-        margin-top: 4%;
-    }
     .ProfileColumns {
         column-gap: 12%;
     }
