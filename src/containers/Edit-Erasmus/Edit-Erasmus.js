@@ -20,13 +20,18 @@ const EditErasmus = () => {
         () => dispatch(actions.navbarSwitchDisplay()),
         [dispatch]
     );
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    const onFetchProfile = useCallback(
+        () => dispatch(actions.fetchProfile(token, userId)),
+        [token, userId, dispatch]
+    );
     const profile = useSelector(state => state.student.profile);
     const countries = useSelector(state => state.country.countries);
     const onFetchCountries = useCallback(
         () => dispatch(actions.fetchCountries()),
         [dispatch]
     );
-    const token = localStorage.getItem('token');
     const onEditErasmus = data => dispatch(actions.editErasmus(token, data));
 
 
@@ -193,6 +198,7 @@ const EditErasmus = () => {
             erasmusUniversity: editErasmusForm.erasmusUniversityName.value
         }
         onEditErasmus(data);
+        onFetchProfile(token,userId);
         setShouldRedirect(true) //has to be improved
     };
 
@@ -221,7 +227,7 @@ const EditErasmus = () => {
     });
 
     formInputs.splice(0, 0, <h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>)
-    formInputs.splice(5, 0,  <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
+    formInputs.splice(5, 0, <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
 
     editForm = (
         <form className={classes.Form}>
