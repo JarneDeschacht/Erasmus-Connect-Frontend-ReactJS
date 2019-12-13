@@ -34,7 +34,7 @@ const Main = () => {
             <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
             <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
             <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
-        </ul>
+            </ul>
     );
 
     let notificationBubble = null;
@@ -44,8 +44,9 @@ const Main = () => {
 
     if (isAuthenticated) {
         content = (
-            <ul className={classes.NavigationItems} style={{width:'75%'}}>
-                <li className={classes.NavigationItem}><div style={{ position: 'relative', margin: "0 !important", width: '100%' }}>
+            <ul className={classes.NavigationItems}>
+                <li className={[classes.NavigationItem]}>
+                    <div className={classes.MyProfileLink}>
                     {notificationBubble}
                     <NavLink to="/my-profile" exact>My profile</NavLink>
                 </div></li>

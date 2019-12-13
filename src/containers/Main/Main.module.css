@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 1fr;
 }
+
 .FrontPage h1 span, .Brand h1 span {
     clear: both;
     display: block;
@@ -11,16 +12,20 @@
     font-size: 1em;
     margin-bottom: -1.5vh;
 }
+
 .NotificationBubble {
     width: 15px;
     height: 15px;
     border-radius: 50%;
     background-color: red;
     border: 2px solid white;
-    position: absolute;
+    position: relative;
+    left: 70%;
+    top: 15px;
+    /* position: absolute;
     top: 0px;
     right: 6%;
-    margin: 0 !important;
+    margin: 0 !important; */
 }
 
 .BottomToolBar {
@@ -74,7 +79,7 @@
     font-size: 1.2em;
 }
 
-.Logo{
+.Logo {
     max-width: 100%;
 }
 
@@ -89,6 +94,12 @@
     background: #fff;
     transition: width 0.3s ease 0s, left 0.3s ease 0s;
     width: 0;
+}
+
+.MyProfileLink {
+    position: relative;
+    margin: 0 !important;
+    width: 100%;
 }
 
 .NavigationItem a:hover:after {
@@ -114,13 +125,13 @@
     .NavigationItem a {
         font-size: 3.5em;
     }
-    .BrandLoggedIn{
+    .BrandLoggedIn {
         width: 80%;
     }
-    .NavigationItems{
+    .NavigationItems {
         flex-direction: row;
         width: 60%;
-        margin:0 auto;
+        margin: 0 auto;
         justify-content: space-between;
     }
 }
