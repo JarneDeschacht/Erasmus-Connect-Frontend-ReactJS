@@ -52,7 +52,7 @@ const StudentProfile = props => {
 
   const studentProfile = useSelector(state => state.student.profile);
   const userId = localStorage.getItem("userId");
-  let history = useHistory()
+  let history = useHistory();
 
   useEffect(() => {
     onFetchConnections(userId)
@@ -78,6 +78,7 @@ const StudentProfile = props => {
 
   const onChat = () => {
     connections.connections.forEach(element => {
+
       if(selectedUserId.toString() === element.userId.toString()){
           onGoToChat(element);
       }

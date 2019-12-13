@@ -18,6 +18,22 @@
     font-size: 1.3em;
 }
 
+.RouteToProfile{
+    text-align: center;
+    font-weight: 450;
+    margin-top: 1px;
+
+}
+
+.ProfilePictureContainer{
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
 strong {
     font-weight: 700;
     font-size: 1.5em;

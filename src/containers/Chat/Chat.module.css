@@ -1,5 +1,6 @@
  .Chat{
     width: 100%;
+    overflow-x: hidden;
     
 }
 .ChatContainer{

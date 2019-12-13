@@ -4,8 +4,10 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    margin-top: 35px;
     padding-right: 5px;
     overflow-y: scroll;
+    padding-bottom: 10px;
 }
 
 
