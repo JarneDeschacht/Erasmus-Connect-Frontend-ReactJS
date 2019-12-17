@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import classes from './ProfilePicture.module.css'
@@ -9,87 +9,89 @@ import FilePicker from '../../components/UI/Input/FilePicker/FilePicker';
 import DefaultPhoto from '../../assets/images/default.png'
 import Spinner from "../../components/UI/Spinner/Spinner"
 
-class ProfilePicture extends PureComponent {
+const ProfilePicture = props => {
 
-    state = {
-        src: null,
-        crop: {
-            unit: '%',
-            width: 100,
-            aspect: 1 / 1,
-            keepSelection: true
-        },
-        file: null,
-        type: null,
-        submittedPicture: false
-    };
+    const dispatch = useDispatch();
+    const uploadingProfilePicture = useSelector(state => state.student.uploadingProfilePicture);
 
-    componentDidUpdate() {
-        if (!this.props.uploadingProfilePicture && this.state.src && this.state.submittedPicture) {
-            this.props.history.push('/my-profile');
+    const onImageUpload = (token, formData) => dispatch(actions.uploadProfilePicture(token, formData));
+
+    const [crop, setCrop] = useState({
+        unit: '%',
+        width: 100,
+        aspect: 1 / 1,
+        keepSelection: true
+    });
+    const [src, setSrc] = useState(null);
+    const [file, setFile] = useState(null);
+    const [type, setType] = useState(null);
+    const [submittedPicture, setSubmittedPicture] = useState(false);
+    const [, setCroppedImageUrl] = useState(null);
+    const [imageRef, setImageRef] = useState(null);
+
+    const [fileUrl, setFileUrl] = useState(null);
+
+    useEffect(() => {
+        if (!uploadingProfilePicture && submittedPicture) {
+            props.history.replace('/my-profile');
         }
-    }
+    }, [uploadingProfilePicture, submittedPicture, props.history])
 
-
-    originalFile = null;
-
-    onSelectFile = (input, value, files) => {
-        this.setState({ type: files[0].type });
+    const onSelectFile = (input, value, files) => {
+        setType(files[0].type);
         if (files) {
             const reader = new FileReader();
             reader.addEventListener('load', () => {
-                this.setState({ src: reader.result })
+                setSrc(reader.result);
             }
             );
             reader.readAsDataURL(files[0]);
         }
     };
 
-    // If you setState the crop in here you should return false.
-    onImageLoaded = image => {
-        this.imageRef = image;
+    const onImageLoaded = image => {
+        setImageRef(image);
     };
 
-    onCropComplete = crop => {
-        this.makeClientCrop(crop);
+    const onCropComplete = crop => {
+        makeClientCrop(crop);
     };
 
-    onCropChange = (crop, percentCrop) => {
-        // You could also use percentCrop:
-        // this.setState({ crop: percentCrop });
-        this.setState({ crop });
-        console.log(crop.width);
+    const onCropChange = (crop, percentCrop) => {
+        setCrop(crop);
     };
 
-    onUploadImage = () => {
+    const onUploadImage = () => {
         const userId = localStorage.getItem("userId");
         const token = localStorage.getItem("token");
 
         let formData = new FormData();
 
-        formData.append('image', this.state.file);
+        formData.append('image', file);
         formData.append('userId', userId);
 
         for (var pair of formData.entries()) {
             console.log(pair[0] + ', ' + pair[1]);
             console.log(pair[1]);
         }
-        this.props.onImageUpload(token, formData);
-        this.setState({ submittedPicture: true });
+        onImageUpload(token, formData);
+        setSubmittedPicture(true);
     };
 
-    async makeClientCrop(crop) {
-        if (this.imageRef && crop.width && crop.height) {
-            const croppedImageUrl = await this.getCroppedImg(
-                this.imageRef,
+    const makeClientCrop = async (crop) => {
+        console.log(imageRef, crop.width, crop.height);
+        if (imageRef && crop.width && crop.height) {
+            const croppedImageUrl = await getCroppedImg(
+                imageRef,
                 crop,
                 'newFile.jpeg'
             );
-            this.setState({ croppedImageUrl });
+            setCroppedImageUrl(croppedImageUrl);
         }
     }
 
-    getCroppedImg(image, crop, fileName) {
+    const getCroppedImg = (image, crop, fileName) => {
+        console.log(crop);
         const canvas = document.createElement('canvas');
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
@@ -110,81 +112,63 @@ class ProfilePicture extends PureComponent {
         );
 
         return new Promise((resolve, reject) => {
-            // this.setState({file : canvas.toDataURL("image/png")});
             canvas.toBlob(blob => {
                 if (!blob) {
-                    //reject(new Error('Canvas is empty'));
                     console.error('Canvas is empty');
                     return;
                 }
                 blob.name = fileName;
-                window.URL.revokeObjectURL(this.fileUrl);
-                this.fileUrl = window.URL.createObjectURL(blob);
-                let file = new File([blob], "profilePicture.jpg", { type: this.state.type });
-                // this.formData.append('image', file);
-                this.setState({ file: file });
-                resolve(this.fileUrl);
+                window.URL.revokeObjectURL(fileUrl);
+                setFileUrl(window.URL.createObjectURL(blob));
+                let file = new File([blob], "profilePicture.jpg", { type: type });
+                console.log(file);
+                setFile(file);
+                resolve(fileUrl);
             }, 'image/jpeg');
         });
     }
-
-    render() {
-        const { crop, src } = this.state;
-
-        let content = null;
-        if (this.props.uploadingProfilePicture && this.state.src) {
-            content = <Spinner />
-        } else {
-            content = (
-                <div className={classes.ProfilePicture}>
+    
+    let content = null;
+    if (uploadingProfilePicture && src) {
+        content = <Spinner />
+    } else {
+        content = (
+            <div className={classes.ProfilePicture}>
+                <div>
+                    <h1 style={{ fontSize: '2.3em' }}>Upload your profile picture</h1>
                     <div>
-                        <h1 style={{ fontSize: '2.3em' }}>Upload your profile picture</h1>
-                        <div>
-                            <FilePicker
-                                id="image"
-                                label="Upload Picture"
-                                control="input"
-                                onChange={this.onSelectFile}
-                                halfSize
-                            />
-                        </div>
-                        <h3 style={{textAlign: 'center', textDecoration: 'underline', marginTop: '2em'}}>Preview</h3>
-                        {src && (
-                            <ReactCrop
-                                src={src}
-                                crop={crop}
-                                ruleOfThirds
-                                onImageLoaded={this.onImageLoaded}
-                                onComplete={this.onCropComplete}
-                                onChange={this.onCropChange}
-                                className={classes.Crop}
-                            />
-                        )}
-                        {!src && (
-                            <img className={classes.Crop} src={DefaultPhoto} alt="Profile default" />
-                        )}
-                        <div className={classes.Submit}>
-                            <Button clicked={() => this.onUploadImage()} disabled={this.state.crop.width === 0 || !this.state.src}>Upload Picture</Button>
-                        </div>
+                        <FilePicker
+                            id="image"
+                            label="Upload Picture"
+                            control="input"
+                            onChange={onSelectFile}
+                            halfSize
+                        />
+                    </div>
+                    <h3 style={{ textAlign: 'center', textDecoration: 'underline', marginTop: '2em' }}>Preview</h3>
+                    {src && (
+                        <ReactCrop
+                            src={src}
+                            crop={crop}
+                            ruleOfThirds
+                            onImageLoaded={onImageLoaded}
+                            onComplete={onCropComplete}
+                            onChange={onCropChange}
+                            className={classes.Crop}
+                        />
+                    )}
+                    {!src && (
+                        <img className={classes.Crop} src={DefaultPhoto} alt="Profile default" />
+                    )}
+                    <div className={classes.Submit}>
+                        <Button clicked={() => onUploadImage()} disabled={crop.width === 0 || !src}>Upload Picture</Button>
                     </div>
                 </div>
-            )
-        }
-
-        return content;
+            </div>
+        )
     }
+
+    return content;
 }
 
-const mapStateToProps = state => {
-    return {
-        uploadingProfilePicture: state.student.uploadingProfilePicture
-    };
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onImageUpload: (token, userId, file) => dispatch(actions.uploadProfilePicture(token, userId, file)),
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePicture)
+export default ProfilePicture

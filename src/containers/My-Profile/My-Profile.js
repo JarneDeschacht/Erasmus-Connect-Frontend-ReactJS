@@ -12,7 +12,7 @@ import ConnectionSummary from "../../components/UI/ConnectionSummary/ConnectionS
 import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import EditIcon from '@material-ui/icons/Edit';
 
-const Profile = props => {
+const Profile = props => { 
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
