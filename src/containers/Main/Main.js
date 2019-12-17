@@ -31,7 +31,7 @@ const Main = () => {
 
 
     let content = (
-        <ul className={classes.NavigationItems}>
+        <ul className={classes.NavigationItems} style={{width:'60%'}}>
             <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
             <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
             <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>

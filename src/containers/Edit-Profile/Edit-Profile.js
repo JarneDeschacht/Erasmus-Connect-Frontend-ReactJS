@@ -20,13 +20,18 @@ const EditProfile = () => {
     () => dispatch(actions.navbarSwitchDisplay()),
     [dispatch]
   );
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  const onFetchProfile = useCallback(
+    () => dispatch(actions.fetchProfile(token, userId)),
+    [token, userId, dispatch]
+  );
   const profile = useSelector(state => state.student.profile);
   const countries = useSelector(state => state.country.countries);
   const onFetchCountries = useCallback(
     () => dispatch(actions.fetchCountries()),
     [dispatch]
   );
-  const token = localStorage.getItem('token');
   const onEditProfile = data => dispatch(actions.editProfile(token, data));
 
   useEffect(() => {
@@ -194,6 +199,7 @@ const EditProfile = () => {
     }
 
     onEditProfile(data);
+    onFetchProfile(token,userId);
     setShouldRedirect(true) //has to be improved
   };
 
