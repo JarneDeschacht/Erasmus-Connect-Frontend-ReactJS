@@ -4,6 +4,8 @@ import Button from "../Button/Button";
 import classes from "./ConnectionSummarty.module.css";
 import * as actions from "../../../store/actions/index";
 import { useHistory } from "react-router-dom";
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
+import FontAwesome from 'react-fontawesome';
 
 const ConnectionSummary = props => {
   const dispatch = useDispatch();
@@ -26,36 +28,84 @@ const ConnectionSummary = props => {
     const connectToId = props.userId;
 
     connections.forEach(element => {
-      if(connectToId === element.userId){
-          onGoToChat(element);
+      if (connectToId === element.userId) {
+        onGoToChat(element);
       }
     });
 
-    history.push('/chat'); 
+    history.push('/chat');
   }
 
+
+
   return (
-    <div className={classes.ConnectionSummary}>
-      <div className={classes.Info}>{props.name}</div>
-      {props.isConnection ? (
-        <div className={classes.Controls}>
-          <Button clicked={() => { props.goTo('/students', [props.userId]) }} smallButton>View Profile</Button>
-          <Button smallButton clicked={() => routeToChat()}>Chat</Button>
-          <Button smallButton clicked={() => { onRefuse() }}>Remove Connection</Button>
-        </div>
-      ) : null}
-      {props.isReceived ? (
-        <div className={classes.Controls}>
-          <Button clicked={() => { onAccept() }} smallButton>Accept</Button>
-          <Button clicked={() => { onRefuse() }} smallButton>Refuse</Button>
-        </div>
-      ) : null}
-      {props.isSent ? (
-        <div className={classes.Controls}>
-          <Button clicked={() => { onRefuse() }} smallButton>Cancel</Button>
-        </div>
-      ) : null}
-    </div>
+    <Aux>
+      <div className={[classes.ConnectionSummary, classes.BigScreen].join(' ')}>
+        <div className={classes.Info}>{props.name}</div>
+        {props.isConnection ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { props.goTo('/students', [props.userId]) }} smallButton>View Profile</Button>
+            <Button smallButton clicked={() => routeToChat()}>Chat</Button>
+            <Button smallButton clicked={() => { onRefuse() }}>Remove Connection</Button>
+          </div>
+        ) : null}
+        {props.isReceived ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { onAccept() }} smallButton>Accept</Button>
+            <Button clicked={() => { onRefuse() }} smallButton>Refuse</Button>
+          </div>
+        ) : null}
+        {props.isSent ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { onRefuse() }} smallButton>Cancel</Button>
+          </div>
+        ) : null}
+      </div>
+
+      <div className={[classes.ConnectionSummary, classes.SmallScreen].join(' ')}>
+        <div className={classes.Info}>{props.name}</div>
+        {props.isConnection ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { props.goTo('/students', [props.userId]) }} smallButton>
+            
+            <FontAwesome 
+                name="fas fa-user" />
+            </Button>
+            <Button smallButton clicked={() => routeToChat()}>
+            <FontAwesome
+                name="fas fa-comments" />
+            </Button>
+            <Button smallButton clicked={() => { onRefuse() }}>
+            <FontAwesome
+                name="fas fa-trash"/>
+            </Button>
+          </div>
+        ) : null}
+        {props.isReceived ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { onAccept() }} smallButton>
+              <FontAwesome
+                name="fas fa-check" />
+            </Button>
+            <Button clicked={() => { onRefuse() }} smallButton>
+              <FontAwesome
+                name="fas fa-times" />
+            </Button>
+          </div>
+        ) : null}
+        {props.isSent ? (
+          <div className={classes.Controls}>
+            <Button clicked={() => { onRefuse() }} smallButton>
+              <FontAwesome
+                name="fas fa-times" />
+            </Button>
+          </div>
+        ) : null}
+      </div>
+    </Aux>
+
+
+
   );
 };
 

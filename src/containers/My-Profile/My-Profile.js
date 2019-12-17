@@ -133,6 +133,22 @@ const Profile = props => {
     modalContent = <Spinner />;
   }
 
+  let editOrRegisterButton = null;
+  if(profile){
+    
+    if(profile.homeUniversity.city.name){
+        console.log(profile.homeUniversity)
+        editOrRegisterButton =<NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button maxWidth>Edit Erasmus</Button></NavLink>
+    }
+    else{
+      editOrRegisterButton = <NavLink className={classes.NavLink} exact to="/register-erasmus"><Button maxWidth>Register Erasmus</Button></NavLink>
+    }
+  }
+
+  console.log(editOrRegisterButton)
+  
+
+
   if (!loading && profile) {
     content = (
       <div className={classes.Profile}>
@@ -158,7 +174,7 @@ const Profile = props => {
               </Button>
               </div>
               <NavLink className={classes.NavLink} exact to="/edit-profile"><Button maxWidth>Edit Profile</Button></NavLink>
-              <NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button maxWidth>Edit Erasmus</Button></NavLink>
+              {editOrRegisterButton}
             </div>
             <div className={[classes.Row, classes.PersonalInfoRow].join(' ')}>
               <h4>Bio</h4>
