@@ -1,0 +1,28 @@
+.PNF{
+    width: 100vw;
+    height: 90vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.Link{
+    color: white;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    display: inline-block;
+}
+
+.Link:after{
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}

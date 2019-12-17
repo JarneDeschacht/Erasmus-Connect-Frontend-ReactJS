@@ -29,3 +29,8 @@
     border: 2px solid #222;
     color: #222;
 }
+
+.HalfSize{
+    width: 75%;
+    margin: 0 auto;
+}

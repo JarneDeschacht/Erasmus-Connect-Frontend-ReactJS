@@ -1,0 +1,30 @@
+.ProfilePicture{
+    display: grid;
+    grid-template-columns: 95%;
+    margin: 0 auto;
+    margin-top: 10vh;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.Crop{
+    max-width: 60%;
+    margin: 0 auto;
+    display: block;
+}
+
+.UploadBtn{
+    width: 50% !important;
+}
+
+.Submit{
+    display: flex;
+    justify-content: center;
+}
+
+@media (min-width: 768px){
+    .ProfilePicture{
+        grid-template-columns: 40%;
+    }
+}

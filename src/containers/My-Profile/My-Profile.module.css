@@ -41,22 +41,51 @@
 }
 
 .NotificationBubble {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: red;
-    border: 2px solid white;
     position: absolute;
-    top: -9.5px;
-    right: -9.5px;
+    top: -30px;
+    right: -30px;
     margin: 0 !important;
+    font-size: 3em !important;
 }
 
-@media (min-width: 576px) {}
+.EditIcon {
+    color: white !important;
+    font-size: 3em;
+}
 
-@media (min-width: 768px) {}
+.EditIconContainer {
+    display: grid;
+    align-items: end;
+}
+
+.EditIcon .Tooltiptext {
+    display: none;
+    background-color: rgba(87, 87, 87, 0.945);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 0.5em;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+.EditIcon:hover .Tooltiptext {
+    display: inline-block;
+}
+
+.NameContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
 
 @media (min-width: 992px) {
+    .NameContainer {
+        justify-content: "space-between";
+    }
+
     .ProfileColumns {
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 5%;
@@ -87,5 +116,8 @@
     }
     .Name {
         font-size: 2rem !important;
+    }
+    .EditIconContainer {
+        align-items: center;
     }
 }
