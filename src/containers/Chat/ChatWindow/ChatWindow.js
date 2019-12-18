@@ -23,6 +23,7 @@ const ChatWindow = props => {
     useEffect(() => {
         const socket = openSocket('http://localhost:8080/')
         socket.on('messages', data => {
+            console.log("MESSAGE RECEIVED");
             newMessageReceived(data.message);
         });
     }, [newMessageReceived]);

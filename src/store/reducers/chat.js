@@ -57,6 +57,7 @@ const getLastMessageFail = (state, action) => {
 
 const newMessage = (state, action) => {    
     const messages = [...state.messages];
+    console.log(messages);
     let lastKey = 0
     for (let key in messages) {
         lastKey = parseInt(key, 10)
@@ -65,7 +66,7 @@ const newMessage = (state, action) => {
 
     messages[newKey] = {
         content: action.message.content,
-        messageId: messages.length + 1,
+        messageId: messages.length + 1 + new Date().toString(),
         receiver: action.message.receiver,
         sendDate: action.message.sendDate,
         sender: action.message.sender
