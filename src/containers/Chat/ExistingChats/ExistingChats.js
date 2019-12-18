@@ -34,7 +34,6 @@ const ExistingChats = props => {
     //loadin the first connection as default
     useEffect(() => {
         if (connections) {
-            console.log(selectedChatFromRoute)
             if(selectedChatFromRoute){
                 onSelectChat(selectedChatFromRoute)
             }
@@ -52,7 +51,6 @@ const ExistingChats = props => {
     let connectionList = null;
    
     if (connections) {
-        console.log(connections.connections)
         connections.connections.sort((a, b) => a.lastMessageDate < b.lastMessageDate ? 1: -1 || a.connectionId > b.connectionId? 1: -1)
         connectionList = connections.connections.map(con => {
             return (

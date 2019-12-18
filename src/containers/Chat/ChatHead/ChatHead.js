@@ -9,7 +9,6 @@ const ChatHead = props => {
     const imageUrl = props.connection ? props.connection.imageUrl : null;
     const userId = props.connection ? props.connection.userId : null;
     let history = useHistory();
-    console.log(props)
     return (
         <div className={classes.ChatHead}>
             <div 
