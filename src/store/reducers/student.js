@@ -21,7 +21,9 @@ const initialState = {
     confirmationMessage: null,
     gettingNotificationStatus: false,
     notificationError: null,
-    isNotification: false
+    isNotification: false,
+    uploadingProfilePicture: false,
+    uploadingProfilePictureError: null
 };
 
 const clearConnectionError = (state, action) => {
@@ -247,6 +249,24 @@ const editErasmusFail = (state, action) => {
     })
 }
 
+const uploadProfilePictureStart = (state, action) => {
+    return updateObject(state, {
+        uploadingProfilePicture: true
+    })
+}
+const uploadProfilePictureSuccess = (state, action) => {
+    return updateObject(state, {
+        uploadingProfilePicture: false,
+        confirmationMessage: "Profile picture successfully changed"
+    })
+}
+const uploadProfilePictureFail = (state, action) => {
+    return updateObject(state, {
+        uploadingProfilePicture: false,
+        uploadingProfilePictureError: "There was an error changing the profile picture. Please try again"
+    })
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.FETCH_STUDENT_PROFILE_START: return fetchProfileStart(state, action);
@@ -285,6 +305,9 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_NOTIFICATION_STATUS_START: return getNotificationStatusStart(state, action);
         case actionTypes.GET_NOTIFICATION_STATUS_SUCCESS: return getNotificationStatusSuccess(state, action);
         case actionTypes.GET_NOTIFICATION_STATUS_FAIL: return getNotificationStatusFail(state, action);
+        case actionTypes.UPLOAD_PROFILE_PICTURE_START: return uploadProfilePictureStart(state, action);
+        case actionTypes.UPLOAD_PROFILE_PICTURE_SUCCESS: return uploadProfilePictureSuccess(state, action);
+        case actionTypes.UPLOAD_PROFILE_PICTURE_FAIL: return uploadProfilePictureFail(state, action);
         
         default: return state;
     }

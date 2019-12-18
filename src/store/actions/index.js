@@ -71,7 +71,11 @@ export {
     getNotificationStatusStart,
     getNotificationStatusSuccess,
     getNotificationStatusFail,
-    routeToChat
+    routeToChat,
+    uploadProfilePicture,
+    uploadProfilePictureStart,
+    uploadProfilePictureSuccess,
+    uploadProfilePictureFail
 } from './student';
 export {
     fetchCountries,

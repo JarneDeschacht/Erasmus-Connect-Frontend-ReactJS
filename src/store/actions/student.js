@@ -198,6 +198,28 @@ export const registerErasmus = (token, userId, formData) => {
         formData: formData
     }
 }
+export const uploadProfilePicture = (token, formData) => {
+    return {
+        type: actionTypes.UPLOAD_PROFILE_PICTURE,
+        token: token,
+        formData: formData
+    }
+}
+export const uploadProfilePictureStart = () => {
+    return {
+        type: actionTypes.UPLOAD_PROFILE_PICTURE_START
+    }
+}
+export const uploadProfilePictureSuccess = () => {
+    return {
+        type: actionTypes.UPLOAD_PROFILE_PICTURE_SUCCESS
+    }
+}
+export const uploadProfilePictureFail = () => {
+    return {
+        type: actionTypes.UPLOAD_PROFILE_PICTURE_FAIL
+    }
+}
 export const clearConnectionError = () => {
     return {
         type: actionTypes.CLEAR_CONNECTION_ERROR

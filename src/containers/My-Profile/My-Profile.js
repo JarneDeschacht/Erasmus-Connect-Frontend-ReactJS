@@ -9,8 +9,10 @@ import Map from "../../components/UI/Map/Map";
 import Button from "../../components/UI/Button/Button";
 import Modal from "../../components/UI/Modal/modal";
 import ConnectionSummary from "../../components/UI/ConnectionSummary/ConnectionSummary";
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+import EditIcon from '@material-ui/icons/Edit';
 
-const Profile = props => {
+const Profile = props => { 
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const userId = localStorage.getItem("userId");
@@ -68,7 +70,7 @@ const Profile = props => {
 
   let notificationBubble = null;
   if (isNotification) {
-    notificationBubble = (<div className={classes.NotificationBubble}></div>)
+    notificationBubble = (<PriorityHighIcon fontSize="large" className={classes.NotificationBubble} />)
   }
 
   let content = <Spinner />;
@@ -159,11 +161,16 @@ const Profile = props => {
         <div className={classes.ProfileColumns}>
           <div>
             <div className={[classes.Row, classes.PersonalRow].join(' ')}>
-              <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} style={{margin: "auto"}} />
-              <h2 className={classes.Name}>
-                {profile.firstName} {profile.lastName}
-              </h2>
-
+              <ProfilePicture styleType="Profile" imageUrl={profile.imageUrl} style={{ margin: "auto" }} />
+              <div className={classes.NameContainer}>
+                <NavLink className={[classes.NavLink, classes.EditIconContainer].join(' ')} exact to="/profile-picture">
+                  <span title="Edit Picture"><EditIcon className={classes.EditIcon} /></span>
+                </NavLink>
+                <h2 className={classes.Name}>
+                  {profile.firstName} {profile.lastName}
+                </h2>
+                <div style={{ width: '1px' }}></div>
+              </div>
               <div style={{ position: 'relative' }}>
                 {notificationBubble}
                 <Button
@@ -198,7 +205,7 @@ const Profile = props => {
               <h4>Home University</h4>
               <h2>{profile.homeUniversity.name || "-----"}</h2>
             </div>
-           
+
           </div>
           <div>
             <div className={classes.Row}>

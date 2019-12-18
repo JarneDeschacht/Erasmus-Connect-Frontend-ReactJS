@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './Main.module.css';
 import * as actions from '../../store/actions';
 import logo from '../../assets/images/logo.png'
+import PriorityHighIcon from '@material-ui/icons/PriorityHighOutlined';
 
 const Main = () => {
 
@@ -39,7 +40,7 @@ const Main = () => {
 
     let notificationBubble = null;
     if (isNotification) {
-        notificationBubble = (<div className={classes.NotificationBubble}></div>)
+        notificationBubble = (<PriorityHighIcon fontSize="large" className={classes.NotificationBubble}/>)
     }
 
     if (isAuthenticated) {

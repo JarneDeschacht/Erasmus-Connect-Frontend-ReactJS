@@ -13,9 +13,16 @@ const filePicker = props => {
         });
     }
 
+    let classNames = []
+
+    if(props.halfSize)
+    {
+        classNames.push(classes.HalfSize);
+    }
+
 
     return (
-        <div >
+        <div className={classNames.join(' ')} >
             <input
                 className={classes.InputFile}
                 //   className={[

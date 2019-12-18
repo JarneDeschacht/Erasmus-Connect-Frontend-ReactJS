@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import Layout from "./hoc/Layout/Layout";
 import Main from "./containers/Main/Main";
 import Login from "./containers/Login/Login";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "./store/actions/index";
 import Logout from "./containers/Logout/Logout";
@@ -18,6 +18,8 @@ import EditProfile from './containers/Edit-Profile/Edit-Profile';
 import EditErasmus from './containers/Edit-Erasmus/Edit-Erasmus';
 import Chat from "./containers/Chat/Chat";
 import Snackbar from "./components/UI/Snackbar/snackbar";
+import PageNotFound from "./components/PageNotFound/PageNotFound"
+import ProfilePicture from "./containers/ProfilePicture/ProfilePicture"
 
 const App = props => {
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ const App = props => {
       <Route path="/forgotPassword/:id" component={SetNewPassword} />
       <Route path="/register-erasmus" component={RegisterErasmus} />
       <Route path="/" exact component={Main} />
-      <Redirect to="/" />
+      <Route component={PageNotFound} />
     </Switch>
   );
 
@@ -50,6 +52,7 @@ const App = props => {
         <Route path="/my-profile" component={MyProfile} />
         <Route path='/edit-profile' component={EditProfile} />
         <Route path='/edit-erasmus' component={EditErasmus} />
+        <Route path='/profile-picture' component={ProfilePicture} />
         <Route path="/logout" component={Logout} />
         <Route path="/register-erasmus" component={RegisterErasmus} />
         <Route path="/students" exact component={Students} />
@@ -59,7 +62,7 @@ const App = props => {
           render={props => <StudentProfile {...props} />}
         />
         <Route path="/" exact component={Main} />
-        <Redirect to="/" />
+        <Route component={PageNotFound} />
       </Switch>
     );
   }

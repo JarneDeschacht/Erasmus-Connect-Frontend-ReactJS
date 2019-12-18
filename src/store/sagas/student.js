@@ -102,7 +102,7 @@ export function* refuseConnectionSaga(action) {
         yield put(actions.refuseConnectionFail(error.response.data.message));
     }
 }
-export function* getNotificationStatus(action) {
+export function* getNotificationStatusSaga(action) {
     yield put(actions.getNotificationStatusStart());
     try {
         const response = yield axios.get('/getNotificationStatus/' + action.userId);
@@ -110,6 +110,24 @@ export function* getNotificationStatus(action) {
     }
     catch (error) {
         yield put(actions.getNotificationStatusFail(error.response.data.message));
+    }
+}
+
+export function* uploadProfilePictureSaga(action) {
+    yield put(actions.uploadProfilePictureStart());
+    try {
+        yield axios({
+            url: '/uploadProfilePicture',
+            method: 'POST',
+            data: action.formData,
+            headers: {
+                'Authorization': 'Bearer ' + action.token
+            }
+        });
+        yield put(actions.uploadProfilePictureSuccess());
+    }
+    catch (error) {
+        yield put(actions.uploadProfilePictureFail());
     }
 }
 
