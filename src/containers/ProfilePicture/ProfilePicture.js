@@ -28,6 +28,7 @@ const ProfilePicture = props => {
     const [submittedPicture, setSubmittedPicture] = useState(false);
     const [, setCroppedImageUrl] = useState(null);
     const [imageRef, setImageRef] = useState(null);
+    let tempImageRef = null;
 
     const [fileUrl, setFileUrl] = useState(null);
 
@@ -50,6 +51,7 @@ const ProfilePicture = props => {
     };
 
     const onImageLoaded = image => {
+        tempImageRef = image;
         setImageRef(image);
     };
 
@@ -70,19 +72,15 @@ const ProfilePicture = props => {
         formData.append('image', file);
         formData.append('userId', userId);
 
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ', ' + pair[1]);
-            console.log(pair[1]);
-        }
         onImageUpload(token, formData);
         setSubmittedPicture(true);
     };
 
     const makeClientCrop = async (crop) => {
-        console.log(imageRef, crop.width, crop.height);
-        if (imageRef && crop.width && crop.height) {
+        if ((imageRef || tempImageRef) && crop.width && crop.height) {
+            const imageR = imageRef ? imageRef : tempImageRef;
             const croppedImageUrl = await getCroppedImg(
-                imageRef,
+                imageR,
                 crop,
                 'newFile.jpeg'
             );
@@ -91,7 +89,6 @@ const ProfilePicture = props => {
     }
 
     const getCroppedImg = (image, crop, fileName) => {
-        console.log(crop);
         const canvas = document.createElement('canvas');
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
@@ -121,13 +118,12 @@ const ProfilePicture = props => {
                 window.URL.revokeObjectURL(fileUrl);
                 setFileUrl(window.URL.createObjectURL(blob));
                 let file = new File([blob], "profilePicture.jpg", { type: type });
-                console.log(file);
                 setFile(file);
                 resolve(fileUrl);
             }, 'image/jpeg');
         });
     }
-    
+
     let content = null;
     if (uploadingProfilePicture && src) {
         content = <Spinner />

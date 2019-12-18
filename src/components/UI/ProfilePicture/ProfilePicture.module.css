@@ -15,9 +15,11 @@
 }
 
 .ExistingChat{
-    max-height: 40px;
-    max-width: 40px;
-    border-radius: 5px;
+    height: 100%;
+    width: 50px !important;
+    width: auto;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .Profile{
     max-width: 100%;

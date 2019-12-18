@@ -8,10 +8,10 @@ import {
     checkValidity
 } from '../../shared/utility';
 import FilePicker from '../../components/UI/Input/FilePicker/FilePicker';
-import { generateBase64FromImage } from '../../shared/image';
-import ImagePreview from '../../components/UI/ImagePreview/ImagePreview';
 import Button from '../../components/UI/Button/Button';
 import { Redirect } from 'react-router-dom';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 const RegisterErasmus = props => {
 
@@ -149,8 +149,22 @@ const RegisterErasmus = props => {
     });
     const [shouldRedirect, setShouldRedirect] = useState(false);
     let [allControlsAreValid, setAllControlsAreValid] = useState(false);
-    const [imagePreview, setImagePreview] = useState(null);
-    const [image, setImage] = useState(null);
+
+    //vars for image crop
+    const [crop, setCrop] = useState({
+        unit: '%',
+        width: 100,
+        aspect: 1 / 1,
+        keepSelection: true
+    });
+    const [src, setSrc] = useState(null);
+    const [file, setFile] = useState(null);
+    const [type, setType] = useState(null);
+    const [, setCroppedImageUrl] = useState(null);
+    const [imageRef, setImageRef] = useState(null);
+    let tempImageRef = null;
+
+    const [fileUrl, setFileUrl] = useState(null);
 
 
     const inputChangedHandler = (event, controlName) => {
@@ -220,23 +234,84 @@ const RegisterErasmus = props => {
     });
 
     const fileSelectedHandler = (input, value, files) => {
-        setImage(files);
+        setType(files[0].type);
         if (files) {
-            generateBase64FromImage(files[0])
-                .then(b64 => {
-                    setImagePreview(b64);
-                })
-                .catch(() => {
-                    setImagePreview(null);
-                });
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                setSrc(reader.result);
+            }
+            );
+            reader.readAsDataURL(files[0]);
         }
+    }
+
+    //methods for image crop
+    const onImageLoaded = image => {
+        tempImageRef = image;
+        setImageRef(image);
+    };
+
+    const onCropComplete = crop => {
+        makeClientCrop(crop);
+    };
+
+    const onCropChange = (crop, percentCrop) => {
+        setCrop(crop);
+    };
+
+    const makeClientCrop = async (crop) => {
+        if ((imageRef || tempImageRef) && crop.width && crop.height) {
+            const imageR = imageRef ? imageRef : tempImageRef;
+            const croppedImageUrl = await getCroppedImg(
+                imageR,
+                crop,
+                'newFile.jpeg'
+            );
+            setCroppedImageUrl(croppedImageUrl);
+        }
+    }
+
+    const getCroppedImg = (image, crop, fileName) => {
+        const canvas = document.createElement('canvas');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext('2d');
+
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        );
+
+        return new Promise((resolve, reject) => {
+            canvas.toBlob(blob => {
+                if (!blob) {
+                    console.error('Canvas is empty');
+                    return;
+                }
+                blob.name = fileName;
+                window.URL.revokeObjectURL(fileUrl);
+                setFileUrl(window.URL.createObjectURL(blob));
+                let file = new File([blob], "profilePicture.jpg", { type: type });
+                setFile(file);
+                resolve(fileUrl);
+            }, 'image/jpeg');
+        });
     }
 
     const onSubmit = event => {
         event.preventDefault();
         const formData = new FormData();
-        if (image) {
-            formData.append('image', image[0]);
+        if (file) {
+            formData.append('image', file);
         }
         formData.append('homeCourse', registerForm.homeCourse.value);
         formData.append('erasmusCourse', registerForm.erasmusCourse.value);
@@ -250,21 +325,33 @@ const RegisterErasmus = props => {
         setShouldRedirect(true);
     }
 
-    
+
     formInputs.splice(0, 0, <h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>)
-    formInputs.splice(5, 0,  <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
+    formInputs.splice(5, 0, <h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>)
 
     // formInputs.unshift((<h2 key="subtitleErasmus" className={classes.SubTitle}>Erasmus</h2>));
     // formInputs.unshift((<h2 key="subtitleHome" className={classes.SubTitle}>Home</h2>));
 
     regForm = (
         <form className={classes.Form}>
-            <div className= {classes.ImageUpload}>
+            <div className={classes.ImageUpload}>
                 <div className={classes.ImagePreview}>
-                    {!imagePreview && <p>Please choose an image.</p>}
-                    {imagePreview && (
-                        <ImagePreview imageUrl={imagePreview} />
+                    {src && (
+                        <ReactCrop
+                            src={src}
+                            crop={crop}
+                            ruleOfThirds
+                            onImageLoaded={onImageLoaded}
+                            onComplete={onCropComplete}
+                            onChange={onCropChange}
+                            className={classes.Crop}
+                        />
                     )}
+                    {!src && 
+                        <p>Please choose an image.</p>
+                    }
+                    
+
                 </div>
                 <FilePicker
                     id="image"

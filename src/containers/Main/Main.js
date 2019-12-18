@@ -51,7 +51,7 @@ const Main = () => {
                     {notificationBubble}
                     <NavLink to="/my-profile" exact>My profile</NavLink>
                 </div></li>
-                <li className={classes.NavigationItem}><NavLink to="/students" exact>Find student</NavLink></li>
+                <li className={classes.NavigationItem}><NavLink to="/students" exact>Find students</NavLink></li>
                 <li className={classes.NavigationItem}><NavLink to="/chat" exact>Chat</NavLink></li>
                 <li className={classes.NavigationItem}><NavLink to="/logout" exact>Logout</NavLink></li>
             </ul>

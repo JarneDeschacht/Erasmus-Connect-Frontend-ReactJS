@@ -8,12 +8,13 @@ const ChatConnection = props => {
     let lastMessage = props.lastMessage;
     return (
         <div onClick={props.clicked} className={classes.Container}>
-            <div className={classes.PictureContainer}>
-                <ProfilePicture
+            {/* <div className={classes.PictureContainer}>
+                
+            </div> */}
+            <ProfilePicture
                     imageUrl={props.imageUrl}
                     styleType="ExistingChat"
                 />
-            </div>
             <div className={classes.ContentContainer}>
                 <div className={classes.UserName}>
                     {props.name}

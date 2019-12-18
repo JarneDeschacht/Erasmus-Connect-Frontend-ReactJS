@@ -37,9 +37,9 @@ const NavigationItems = props => {
     return (
         <ul className={classes.NavigationItems}>
             {goback}
+            <NavigationItem clicked={props.itemClicked} link="/my-profile">My Profile</NavigationItem>
             <NavigationItem clicked={props.itemClicked} link="/students">Find Students</NavigationItem>
             <NavigationItem clicked={props.itemClicked} link="/chat">Chat</NavigationItem>
-            <NavigationItem clicked={props.itemClicked} link="/my-profile">My Profile</NavigationItem>
             <NavigationItem clicked={props.itemClicked} link="/logout">Logout</NavigationItem>
         </ul>
     );

@@ -139,18 +139,13 @@ const Profile = props => {
   if(profile){
     
     if(profile.homeUniversity.city.name){
-        console.log(profile.homeUniversity)
         editOrRegisterButton =<NavLink className={classes.NavLink} exact to="/edit-erasmus"><Button maxWidth>Edit Erasmus</Button></NavLink>
     }
     else{
       editOrRegisterButton = <NavLink className={classes.NavLink} exact to="/register-erasmus"><Button maxWidth>Register Erasmus</Button></NavLink>
     }
   }
-
-  console.log(editOrRegisterButton)
   
-
-
   if (!loading && profile) {
     content = (
       <div className={classes.Profile}>
