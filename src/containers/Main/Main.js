@@ -31,11 +31,10 @@ const Main = () => {
 
 
     let content = (
-        <ul className={classes.NavigationItems} style={{width:'60%'}}>
-            <li className={classes.NavigationItem}><NavLink to="/about" exact >About</NavLink></li>
+        <ul className={classes.NavigationItems} style={{width:'60%', justifyContent: 'center'}}>
             <li className={classes.NavigationItem}><NavLink to="/login" exact >Sign in</NavLink></li>
             <li className={classes.NavigationItem}><NavLink to="/register" exact >Sign up</NavLink></li>
-            </ul>
+        </ul>
     );
 
     let notificationBubble = null;
