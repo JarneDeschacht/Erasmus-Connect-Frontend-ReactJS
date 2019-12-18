@@ -316,7 +316,7 @@ const RegisterErasmus = props => {
         formData.append('homeCourse', registerForm.homeCourse.value);
         formData.append('erasmusCourse', registerForm.erasmusCourse.value);
         formData.append('homeCountryId', registerForm.homeCountry.value);
-        formData.append('erasmusCountryId', registerForm.homeCountry.value);
+        formData.append('erasmusCountryId', registerForm.erasmusCountry.value);
         formData.append('homeCity', registerForm.homeCityName.value);
         formData.append('erasmusCity', registerForm.erasmusCityName.value);
         formData.append('homeUniversity', registerForm.homeUniversityName.value);
