@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.ButtonContainer{
+  margin: 4px;
+}
+
 
 .BigScreen {
   display: none;
