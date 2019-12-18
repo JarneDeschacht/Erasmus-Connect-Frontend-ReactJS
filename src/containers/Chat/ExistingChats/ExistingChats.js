@@ -42,7 +42,7 @@ const ExistingChats = props => {
             }
             
         }
-    }, [connections, onSelectChat])
+    }, [connections, onSelectChat, selectedChatFromRoute])
 
     const clickedHandler = (selectedConnectionId) => {
         onSelectChat(selectedConnectionId);

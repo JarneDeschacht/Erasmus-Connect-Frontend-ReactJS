@@ -1,10 +1,19 @@
  .Chat{
     width: 100%;
     overflow-x: hidden;
-    
+    margin-top: 10vh;
+    display: flex;
 }
 .ChatContainer{
-    margin-top: 25px;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    max-height: 90vh;
 } 
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

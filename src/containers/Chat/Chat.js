@@ -21,16 +21,15 @@ const Chat = props => {
         if (!isNavbarVisible) {
             onNavbarDisplaySwitch();
         }
-    }, [onNavbarDisplaySwitch, isNavbarVisible]);
-
+    }, [onNavbarDisplaySwitch, isNavbarVisible]);    
 
     return (
         <div className={classes.Chat}>
-            <ChatHead
-                connection={selectedUser}
-            />
+            <ExistingChats />
             <div className={classes.ChatContainer}>
-                <ExistingChats />
+                <ChatHead
+                    connection={selectedUser}
+                />
                 <ChatWindow
                     connection={selectedUser}
                 />

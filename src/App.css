@@ -15,7 +15,8 @@ h1{
 }
 
 *::-webkit-scrollbar-track {
-    background: linear-gradient(rgb(0, 174, 239), rgb(67, 64, 243));
+    /* background: linear-gradient(rgb(0, 174, 239), rgb(67, 64, 243)); */
+    background: transparent;
     /* border: 1.5px solid white; */
 }
 

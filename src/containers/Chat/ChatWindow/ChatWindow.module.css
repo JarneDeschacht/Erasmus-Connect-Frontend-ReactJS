@@ -1,13 +1,14 @@
 .ChatWindow{
-    width: 72%;
-    height: 70vh;
-    box-sizing: border-box;
+    width: 100%;
+    flex-grow: 1;
+    
 }
 
 .Conversation{
+    display: block;
     overflow: scroll;
     overflow-x: hidden;
-    max-height: 85%
+    height: 70vh;
 }
 
 .Input{

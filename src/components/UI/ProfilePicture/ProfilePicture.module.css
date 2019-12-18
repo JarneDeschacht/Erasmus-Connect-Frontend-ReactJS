@@ -8,8 +8,8 @@
 }
 
 .ChatHead{
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 100%;
+    max-width: 100%;
     border-radius: 5px;
     border: white solid 2px
 }
@@ -17,9 +17,7 @@
 .ExistingChat{
     height: 100%;
     width: 50px !important;
-    width: auto;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-radius: 5px;
 }
 .Profile{
     max-width: 100%;
@@ -27,8 +25,16 @@
     margin: auto;
 }
 
+@media (min-width: 768px) {
+    .ExistingChat{
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
 @media(min-width: 1550px){
     .Profile{
         max-height: 325px;
     }
 }
+

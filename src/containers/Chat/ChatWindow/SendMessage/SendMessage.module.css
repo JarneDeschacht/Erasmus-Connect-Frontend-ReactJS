@@ -1,13 +1,11 @@
 .SendForm{
     display: grid;
     grid-template-columns: 6fr 1fr;
-    max-height: 25px;
     align-items: center;
     justify-items: center;
-    position: absolute;
-    bottom: 50px;
-    width: 70%;
-
+    width: 95%;
+    height: 10vh;
+    margin-right: 1em;
 }
 
 .Input{

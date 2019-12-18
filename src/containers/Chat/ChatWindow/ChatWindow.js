@@ -12,8 +12,7 @@ const ChatWindow = props => {
     const userId = localStorage.getItem('userId')
     const messages = useSelector(state => state.chat.messages)
     const onFetchMessages = useCallback((userId, chatWithId) => dispatch(actions.getMessages(userId, chatWithId)), [dispatch])
-    const onNewMessage = (message) => dispatch(actions.newMessage(message))
-
+    const onNewMessage = useCallback((message) => dispatch(actions.newMessage(message)), [dispatch])
 
     const [newMessage, setNewMessage] = useState(false);
 
@@ -32,7 +31,7 @@ const ChatWindow = props => {
             onNewMessage(data.message)
             setNewMessage(true)
         })
-    }, [])
+    }, [onNewMessage])
 
     useEffect(()=> {
         var lastMessage = document.getElementById("last");
@@ -41,7 +40,7 @@ const ChatWindow = props => {
             // lastMessage.scrollTop = lastMessage.scrollHeight;
             lastMessage.scrollIntoView()
         }
-    })
+    })    
 
     let messageComponents = null;
     if (messages) {
@@ -49,7 +48,6 @@ const ChatWindow = props => {
         let counter = 0;
         messageComponents = messages.map(mes => {
             counter++;
-
             return (
                 <Message
                     date={mes.sendDate}

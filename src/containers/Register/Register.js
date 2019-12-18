@@ -123,7 +123,7 @@ const Register = props => {
       touched: false
     }
   });
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [shouldRedirect,] = useState(false);
   let [allControlsAreValid, setAllControlsAreValid] = useState(false);
 
   let isAuthenticated = useSelector(state => state.auth.idToken !== null);

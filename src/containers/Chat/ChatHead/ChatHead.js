@@ -19,9 +19,6 @@ const ChatHead = props => {
                     imageUrl={imageUrl}
                     styleType="ChatHead"
                 />
-                <p className={classes.RouteToProfile}>
-                    View Profile
-                </p>
             </div>
             <p className={classes.ChatHeadTitle}>
                 <span className={classes.ChatWith}>chat with</span> <strong>{firstName} {lastName}</strong>

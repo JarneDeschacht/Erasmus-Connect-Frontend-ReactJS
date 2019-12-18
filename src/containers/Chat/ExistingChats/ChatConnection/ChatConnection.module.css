@@ -48,6 +48,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .ContentContainer {
@@ -98,7 +99,6 @@
         padding-top: 0px;
         padding-right: 0px;
         width: 100%;
-        box-sizing: border-box;
     }
 
     .LastMessage {
