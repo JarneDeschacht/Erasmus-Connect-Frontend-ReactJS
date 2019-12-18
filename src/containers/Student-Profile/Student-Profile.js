@@ -98,13 +98,13 @@ const StudentProfile = props => {
         <Aux>
           <p style={{ margin: '0' }}>Incoming request:</p>
           <div className={classes.ButtonGroup}>
-            <Button clicked={onAcceptConnection}>Accept</Button>
-            <Button clicked={onRefuseConnection}>Refuse</Button>
+            <Button maxWidth clicked={onAcceptConnection}>Accept</Button>
+            <Button maxWidth clicked={onRefuseConnection}>Refuse</Button>
           </div>
         </Aux>
       );
     } else if (connectionStatus.requestSent) {
-      connectButton = <Button noPointer>Request Sent</Button>;
+      connectButton = <Button maxWidth noPointer>Request Sent</Button>;
     } else {
       connectButton = <Button clicked={onConnectionClick} maxWidth>Connect</Button>;
     }

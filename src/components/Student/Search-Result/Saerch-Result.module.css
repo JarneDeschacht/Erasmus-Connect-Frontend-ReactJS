@@ -23,12 +23,21 @@
 .Title{
     font-size: 1.25rem;
     margin-bottom: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .SubTitle{
     font-size: .90rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .Small{
     font-size: .75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (min-width: 576px) {

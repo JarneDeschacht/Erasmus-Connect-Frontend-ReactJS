@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import classes from './ChatWindow.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actions from '../../../store/actions/index'
@@ -12,35 +12,29 @@ const ChatWindow = props => {
     const userId = localStorage.getItem('userId')
     const messages = useSelector(state => state.chat.messages)
     const onFetchMessages = useCallback((userId, chatWithId) => dispatch(actions.getMessages(userId, chatWithId)), [dispatch])
-    const onNewMessage = useCallback((message) => dispatch(actions.newMessage(message)), [dispatch])
+    const newMessageReceived = useCallback((message) => dispatch(actions.newMessage(message)), [dispatch])
 
-    const [newMessage, setNewMessage] = useState(false);
-
-    useEffect(() => {
+    useEffect(() => {      
         if (props.connection) {
             onFetchMessages(userId, props.connection.userId)
-            setNewMessage(false)
         }
-    }, [props.connection, newMessage, userId, onFetchMessages])
-
-    // onfec, userId, props, messages
+    }, [props.connection, userId, onFetchMessages])
 
     useEffect(() => {
         const socket = openSocket('http://localhost:8080/')
         socket.on('messages', data => {
-            onNewMessage(data.message)
-            setNewMessage(true)
-        })
-    }, [onNewMessage])
+            newMessageReceived(data.message);
+        });
+    }, [newMessageReceived]);
 
-    useEffect(()=> {
+    useEffect(() => {
         var lastMessage = document.getElementById("last");
-      
-        if(lastMessage){
+
+        if (lastMessage) {
             // lastMessage.scrollTop = lastMessage.scrollHeight;
             lastMessage.scrollIntoView()
         }
-    })    
+    })
 
     let messageComponents = null;
     if (messages) {
