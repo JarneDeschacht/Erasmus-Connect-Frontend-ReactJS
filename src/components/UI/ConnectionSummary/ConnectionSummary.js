@@ -66,39 +66,51 @@ const ConnectionSummary = props => {
         <div className={classes.Info}>{props.name}</div>
         {props.isConnection ? (
           <div className={classes.Controls}>
-            <Button clicked={() => { props.goTo('/students', [props.userId]) }} smallButton>
-            
-            <FontAwesome 
-                name="fas fa-user" />
-            </Button>
-            <Button smallButton clicked={() => routeToChat()}>
-            <FontAwesome
-                name="fas fa-comments" />
-            </Button>
-            <Button smallButton clicked={() => { onRefuse() }}>
-            <FontAwesome
-                name="fas fa-trash"/>
-            </Button>
+            <div className={classes.ButtonContainer}>
+              <Button clicked={() => { props.goTo('/students', [props.userId]) }} smallButton>
+                <FontAwesome
+                  name="fas fa-user" />
+              </Button>
+            </div>
+            <div className={classes.ButtonContainer}>
+              <Button smallButton clicked={() => routeToChat()}>
+                <FontAwesome
+                  name="fas fa-comments" />
+              </Button>
+            </div>
+            <div className={classes.ButtonContainer}>
+              <Button smallButton clicked={() => { onRefuse() }}>
+                <FontAwesome
+                  name="fas fa-trash" />
+              </Button>
+            </div>
+
           </div>
         ) : null}
         {props.isReceived ? (
           <div className={classes.Controls}>
-            <Button clicked={() => { onAccept() }} smallButton>
-              <FontAwesome
-                name="fas fa-check" />
-            </Button>
-            <Button clicked={() => { onRefuse() }} smallButton>
-              <FontAwesome
-                name="fas fa-times" />
-            </Button>
+            <div className={classes.ButtonContainer}>
+              <Button clicked={() => { onAccept() }} smallButton>
+                <FontAwesome
+                  name="fas fa-check" />
+              </Button>
+            </div>
+            <div className={classes.ButtonContainer}>
+              <Button clicked={() => { onRefuse() }} smallButton>
+                <FontAwesome
+                  name="fas fa-times" />
+              </Button>
+            </div>
           </div>
         ) : null}
         {props.isSent ? (
           <div className={classes.Controls}>
-            <Button clicked={() => { onRefuse() }} smallButton>
-              <FontAwesome
-                name="fas fa-times" />
-            </Button>
+            <div className={classes.ButtonContainer}>
+              <Button clicked={() => { onRefuse() }} smallButton>
+                <FontAwesome
+                  name="fas fa-times" />
+              </Button>
+            </div>
           </div>
         ) : null}
       </div>
